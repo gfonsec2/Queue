@@ -53,7 +53,9 @@ get "/admin/delete" do
 	authenticate!
 	if current_user.administrator 
 		@barbers = Barber.all
+
 		erb :deleteBarber
+
 	else
 	redirect "/login"
 end
@@ -71,3 +73,4 @@ end
 get "/admin/updateprices" do
 
 end
+
