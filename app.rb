@@ -1,43 +1,77 @@
 require "sinatra"
 require_relative "authentication.rb"
 
-def youtube_embed(youtube_url)
-  if youtube_url[/youtu\.be\/([^\?]*)/]
-    youtube_id = $1
-  else
-    # Regex from # http://stackoverflow.com/questions/3452546/javascript-regex-how-to-get-youtube-video-id-from-url/4811367#4811367
-    youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
-    youtube_id = $5
-  end
 
-  %Q{<iframe title="YouTube video player" width="640" height="390" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+if ENV['DATABASE_URL']
+  DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+else
+  DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/app.db")
 end
-
-def admin_only! 
-	if !current_user || !current_user.administrator
-		redirect "/"
-	end
-end
-
-def pro_only!
-	if !current_user || !current_user.pro || !current_user.administrator
-		redirect "/"
-	end
-end
-class Video
+class Barber
 	include DataMapper::Resource
+
 	property :id, Serial
-	property :title, Text
-	property :video_url, Text
+	property :name, Text
+	property :total, Integer, :default => 0
+	property :available, Boolean, :default => false
+	#fill in the rest
+	def wait_list
+		return Queueitem.all(bid: id) #gets list of customers 
+	end
+end
+
+class Queueitem
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :name, Text
+	property :price, Integer
+	property :bid, Integer
+
+	def barber 
+		return Barber.get(bid)
+	end
+end
+
+class Date
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :created_at, Date 
+	property :money, Integer
+end
+
+class Haircuts
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :hair_type, Text
+	property :price, Integer
 
 end
+
+
+
+
+DataMapper.finalize
+User.auto_upgrade!
+Barber.auto_upgrade!
+Queueitem.auto_upgrade!
+Date.auto_upgrade!
+Haircuts.auto_upgrade!
+
 # Perform basic sanity checks and initialize all relationships
 # Call this when you've defined all your models
 DataMapper.finalize
 
-# automatically create the post table
-User.auto_upgrade!
-Video.auto_upgrade!
+if User.all(administrator: true).count == 0
+	u = User.new
+	u.email = "admin@admin.com"
+	u.password = "admin"
+	u.administrator = true
+	u.save
+end
+
 
 
 
@@ -46,31 +80,13 @@ get "/" do
 	erb :index
 end
 
-
-get "/videos" do
-	if admin_only || pro_only do
-	@videos = Video.all
-	erb :videos
-else
-	if Video.all.pro == false 
-end
-
-end
-
-post "/videos/create" do 
-	#authenticate!
-	if params["title"] && params["video_url"]
-		v = Video.new
-		v.title = params["title"]
-		v.video_url = params["video_url"]
-		v.save
-		return "succesful"
-	else
-		return "missing information"
+get "/admin" do
+	authenticate!
+	if current_user.administrator 
+	@barbers = Barber.all
+	erb :admin, :layout => :admin_layout
+	#flash[:success] = "succesfully logged in"
 	end
-end	
-
-get "/videos/new" do
-	#authenticate!
-	erb :new_video
+	#redirect "/login"
 end
+
