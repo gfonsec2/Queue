@@ -53,12 +53,12 @@ get "/admin/delete" do
 	authenticate!
 	if current_user.administrator 
 		@barbers = Barber.all
-		erb :delete_barber, :layout => :admin_layout
+		erb :deletebarber, :layout => :admin_layout
 	else
 	redirect "/login"
 end
 end
 
-post "/admin/haircuts"
-	authenticate!
-end
+# post "/admin/haircuts"
+# 	authenticate!
+# end
