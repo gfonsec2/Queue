@@ -1,5 +1,6 @@
 require "sinatra"
 require_relative "authentication.rb"
+require_relative "admin_functions.rb"
 
 
 if ENV['DATABASE_URL']
@@ -78,15 +79,5 @@ end
 
 get "/" do
 	erb :index
-end
-
-get "/admin" do
-	authenticate!
-	if current_user.administrator 
-	@barbers = Barber.all
-	erb :admin, :layout => :admin_layout
-	#flash[:success] = "succesfully logged in"
-	end
-	#redirect "/login"
 end
 
