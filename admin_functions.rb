@@ -11,7 +11,7 @@ get "/admin" do
 	authenticate!
 	if current_user.administrator 
 	@barbers = Barber.all
-	erb :admin, :layout => :admin_layout
+	erb :homeDashboard
 	#flash[:success] = "succesfully logged in"
 	end
 	#redirect "/login"
