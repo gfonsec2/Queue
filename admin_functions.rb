@@ -49,7 +49,7 @@ get "/admin/delete/:id" do
 end
 end
 
-get "/admin/delete" do
+get "/admin/deletebarber" do
 	authenticate!
 	if current_user.administrator 
 		@barbers = Barber.all
