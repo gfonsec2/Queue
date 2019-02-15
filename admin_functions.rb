@@ -17,7 +17,7 @@ get "/admin" do
 	#redirect "/login"
 end
 
-post "/admin/addbarber" do 
+post "/admin/new" do 
 	if params["name"] != ""
 		b = Barber.new
 		b.name = params["name"]
@@ -29,10 +29,10 @@ post "/admin/addbarber" do
 	end
 end	
 
-get "/admin/new" do
+get "/admin/addbarber" do
 	authenticate!
 	if current_user.administrator 
-	erb :new_barber, :layout => :admin_layout
+	erb :addBarber
 	else 
 	redirect "/login"
 	end
@@ -53,12 +53,21 @@ get "/admin/delete" do
 	authenticate!
 	if current_user.administrator 
 		@barbers = Barber.all
-		erb :delete_barber, :layout => :admin_layout
+		erb :deleteBarber
 	else
 	redirect "/login"
 end
 end
 
-post "/admin/haircuts"
+patch "/admin/haircuts" do
 	authenticate!
+	haircut = Haircuts.get(params[id])
+end
+
+get "/admin/datatable" do
+
+end
+
+get "/admin/updateprices" do
+
 end
