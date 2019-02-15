@@ -1,22 +1,23 @@
 //This is the view that is a drag and droppable delete barber function.
-
-<div class="card">
-   <div class="card-body">
-    <form action="/admin/deletebarber" method="POST">
-			    <br><br>
-				<div>
-					<h4><i><strong>DELETE</strong> a barber</i></h4>
-				</div>
-				<br>
-				<div>
-					<ul class="list-group">
-					<% @barbers.each do |b| %>
-			   			<li> <a href = "/admin/delete/<%= b.id %>" style = fontclass= "list-group-item"><i><%= b.name %></i> </a>  </li>
-			 		<% end %>
-					</ul>
-				</div>
-				<br>
+<div align = "center">
+	<div class="card">
+	   <div class="card-body">
+	    <form action="/admin/deletebarber" method="POST">
+				    <br><br>
+					<div>
+						<h4><i><strong>DELETE</strong> a barber</i></h4>
+					</div>
 					<br>
-	</form>
-   </div>
-  </div>
+					<div>
+						<ul class="list-group">
+						<% @barbers.each do |b| %>
+				   			<li> <a href = "/admin/delete/<%= b.id %>" style = fontclass= "list-group-item"><i><%= b.name %></i> </a>  </li>
+				 		<% end %>
+						</ul>
+					</div>
+					<br>
+						<br>
+		</form>
+	   </div>
+	</div>
+</div>
