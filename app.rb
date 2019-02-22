@@ -1,6 +1,7 @@
 require "sinatra"
 require_relative "authentication.rb"
 require_relative "admin_functions.rb"
+require_relative "haircuts.rb"
 
 
 if ENV['DATABASE_URL']
@@ -46,6 +47,7 @@ class Haircuts
 	include DataMapper::Resource
 
 	property :id, Serial
+	property :hair, Boolean 
 	property :hair_type, Text
 	property :price, Integer
 
@@ -73,11 +75,12 @@ if User.all(administrator: true).count == 0
 	u.save
 end
 
-
-
+if Haircuts.all.count == 0
+	addhaircuts()
+end
 
 
 get "/" do
-	erb :index
+	erb :admin
 end
 

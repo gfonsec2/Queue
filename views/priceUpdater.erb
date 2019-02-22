@@ -1,1 +1,36 @@
-//This is the view that allows the owner to change the prices for stylings.
+
+
+<div class="card">
+   <div class="card-body">
+  
+			    <br><br>
+				<div>
+					<h4><i><strong>Haircuts prices</strong></i></h4>
+				</div>
+				<br>
+				<div>
+					<ul class="list-group">
+
+					<% @haircuts.each do |h| %>
+					  <form action="/admin/updateprice/<%= h.id %>" method="PATCH">
+			   			<li><input type = "text" name = "price"></a><i><%= h.hair_type %> -- <%= h.price %>$ </i>   <input type ="submit" name = "Submit"></li></form>
+			 		<% end %>
+			 			
+					</ul>
+				</div>
+
+				<br>
+					<br>
+					<div>
+					<h4><i><strong>Beards prices</strong></i></h4>
+				</div>
+						<div>
+					<ul class="list-group">
+					<% @beards.each do |b| %>
+			   			<li> <a href = "" style = fontclass= "list-group-item"><i><%= b.hair_type %></i> -- <%= b.price %>$ </a>  </li>
+			 		<% end %>
+					</ul>
+				</div>
+	
+   </div>
+  </div>
