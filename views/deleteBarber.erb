@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-<div class="card">
-   <div class="card-body">
-    <form action="/admin/deletebarber" method="POST">
-			    <br><br>
-				<div>
-					<h4><i><strong>DELETE</strong> a barber</i></h4>
-				</div>
-				<br>
-				<div>
-					<ul class="list-group">
-					<% @barbers.each do |b| %>
-			   			<li> <a href = "/admin/delete/<%= b.id %>" style = fontclass= "list-group-item"><i><%= b.name %></i> </a>  </li>
-			 		<% end %>
-					</ul>
-				</div>
-				<br>
-=======
-//This is the view that is a drag and droppable delete barber function.
 <div align = "center">
 	<div class="card">
 	   <div class="card-body">
@@ -25,7 +6,6 @@
 					<div>
 						<h4><i><strong>DELETE</strong> a barber</i></h4>
 					</div>
->>>>>>> a3fbe292b6fc48afbb0ead1bac5783fcedb28d0e
 					<br>
 					<div>
 						<ul class="list-group">
