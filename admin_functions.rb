@@ -61,16 +61,26 @@ get "/admin/deletebarber" do
 end
 end
 
-patch "/admin/haircuts" do
+get "/admin/updateprice/:id" do
 	authenticate!
-	haircut = Haircuts.get(params[id])
+	haircut = Haircuts.get(params[:id])
+	haircut.update(:price => params["price"])
+	haircut.save
+	redirect "/admin/updateprice"
 end
 
 get "/admin/datatable" do
-
+	erb :datatable
 end
 
-get "/admin/updateprices" do
+get "/admin/Calendar" do
+	erb :calendar
+end
+get "/admin/updateprice" do
+@haircuts = Haircuts.all(hair: true)
 
+@beards = Haircuts.all(hair: false)
+
+erb :priceUpdater
 end
 
