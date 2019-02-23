@@ -81,6 +81,6 @@ end
 
 
 get "/" do
-	erb :admin
+	redirect "/admin" 
 end
 
