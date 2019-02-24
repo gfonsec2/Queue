@@ -73,7 +73,7 @@ get "/admin/datatable" do
 	erb :datatable
 end
 
-get "/admin/Calendar" do
+get "/admin/calendar" do
 	erb :calendar
 end
 get "/admin/updateprice" do
@@ -82,5 +82,8 @@ get "/admin/updateprice" do
 @beards = Haircuts.all(hair: false)
 
 erb :priceUpdater
+end
+get "/admin/homeDashboard" do
+	erb :homeDashboard
 end
 
