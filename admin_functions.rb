@@ -32,6 +32,7 @@ end
 get "/admin/addbarber" do
 	authenticate!
 	if current_user.administrator 
+	@barbers = Barber.all
 	erb :addBarber
 	else 
 	redirect "/login"
