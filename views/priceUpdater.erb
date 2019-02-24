@@ -1,36 +1,46 @@
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto"></ul>
+    <span class="navbar-brand">
+      Update Service Prices
+    </span>
+  </div>
+</nav>
 
 <div class="card">
    <div class="card-body">
-  
-			    <br><br>
-				<div>
-					<h4><i><strong>Haircuts prices</strong></i></h4>
-				</div>
-				<br>
-				<div>
-					<ul class="list-group">
-
-					<% @haircuts.each do |h| %>
-					  <form action="/admin/updateprice/<%= h.id %>" method="PATCH">
-			   			<li><input type = "text" name = "price"></a><i><%= h.hair_type %> -- <%= h.price %>$ </i>   <input type ="submit" name = "Submit"></li></form>
-			 		<% end %>
-			 			
-					</ul>
-				</div>
-
-				<br>
-					<br>
-					<div>
-					<h4><i><strong>Beards prices</strong></i></h4>
-				</div>
-						<div>
-					<ul class="list-group">
-					<% @beards.each do |b| %>
-			   			<li> <a href = "" style = fontclass= "list-group-item"><i><%= b.hair_type %></i> -- <%= b.price %>$ </a>  </li>
-			 		<% end %>
-					</ul>
-				</div>
-	
-   </div>
-  </div>
+		<div>
+			<h4><i><strong>Hair Service Prices</strong></i></h4>
+		</div>
+		<div>
+			<ul style="list-style: none;" class="list-group">
+				<% @haircuts.each do |h| %>
+					<form action="/admin/updateprice/<%= h.id %>" method="PATCH">
+				   		<li class="list-group-item">
+				   			<i><%= h.hair_type %>:   $<%= h.price %></i>
+				   			<input type ="submit" name = "Submit" value="Update Price" style="float: right;">
+				   			<input type = "text" name = "price" placeholder="Enter new price" style="float: right;">
+				   		</li>
+				   	</form>
+			 	<% end %>
+			</ul>
+		</div>
+		<br>
+		<div>
+			<h4><i><strong>Beard Service Prices</strong></i></h4>
+		</div>
+		<div>
+			<ul style="list-style: none;" class="list-group">
+				<% @beards.each do |b| %>
+					<form action="/admin/updateprice/<%= b.id %>" method="PATCH">
+						<li class="list-group-item">
+				   			<i><%= b.hair_type %>:   $<%= b.price %></i>
+				   			<input type ="submit" name = "Submit" value="Update Price" style="float: right;">
+				   			<input type = "text" name = "price" placeholder="Enter new price" style="float: right;">
+				   		</li>
+				   	</form>
+			 	<% end %>
+			</ul>
+		</div>	
+	</div>
+</div>
