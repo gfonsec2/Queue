@@ -2,6 +2,8 @@ require "sinatra"
 require_relative "authentication.rb"
 require_relative "admin_functions.rb"
 require_relative "haircuts.rb"
+require_relative "kiosk.rb"
+require_relative "view.rb"
 
 
 if ENV['DATABASE_URL']
@@ -15,7 +17,7 @@ class Barber
 	property :id, Serial
 	property :name, Text
 	property :total, Integer, :default => 0
-	property :available, Boolean, :default => false
+	property :available, Boolean, :default => true
 	#fill in the rest
 	def wait_list
 		return Queueitem.all(bid: id) #gets list of customers 

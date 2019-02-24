@@ -1,1 +1,39 @@
-//This is the view that displays the to the customer the barber they chose, and their price to pay.
+<!DOCTYPE html>
+<html>
+<meta http-equiv = "refresh" content = "4;/"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+ {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+  margin-top: 270px;
+}
+
+h1 {
+  text-align: center;  
+}
+
+</style>
+<body>
+
+<form id="regForm" action="/Queue">
+  <b><h1>Thanks for Queuing-up, please wait for your turn. Your total will be $<%= @cus.price %></h1></b>
+</form>
+</body>
+</html>

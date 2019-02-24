@@ -22,10 +22,10 @@ post "/admin/new" do
 		b = Barber.new
 		b.name = params["name"]
 		b.save
-		redirect "/admin"
+		redirect "/admin/addbarber"
 	else
 		flash[:error] = "Must enter a name for new barber "
-		redirect "/admin"
+		redirect "/admin/addbarber"
 	end
 end	
 
@@ -43,7 +43,7 @@ get "/admin/delete/:id" do
 	if current_user.administrator 
 		b = Barber.get(params[:id])
 		b.destroy
-		redirect "/admin"
+		redirect "/admin/deletebarber"
 	else
 	redirect "/login"
 end

@@ -1,0 +1,43 @@
+require_relative "app.rb"
+
+get "/pop/:id" do
+	c = Queueitem.get(params[:id])
+	if c != nil
+		c.destroy
+	end
+	redirect "/viewA"
+end
+
+get "/viewC" do
+	@barbers = Barber.all(available: true)
+	erb :customerQ
+end
+get "/viewA" do
+	@barbers = Barber.all(available: true)
+	erb :adminQ
+end
+
+
+get "/sign_in" do 
+	@barbers = Barber.all(available: false)
+	erb :in
+end
+
+get "/sign_in/:id" do
+		b = Barber.get(params[:id])
+		b.available = true
+		b.save
+		redirect "/viewA"
+end
+
+get "/sign_out" do 
+	@barbers = Barber.all(available: true)
+	erb :out
+end
+
+get "/sign_out/:id" do
+		b = Barber.get(params[:id])
+		b.available = false
+		b.save
+		redirect "/viewA"
+end
