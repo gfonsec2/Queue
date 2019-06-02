@@ -1,1 +1,97 @@
-//This is the view that is displayed always after the barber shop owner logs in.
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<link rel="stylesheet" href="/stylesheet/dashboard.css">
+
+<style>
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+</style>
+
+</head>
+<body>
+		<h4 style = "color: black"> Dashboard 
+			<ol class="breadcrumb float-right">
+					<li class="breadcrumb-item">
+						<a href="/admin">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li class="breadcrumb-item active">
+						<a href="/admin">Dashboard</a>
+					</li>
+			</ol>
+			<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+		</h4>
+		<br>
+
+		<div class="card bg-light text-dark" >
+	    		<div class="card-body">
+	     			<h3 align="center"> admin@admin.com </h3>
+	     			<div class = "card-text">
+	     				<i class="fas fa-dollar-sign"></i>
+					  		<font color="green">
+					  			Revenue:<font color="black"> $1960</font>
+					  		</font>
+					  		<br>
+					  	<i class="fas fa-user-alt"></i>
+					  		<font color = " red">
+					  			Customers:<font color="black"> 102</font>
+					  		</font>
+
+					  </div>
+	    		</div>
+			</div>
+
+			<hr>
+
+<main class="grid">
+		<% @barbers.each do |b| %>
+  <div class="card bg-light text-dark">
+  	<div class="card-body">
+	  <h5 class="card-title" align="center"><%= b.name %>  </h5>
+	 				 <div class = "card-text">
+	  					<i class="fas fa-dollar-sign"></i>
+					  		<font color="green">
+					  			Revenue:<font color="black"> $320</font>
+					  		</font>
+					  		<br>
+					  	<i class="fas fa-user-alt"></i>
+					  		<font color = " red">
+					  			Customers:<font color="black"> 17</font>
+					  		</font>	
+					  </div>
+		
+	</div>
+  </div>
+  <% end %>
+</main>
+</body>
+<script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+</html>

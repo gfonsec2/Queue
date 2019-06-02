@@ -1,31 +1,39 @@
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>Q-UP</h3>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/stylesheet/nav.css">
+</head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/admin">
+  Queue-up
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/admin"> Home </a>
+      <a class="nav-item nav-link active" href="/admin/addbarber"> Add</a>
+      <a class="nav-item nav-link active" href="/admin/deletebarber">Delete</a>
+      <a class="nav-item nav-link active" href="/admin/updateprice"> Services</a>
+      <a class="nav-item nav-link active" href="#"> Appointments</a>
+      <a class="nav-item nav-link active" href="/viewA"> Queue</a>
     </div>
-    <ul class="list-unstyled components">
-        <p>Menu</p>
-        <li>
-            <a href="/admin/homeDashboard">Home</a>
-        </li>
-        <li>
-            <a href="/admin/addbarber">Add Barber</a>
-        </li>
-        <li>
-            <a href="/admin/deletebarber">Delete Barber</a>
-        </li>
-        <li>
-            <a href="/admin/calendar">Calendar</a>
-        </li>
-        <li>
-            <a href="/admin/datatable">DataTable</a>
-        </li>
-        <li>
-            <a href="/admin/updateprice">Service Price</a>
-        </li>
-    </ul>
-    <ul class="list-unstyled CTAs">
-        <li>
-            <a href="/login" class="download">Sign Out</a>
-        </li>
-    </ul>
+  </div>
+      
+
+        <div class="btn-group dropleft">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+            More
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/kiosk">Kiosk</a>
+            <a class="dropdown-item" href="/viewC">Customer View</a>
+            <a class="dropdown-item-text" href="#">Contact Us</a>
+            
+          </div>
+        </div>
+          
+
 </nav>
+</html>

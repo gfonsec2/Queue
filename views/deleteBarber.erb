@@ -18,19 +18,19 @@
 
 						</li>
 					</ol>
-					<div class = "date_delB"><small>Today is Tuesday, Febuary 8 2019</small></div>
+					<div class = "date_delB"><small> <span id="datetime"></span></small></div>
 				</h4>
 
 			<br>
 		<div align = "center">
-			<div class="card_delB" >
+			<div class="card bg-light text-dark" >
 			   <div class="card-body">
 			    <form action="/admin/deletebarber" method="POST">
-						    <br><br>
+						    <!-- <br> -->
 							<div>
-								<label>Current Barbers:<label>
+								<h5><label>Current Barbers:<label></h5>
 							</div>
-							<br>
+						
 							<div align="center">
 								<ul class="list-group" style = "width:350px">
 								<% @barbers.each do |b| %>
@@ -46,13 +46,16 @@
 						 		<% end %>
 								</ul>
 							</div>
-							<br>
-							<br>
+							
 				</form>
 			   </div>
 			</div>
 		</div>
 
 	</body>
+	<script>
+		var dt = new Date();
+		document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+	</script>
 </html>
 

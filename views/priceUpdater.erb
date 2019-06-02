@@ -1,46 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto"></ul>
-    <span class="navbar-brand">
-      Update Service Prices
-    </span>
-  </div>
-</nav>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/stylesheet/services.css">
+</head>
+<body>
+	<h4 style = "color: black">Services 
+			<ol class="breadcrumb float-right">
+					<li class="breadcrumb-item">
+						<a href="/admin">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li class="breadcrumb-item active">
+						<a href="/admin/updateprice">Services</a>
+					</li>
+			</ol>
+		<div class = "date_priceupdate"><small><span id="datetime"></span></small></div>
+</h4>
 
-<div class="card">
-   <div class="card-body">
+<br>
+
+<div class="card bg-light text-dark">
+   	<div class="card-body">
 		<div>
-			<h4><i><strong>Hair Service Prices</strong></i></h4>
+			<h5 align="center">Hair</h5>
 		</div>
 		<div>
 			<ul style="list-style: none;" class="list-group">
 				<% @haircuts.each do |h| %>
 					<form action="/admin/updateprice/<%= h.id %>" method="PATCH">
-				   		<li class="list-group-item">
-				   			<i><%= h.hair_type %>:   $<%= h.price %></i>
+				   			<%= h.hair_type %>:   $<%= h.price %>
+
+
 				   			<input type ="submit" name = "Submit" value="Update Price" style="float: right;">
-				   			<input type = "text" name = "price" placeholder="Enter new price" style="float: right;">
-				   		</li>
-				   	</form>
+				   			<input size="20" type = "text" name = "price" placeholder="Enter new price" style="float: right;">
+				   			<hr>
+
+ 				   	</form>
 			 	<% end %>
 			</ul>
 		</div>
 		<br>
 		<div>
-			<h4><i><strong>Beard Service Prices</strong></i></h4>
+			<h5 align="center">Beard</h5>
 		</div>
 		<div>
 			<ul style="list-style: none;" class="list-group">
 				<% @beards.each do |b| %>
 					<form action="/admin/updateprice/<%= b.id %>" method="PATCH">
-						<li class="list-group-item">
-				   			<i><%= b.hair_type %>:   $<%= b.price %></i>
+
+				   			<%= b.hair_type %>:   $<%= b.price %>
 				   			<input type ="submit" name = "Submit" value="Update Price" style="float: right;">
-				   			<input type = "text" name = "price" placeholder="Enter new price" style="float: right;">
-				   		</li>
+				   			<input size="20" type = "text" name = "price" placeholder="Enter new price" style="float: right;">
+				   			<hr>
 				   	</form>
 			 	<% end %>
 			</ul>
 		</div>	
 	</div>
 </div>
+</body>
+<script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+</html>
+
