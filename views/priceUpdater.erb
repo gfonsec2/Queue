@@ -2,6 +2,31 @@
 <html>
 <head>
 	<link rel="stylesheet" href="/stylesheet/services.css">
+	<style>
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+</style>
 </head>
 <body>
 	<h4 style = "color: black">Services 
@@ -20,7 +45,114 @@
 
 <br>
 
-<div class="card bg-light text-dark">
+<div class="card bg-light text-dark" >
+	    		<div class="card-body">
+	     			<h3 align="center">Add a Service </h3>
+	     			<div class = "card-text">
+	     				<i class="fas fa-dollar-sign"></i>
+					  		<font color="green">
+					  			Revenue:<font color="black"> $1960</font>
+					  		</font>
+					  		<br>
+					  	<i class="fas fa-user-alt"></i>
+					  		<font color = " red">
+					  			Customers:<font color="black"> 102</font>
+					  		</font>
+
+					  </div>
+	    		</div>
+			</div>
+
+			<hr>
+
+
+<main class="grid">
+		
+  <div class="card bg-light text-dark">
+  	<div class="card-body">
+	  <h5 class="card-title" align="center">Hair</h5>
+	  <div>
+			<ul style="list-style: none;" class="list-group list-group-flush">
+				<% @haircuts.each do |h| %>
+					<form action="/admin/updateprice/<%= h.id %>" method="PATCH">
+				   			<%= h.hair_type %>:   $<%= h.price %>
+				   			<!-- <button class="btn" style="float: right;"></i></button>
+				   			<button class="btn" style="float: right;"><i class="fas fa-trash-alt"></i></button> -->
+				   			<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+				   			<!-- <input type ="submit" name = "Submit" value="Update" style="float: right;">
+				   			<input size="4" type = "text" name = "price" placeholder="Enter new price" style="float: right;"> -->
+				   			<hr>
+ 				   	</form>
+			 	<% end %>
+			</ul>
+		</div>		
+	</div>
+  </div>
+
+  <div class="card bg-light text-dark">
+  	<div class="card-body">
+	  <h5 class="card-title" align="center">Beard</h5>
+	 	<div>
+			<ul style="list-style: none;" class="list-group">
+				<% @beards.each do |b| %>
+					<form action="/admin/updateprice/<%= b.id %>" method="PATCH">
+
+				   			<%= b.hair_type %>:   $<%= b.price %>
+				   			<input type ="submit" name = "Submit" value="Update" style="float: right;">
+				   			<input size="4" type = "text" name = "price" placeholder="Enter new price" style="float: right;">
+				   			<hr>
+				   	</form>
+			 	<% end %>
+			</ul>
+		</div>		
+	</div>
+  </div>
+
+  <div class="card bg-light text-dark">
+  	<div class="card-body">
+	  <h5 class="card-title" align="center">Extra</h5>
+	 				 <div class = "card-text">
+	  					<i class="fas fa-dollar-sign"></i>
+					  		<font color="green">
+					  			Revenue:<font color="black"> $320</font>
+					  		</font>
+					  		<br>
+					  	<i class="fas fa-user-alt"></i>
+					  		<font color = " red">
+					  			Customers:<font color="black"> 17</font>
+					  		</font>	
+					  </div>
+		
+	</div>
+  </div>
+</main>
+
+
+<!-- <div class="card bg-light text-dark">
    	<div class="card-body">
 		<div>
 			<h5 align="center">Hair</h5>
@@ -58,7 +190,7 @@
 			</ul>
 		</div>	
 	</div>
-</div>
+</div> -->
 </body>
 <script>
 	var dt = new Date();
