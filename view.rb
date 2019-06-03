@@ -2,6 +2,18 @@ require_relative "app.rb"
 
 get "/pop/:id" do
 	c = Queueitem.get(params[:id])
+	b = Barber.get(c.bid)
+	if c != nil
+		b.money += c.price
+		b.total +=1
+		c.destroy
+	end
+	b.save
+	redirect "/viewA"
+end
+
+get "/pop2/:id" do
+	c = Queueitem.get(params[:id])
 	if c != nil
 		c.destroy
 	end

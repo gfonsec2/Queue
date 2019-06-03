@@ -33,6 +33,13 @@
 
 </head>
 <body>
+
+	<% moneyToday = 0%>
+	<% customersToday = 0%>
+	<% @barbers.each do |b| %>
+	<% moneyToday += b.money %>
+	<% customersToday += b.total %>
+	<%end%>
 		<h4 style = "color: black"> Dashboard 
 			<ol class="breadcrumb float-right">
 					<li class="breadcrumb-item">
@@ -50,16 +57,16 @@
 
 		<div class="card bg-light text-dark" >
 	    		<div class="card-body">
-	     			<h3 align="center"> admin@admin.com </h3>
+	     			<h3 align="center"> <%= current_user.email %> </h3>
 	     			<div class = "card-text">
 	     				<i class="fas fa-dollar-sign"></i>
 					  		<font color="green">
-					  			Revenue:<font color="black"> $1960</font>
+					  			Revenue:<font color="black"> <%= moneyToday%> </font>
 					  		</font>
 					  		<br>
 					  	<i class="fas fa-user-alt"></i>
 					  		<font color = " red">
-					  			Customers:<font color="black"> 102</font>
+					  			Customers:<font color="black"> <%= customersToday %></font>
 					  		</font>
 
 					  </div>
@@ -76,12 +83,12 @@
 	 				 <div class = "card-text">
 	  					<i class="fas fa-dollar-sign"></i>
 					  		<font color="green">
-					  			Revenue:<font color="black"> $320</font>
+					  			Revenue:<font color="black"> <%= b.money %></font>
 					  		</font>
 					  		<br>
 					  	<i class="fas fa-user-alt"></i>
 					  		<font color = " red">
-					  			Customers:<font color="black"> 17</font>
+					  			Customers:<font color="black"> <%= b.total%></font>
 					  		</font>	
 					  </div>
 		
