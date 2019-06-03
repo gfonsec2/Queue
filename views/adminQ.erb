@@ -70,16 +70,17 @@
 
 				 <% else %>
 				<div class="card-body">
-					<% customers.each do |c| %>
+					
 					<center><h4 class="card-title"><%= b.name %></h4></center>
 					<a class="btn" href="/pop/<%= customers[0].id %>" role="button">Next</a> 
-					<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModalLong<%= c.id %>">Full List</a> 
+					<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModalLong">Full List</a> 
 
 					<p class="card-text">
 						<ul class="list-group"> 	
 					     	<li class="list-group-item list-group-item-success" data-toggle="modal" data-target="#exampleModal<%= customers[0].id %>"><%= customers[0].name %> </li>
 					     		<!-- Modal -->
-					<div class="modal fade" id="exampleModalLong<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					    <% customers.each do |c| %>
+					<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
