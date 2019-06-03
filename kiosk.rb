@@ -22,7 +22,7 @@ get "/infomessage" do
 	cost = beardprice + hairtype.price
 	 
 
-	b.total += cost
+	#b.total += cost
 	b.save
 
 	q = Queueitem.new

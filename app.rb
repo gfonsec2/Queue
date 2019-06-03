@@ -18,10 +18,12 @@ class Barber
 	property :name, Text
 	property :total, Integer, :default => 0
 	property :available, Boolean, :default => true
+	property :money, Integer, :default =>0
 	#fill in the rest
 	def wait_list
 		return Queueitem.all(bid: id) #gets list of customers 
 	end
+	
 end
 
 class Queueitem
