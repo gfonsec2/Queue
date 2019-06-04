@@ -46,39 +46,48 @@
 <br>
 
 <div class="card bg-light text-dark" >
-	    		<div class="card-body">
-	     			<h3 align="center">Add a Service </h3>
-	     			<div class = "card-text">
-	     				<i class="fas fa-dollar-sign"></i>
-					  		<font color="green">
-					  			Revenue:<font color="black"> $1960</font>
-					  		</font>
-					  		<br>
-					  	<i class="fas fa-user-alt"></i>
-					  		<font color = " red">
-					  			Customers:<font color="black"> 102</font>
-					  		</font>
+	<div class="card-body">
+		<h3 align="center">Add a Service</h3>
+		<div class = "card-text">
+		<form>
+			<div>
+				<i class="fas fa-bars"></i>
+				<select>
+    				<option value="" disabled selected>Category</option>
+					<option value="hair">Hairstyle</option>
+					<option value="beard">Beardstyle</option>
+					<option value="extra">Extras</option>
+				</select>
+				
+	  			<i class="fas fa-cut"></i>
+				<input  placeholder="Service Name" type="text" name="name">
 
-					  </div>
-	    		</div>
+				<i class="fas fa-dollar-sign"></i>
+				<input type="number" step="any" min="0" max="100" size="10" name="price" placeholder="Service Price" >
+
+				<input type="submit" name="Submit" value="Add" style="float: right;">
 			</div>
-
-			<hr>
+		</form>
+		</div>
+	</div>
+</div>
+<hr>
 
 
 <main class="grid">
-		
-  <div class="card bg-light text-dark">
-  	<div class="card-body">
-	  <h5 class="card-title" align="center">Hair</h5>
-	  <div>
-			<ul class="list-group list-group-flush">
-						  	 <% @haircuts.each do |c| %>
-					     	<li class="list-group-item" data-toggle="modal" data-target="#exampleModal<%= c.hair_type %>"><%= c.hair_type %> </li>
-					     	<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModal<%= c.hair_type %>">
+	<div class="card-deck">
+		<div class="card bg-light text-dark">
+			<div class="card-body">
+				<h5 class="card-title" align="center">Hair</h5>
+				<p class="card-text">
+					<ul class="list-group list-group-flush">
+						<% @haircuts.each do |c| %>
+					    <li style="list-style: none;"><%= c.hair_type %>: $<%= c.price %>
+					    <a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit"></i></a><hr></li>
 
 					     	<!-- Modal -->
-							<div class="modal fade" id="exampleModal<%= c.hair_type %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<form action="/admin/updateprice/<%= c.id %>" method="PATCH">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
@@ -88,40 +97,61 @@
 							        </button>
 							      </div>
 							      <div class="modal-body">
-							        ...
+				   			<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: right;">
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <a href="/pop/<%= c.hair_type %>" class="btn btn-primary">Delete</a>
+							        <input type ="submit" name = "Submit" value="Update" style="float: right;">
 							      </div>
 							    </div>
 							  </div>
+							</form>
 							</div>
-
 							 <% end %>
 					  </ul>
-		</div>		
-	</div>
-  </div>
+					</p>
+				</div>
+			</div>
+ 	</div>
 
-  <div class="card bg-light text-dark">
-  	<div class="card-body">
-	  <h5 class="card-title" align="center">Beard</h5>
-	 	<div>
-			<ul style="list-style: none;" class="list-group">
-				<% @beards.each do |b| %>
-					<form action="/admin/updateprice/<%= b.id %>" method="PATCH">
+  
+<div class="card bg-light text-dark">
+			<div class="card-body">
+				<h5 class="card-title" align="center">Beard</h5>
+				<p class="card-text">
+					<ul class="list-group list-group-flush">
+						<% @beards.each do |c| %>
+					    <li style="list-style: none;"><%= c.hair_type %>: $<%= c.price %>
+					    <a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit"></i></a><hr></li>
+					    
+					     	<!-- Modal -->
+							<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<form action="/admin/updateprice/<%= c.id %>" method="PATCH">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel"><%= c.hair_type %></h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+				   			<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: right;">
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        <input type ="submit" name = "Submit" value="Update" style="float: right;">
+							      </div>
+							    </div>
+							  </div>
+							</form>
+							</div>
+							 <% end %>
+					  </ul>
+					</p>
+				</div>
+			</div>
 
-				   			<%= b.hair_type %>:   $<%= b.price %>
-				   			<input type ="submit" name = "Submit" value="Update" style="float: right;">
-				   			<input size="4" type = "text" name = "price" placeholder="Enter new price" style="float: right;">
-				   			<hr>
-				   	</form>
-			 	<% end %>
-			</ul>
-		</div>		
-	</div>
-  </div>
 
   <div class="card bg-light text-dark">
   	<div class="card-body">
@@ -141,47 +171,6 @@
 	</div>
   </div>
 </main>
-
-
-<!-- <div class="card bg-light text-dark">
-   	<div class="card-body">
-		<div>
-			<h5 align="center">Hair</h5>
-		</div>
-		<div>
-			<ul style="list-style: none;" class="list-group">
-				<% @haircuts.each do |h| %>
-					<form action="/admin/updateprice/<%= h.id %>" method="PATCH">
-				   			<%= h.hair_type %>:   $<%= h.price %>
-
-
-				   			<input type ="submit" name = "Submit" value="Update Price" style="float: right;">
-				   			<input size="20" type = "text" name = "price" placeholder="Enter new price" style="float: right;">
-				   			<hr>
-
- 				   	</form>
-			 	<% end %>
-			</ul>
-		</div>
-		<br>
-		<div>
-			<h5 align="center">Beard</h5>
-		</div>
-		<div>
-			<ul style="list-style: none;" class="list-group">
-				<% @beards.each do |b| %>
-					<form action="/admin/updateprice/<%= b.id %>" method="PATCH">
-
-				   			<%= b.hair_type %>:   $<%= b.price %>
-				   			<input type ="submit" name = "Submit" value="Update Price" style="float: right;">
-				   			<input size="20" type = "text" name = "price" placeholder="Enter new price" style="float: right;">
-				   			<hr>
-				   	</form>
-			 	<% end %>
-			</ul>
-		</div>	
-	</div>
-</div> -->
 </body>
 <script>
 	var dt = new Date();
