@@ -1,16 +1,50 @@
-<form>
-	<div>
-		<h5>sign-in</h5>
-		<h4>choose your name</h4>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="/stylesheet/signinsout.css">
+</head>
+<body>
+
+		<h4 style = "color: black"> Sign-In 
+			<ol class="breadcrumb float-right">
+					<li class="breadcrumb-item">
+						<a href="/viewA">
+							Queue
+						</a>
+					</li>
+					<li class="breadcrumb-item active">
+						<a href="/sign_in">Sign-In</a>
+					</li>
+			</ol>
+			<div class = "date"><small> <span id="datetime"></span></small></div>
+		</h4>
+		<br>
+
+
+
+<div align="center">
+	<div class="card bg-light text-dark">
+			<form>
+			<div class="card-body">
+					<h3> Sign-In </h3>
+					<p class="card-text">
+						<ol class="list-group list-group-flush" style = "width:350px; list-style-type:none;" >
+							<% @barbers.each do |b| %>
+					   			<li> <a href = "/sign_in/<%= b.id %>" class= "list-group-item bg-light"><%= b.name %> </a>  </li>
+					 		<% end %>
+						</ol>
+					</p>
+			</div>
+		</form>
 	</div>
-	<br>
-	<div>
-		<ul class="list-group">
-		<% @barbers.each do |b| %>
-   			<li> <a href = "/sign_in/<%= b.id %>" class= "list-group-item"><%= b.name %> </a>  </li>
- 		<% end %>
-		</ul>
-	</div>
-	<br>
-	<br>
-</form>
+</div>
+
+
+</body>
+	<script>
+		var dt = new Date();
+		document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+	</script>
+</html>
+
