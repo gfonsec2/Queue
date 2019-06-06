@@ -54,9 +54,16 @@ class Haircuts
 	property :hair, Boolean 
 	property :hair_type, Text
 	property :price, Integer
-
 end
 
+class Extra
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :name, Text
+	property :price, Integer
+
+end
 
 
 
@@ -66,6 +73,7 @@ Barber.auto_upgrade!
 Queueitem.auto_upgrade!
 Date.auto_upgrade!
 Haircuts.auto_upgrade!
+Extra.auto_upgrade!
 
 # Perform basic sanity checks and initialize all relationships
 # Call this when you've defined all your models

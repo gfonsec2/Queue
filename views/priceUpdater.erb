@@ -48,10 +48,10 @@
 		<div class="card-body">
 			<h3 align="center">Add a Service</h3>
 			<div class = "card-text">
-				<form>
+				<form action="/admin/updateprice/add" method="POST">
 					<div>
 						<i class="fas fa-bars"></i>
-						<select>
+						<select name="type">
 		    				<option value="" disabled selected>Category</option>
 							<option value="hair">Hairstyle</option>
 							<option value="beard">Beardstyle</option>
@@ -110,7 +110,7 @@
 					<!-- Delete Modal -->
 					<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <!-- Mau, make the function to delete a sercive -->
-<form action="/admin/updateprice/<%= c.id %>" method="PATCH">
+<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
 					  		<div class="modal-dialog" role="document">
 					    	<div class="modal-content">
 					      	<div class="modal-header">
@@ -173,7 +173,7 @@
 					<!-- Delete Modal -->
 					<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <!-- Mau, make the function to delete a sercive -->
-<form action="/admin/updateprice/<%= c.id %>" method="PATCH">
+<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
 							<div class="modal-dialog" role="document">
 					    	<div class="modal-content">
 					      	<div class="modal-header">
@@ -203,6 +203,12 @@
   			<div class="card-body">
 	  			<h5 class="card-title" align="center">Extras</h5>
 <!-- Mau the Extras class needs to be made so i can do the extras card -->
+
+
+<!-- gil i made the functions in order to delete an extra you use /admin/updateprice/deleteExtra/:id 
+		and to update an extra you use /admin/updateprice/extra/:id-->
+
+
 		 		<div class = "card-text"></div>
 			</div>
   		</div>
