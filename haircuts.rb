@@ -42,4 +42,14 @@ def addhaircuts
 	u6.hair_type = "Razer clean up"
 	u6.price = 15
 	u6.save
+
+	u7 = Extra.new
+	u7.name = "Eyebrows"
+	u7.price = 10
+	u7.save
+
+	u8 = Extra.new
+	u8.name = "Designs"
+	u8.price = 10
+	u8.save	
 end

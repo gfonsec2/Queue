@@ -91,7 +91,6 @@ if Haircuts.all.count == 0
 	addhaircuts()
 end
 
-
 get "/" do
 	redirect "/admin" 
 end

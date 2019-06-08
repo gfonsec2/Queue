@@ -136,6 +136,7 @@ get "/admin/updateprice" do
 @haircuts = Haircuts.all(hair: true)
 
 @beards = Haircuts.all(hair: false)
+@extras = Extra.all
 
 erb :priceUpdater
 end

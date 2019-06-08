@@ -51,7 +51,7 @@
 				<form action="/admin/updateprice/add" method="POST">
 					<div>
 						<i class="fas fa-bars"></i>
-						<select name="type">
+						<select name="type" required>
 		    				<option value="" disabled selected>Category</option>
 							<option value="hair">Hairstyle</option>
 							<option value="beard">Beardstyle</option>
@@ -59,11 +59,11 @@
 						</select>
 				
 			  			<i class="fas fa-cut"></i>
-						<input  placeholder="Service Name" type="text" name="name">
+						<input  placeholder="Service Name" type="text" name="name" required>
 
 						<i class="fas fa-dollar-sign"></i>
-						<input type="number" step="any" min="0" max="100" size="10" name="price" placeholder="Service Price" >
-<!-- Mau this submit button needs to add the new service -->
+						<input type="number" step="any" min="0" max="100" size="10" name="price" placeholder="Service Price" required>
+
 						<input type="submit" name="Submit" value="Add" style="float: right;">
 					</div>
 				</form>
@@ -96,7 +96,7 @@
 					        	</button>
 					      	</div>
 					      	<div class="modal-body">
-		   						<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: right;">
+		   						<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
 					      	</div>
 					      	<div class="modal-footer">
 					        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -109,8 +109,7 @@
 
 					<!-- Delete Modal -->
 					<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<!-- Mau, make the function to delete a sercive -->
-<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
+						<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
 					  		<div class="modal-dialog" role="document">
 					    	<div class="modal-content">
 					      	<div class="modal-header">
@@ -159,7 +158,7 @@
 					        	</button>
 					      	</div>
 					      	<div class="modal-body">
-		   						<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: right;">
+		   						<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
 					      	</div>
 					      	<div class="modal-footer">
 					        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -172,8 +171,7 @@
 
 					<!-- Delete Modal -->
 					<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<!-- Mau, make the function to delete a sercive -->
-<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
+						<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
 							<div class="modal-dialog" role="document">
 					    	<div class="modal-content">
 					      	<div class="modal-header">
@@ -200,18 +198,65 @@
 		</div>
 
 		<div class="card bg-light text-dark">
-  			<div class="card-body">
-	  			<h5 class="card-title" align="center">Extras</h5>
-<!-- Mau the Extras class needs to be made so i can do the extras card -->
+		<div class="card-body">
+			<h5 class="card-title" align="center">Extras</h5>
+			<p class="card-text">
+				<ul class="list-group list-group-flush">
+					<% @extras.each do |c| %>
+				    <li style="list-style: none;"><%= c.name %>: $<%= c.price %>
+				    <a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal0<%= c.id %>"><i class="fas fa-edit"></i></a>
+				    <a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal3<%= c.id %>"><i class="fas fa-trash"></i></a><hr></li>
+					    
+			     	<!-- Modal -->
+					<div class="modal fade" id="exampleModal0<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<form action="/admin/updateprice/extra/<%= c.id %>" method="PATCH">
+					  		<div class="modal-dialog" role="document">
+					    	<div class="modal-content">
+					      	<div class="modal-header">
+					        	<h5 class="modal-title" id="exampleModalLabel"><%= c.name %></h5>
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          		<span aria-hidden="true">&times;</span>
+					        	</button>
+					      	</div>
+					      	<div class="modal-body">
+		   						<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+					      	</div>
+					      	<div class="modal-footer">
+					        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        	<input type ="submit" name = "Submit" value="Update" style="float: right;">
+					      	</div>
+					   		</div>
+					  		</div>
+						</form>
+					</div>
 
-
-<!-- gil i made the functions in order to delete an extra you use /admin/updateprice/deleteExtra/:id 
-		and to update an extra you use /admin/updateprice/extra/:id-->
-
-
-		 		<div class = "card-text"></div>
-			</div>
-  		</div>
+					<!-- Delete Modal -->
+					<div class="modal fade" id="exampleModal3<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<form action="/admin/updateprice/deleteExtra/<%= c.id %>" method="PATCH">
+							<div class="modal-dialog" role="document">
+					    	<div class="modal-content">
+					      	<div class="modal-header">
+					        	<h5 class="modal-title" id="exampleModalLabel"><%= c.name %></h5>
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          		<span aria-hidden="true">&times;</span>
+					        	</button>
+					      	</div>
+					      	<div class="modal-body">
+					      		Are you sure you want to delete this service?
+					      	</div>
+					      	<div class="modal-footer">
+					        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        	<input type ="submit" name = "Submit" value="Delete" style="float: right;">
+					      	</div>
+					    	</div>
+					  		</div>
+						</form>
+					</div>
+					<% end %>
+				</ul>
+			</p>
+		</div>
+		</div>
 	</main>
 </body>
 <script>
