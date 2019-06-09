@@ -108,6 +108,18 @@ button:hover {
               <option value="N/A">N/A</option>
             </select>
           </p>
+
+          <center>
+            <p> Extras:
+          </center>
+            <select class="custom-select" name="extratype" list="Extra"  style="font-style:italic">
+              <option value="" disabled selected>Choose a service / Elija un servicio:</option>
+              <% @extra.each do |b| %>
+              <option value="<%= b.id %>"><%= b.name %>: <%= b.price %></option>
+              <% end %>
+              <option value="N/A">N/A</option>
+            </select>
+          </p>
       </div>
 
 <% c = 20 

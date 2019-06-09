@@ -3,6 +3,7 @@ require_relative "app.rb"
 get "/kiosk" do
 	@hairtypes = Haircuts.all(hair: true)
 	@beardtypes = Haircuts.all(hair: false)
+	@extra = Extra.all
 	@barbers = Barber.all(available: true)
 
 	erb :kiosk
@@ -10,16 +11,24 @@ end
 
 get "/infomessage" do
 	beardprice = 0
-	hairtype = Haircuts.get(params["hairtype"])
-	if(params["beardtype"] == "N/A")
-
-	else
+	hairprice = 0
+	extraprice = 0
+	if (params["hairtype"] != "N/A")
+		hairtype = Haircuts.get(params["hairtype"])
+		hairprice = hairtype.price
+	end
+	if (params["beardtype"] != "N/A")
 		beardtype = Haircuts.get(params["beardtype"])
 		beardprice = beardtype.price
 	end
+	if (params["extratype"] != "N/A")
+		extratype = Extra.get(params["extratype"])
+		extraprice = extratype.price
+	end
+
 	b = Barber.get(params["id"])
 	n = params["name"]
-	cost = beardprice + hairtype.price
+	cost = beardprice + hairprice + extraprice
 	 
 
 	#b.total += cost
