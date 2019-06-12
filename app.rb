@@ -4,6 +4,7 @@ require_relative "admin_functions.rb"
 require_relative "haircuts.rb"
 require_relative "kiosk.rb"
 require_relative "view.rb"
+require_relative "appointment_functions.rb"
 
 
 if ENV['DATABASE_URL']
@@ -11,6 +12,7 @@ if ENV['DATABASE_URL']
 else
   DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/app.db")
 end
+
 class Barber
 	include DataMapper::Resource
 
