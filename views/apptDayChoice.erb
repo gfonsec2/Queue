@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Choose a Day</title>
+<style type="text/css">
+    .card-deck{
+      margin-left: 40px;
+      margin-right: 40px; 
+    }
+  </style>
+</head>
+<body>
+	<main class="grid">
+    <div class="card-deck">
+
+      <div class="card" style="border: none;">
+        <div class="card-body">
+          <p align="center" style="font-size:250px;color:black;">Q</p>
+        </div>
+      </div>
+
+      <div class="card bg-light text-dark">
+        <article class="card-body">
+      <h4 class="card-title text-center mb-4 mt-1">Choice of Day</h4>
+      <hr>
+      <br>
+      <p class="text-success text-center">Choose the day that you want to schedule your appointment.</p>
+      <br>
+      <hr>
+      <br>
+	     <form action="/appointments/stylistChoice" method="GET">
+			<div align="center">
+<i class="fas fa-calendar-alt"></i>				<select name="type" required>
+					<option value="" disabled selected>Day of the Week</option>
+					<option value="one">Monday</option>
+					<option value="two">Tuesday</option>
+					<option value="three">Wednesday</option>
+					<option value="one">Thursday</option>
+					<option value="two">Friday</option>
+					<option value="three">Saturday</option>
+					<option value="three">Sunday</option>
+				</select>
+			</div>
+			<br><br>
+			<div align="center">
+				<input type="submit" name="Submit" value="Next">
+			</div>
+		</form>
+    </article>
+      </div>
+  </div>
+  </main>
+</body>
+</html>
