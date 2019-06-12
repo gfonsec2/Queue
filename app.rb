@@ -5,6 +5,7 @@ require_relative "haircuts.rb"
 require_relative "kiosk.rb"
 require_relative "view.rb"
 require_relative "appointment_functions.rb"
+require_relative "landingPage.rb"
 
 
 if ENV['DATABASE_URL']
