@@ -79,39 +79,42 @@ button:hover {
 
 <body>
   <b><h1 align="center">Queue-up</h1></b>
+  
   <form id="regForm" action="/infomessage">
     <!-- One "tab" for each step in the form: -->
       <div class="tab">
+        <center>
+    Choose your style:<p>
+  </center>
         <script>
           $('.select2').select2();
         </script>
-          <center>
-            <p> Hairstyle:
-          </center>
+        <div align="center">
+          <font style="color: black">Hairstyle:</font>
+        </div>
+          
             <select class="custom-select" name="hairtype" list="Hair"  style="font-style:italic">
               <option value="" disabled selected>Choose a service / Elija un servicio:</option> 
               <% @hairtypes.each do |h| %>
               <option value= "<%= h.id %>"><%= h.hair_type %>: <%= h.price %></option>
               <% end %> 
               <option value="N/A">N/A</option>
-            </select>
-          </p>
+            </select><hr>
 
-          <center>
-            <p> Beardstyle:
-          </center>
+          <div align="center">
+          <font style="color: black">Beardstyle:</font>
+        </div>
             <select class="custom-select" name="beardtype" list="Hair"  style="font-style:italic">
               <option value="" disabled selected>Choose a service / Elija un servicio:</option>
               <% @beardtypes.each do |b| %>
               <option value="<%= b.id %>"><%= b.hair_type %>: <%= b.price %></option>
               <% end %>
               <option value="N/A">N/A</option>
-            </select>
-          </p>
+            </select><hr>
 
-          <center>
-            <p> Extras:
-          </center>
+          <div align="center">
+          <font style="color: black">Extras:</font>
+        </div>
             <select class="custom-select" name="extratype" list="Extra"  style="font-style:italic">
               <option value="" disabled selected>Choose a service / Elija un servicio:</option>
               <% @extra.each do |b| %>
@@ -136,7 +139,7 @@ button:hover {
 
 <div class="tab">
   <center>
-    Choose your Barber:<p>
+    Pick your Barber:<p>
   </center>
   <select class="custom-select" id='barber.id' name='id' type='text' style="font-style:italic">
     <option value= "<%= barber %>" selected>Next Available / Siguiente disponible:</option>
@@ -155,7 +158,10 @@ button:hover {
   </p>
 </div>
 
-<div class="tab">Enter your name:
+<div class="tab">
+  <center>
+    Enter your name:<p>
+  </center>
   <input type="text" name="name">
 </div>
 
