@@ -3,9 +3,6 @@ require_relative "app.rb"
 get "/aboutUs" do
 	erb :aboutUs
 end
-get "/pricingPage" do
-	erb :pricePage
-end
 get "/appointments/barbershop" do
 	erb :appointments
 end
