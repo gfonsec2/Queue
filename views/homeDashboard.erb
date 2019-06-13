@@ -61,7 +61,7 @@
 	     			<div class = "card-text">
 	     				<i class="fas fa-dollar-sign"></i>
 					  		<font color="green">
-					  			Revenue:<font color="black"> <%= moneyToday%> </font>
+					  			Revenue:<font color="black"> $<%= moneyToday%> </font>
 					  		</font>
 					  		<br>
 					  	<i class="fas fa-user-alt"></i>
@@ -80,18 +80,18 @@
   <div class="card bg-light text-dark">
   	<div class="card-body">
 	  <h5 class="card-title" align="center"><%= b.name %>  </h5>
-	 				 <div class = "card-text">
-	  					<i class="fas fa-dollar-sign"></i>
-					  		<font color="green">
-					  			Revenue:<font color="black"> <%= b.money %></font>
-					  		</font>
-					  		<br>
-					  	<i class="fas fa-user-alt"></i>
-					  		<font color = " red">
-					  			Customers:<font color="black"> <%= b.total%></font>
-					  		</font>	
-					  </div>
-		
+		 <div class = "card-text">
+			<i class="fas fa-dollar-sign"></i>
+	  		<font color="green">
+	  			Revenue:<font color="black"> $<%= b.money %></font>
+	  		</font>
+	  		<br>
+	  	<i class="fas fa-user-alt"></i>
+	  		<font color = " red">
+	  			Customers:<font color="black"> <%= b.total%></font>
+	  		</font>	
+	  </div>
+
 	</div>
   </div>
   <% end %>
