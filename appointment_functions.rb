@@ -13,7 +13,7 @@ get "/appointments/stylistChoice" do
 	@barbers = Barber.all
 	erb :apptStylistChoice
 end
-get '/appointments/stylistAvailability' do
+get '/appointments/stylistAvailability/:id' do
   erb :apptStylistAvailable
 end
 get '/appointments/haircut' do

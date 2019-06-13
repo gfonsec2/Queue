@@ -7,19 +7,29 @@
       margin-left: 40px;
       margin-right: 40px; 
     }
+    .grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.card2:hover{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
   </style>
 </head>
 <body>
-	<main class="grid">
+	<main class="grid2">
     <div class="card-deck">
 
-      <div class="card" style="border: none;">
-        <div class="card-body">
-          <p align="center" style="font-size:250px;color:black;">Q</p>
-        </div>
-      </div>
-
-      <div class="card bg-light text-dark">
+      <div class="container">
         <article class="card-body">
       <h4 class="card-title text-center mb-4 mt-1">Choice of Stylist</h4>
       <hr>
@@ -28,20 +38,17 @@
       <br>
       <hr>
       <br>
-	     <form action="/appointments/stylistAvailability" method="GET">
-			<div align="center">
-				<i class="fas fa-user-tie"></i>
-				<select name="type" required>
-					<% @barbers.each do |b| %>
-					<option value="<%= b.id%>"><%= b.name %></option>
-					<% end %>
-				</select>
-			</div>
-			<br><br>
-			<div align="center">
-				<input type="submit" name="Submit" value="Next">
-			</div>
-		</form>
+			   <main class="grid">
+          <% @barbers.each do |b| %>
+          <a href="/appointments/stylistAvailability/<%= b.id %>">
+          <div class="card2 bg-light text-dark">
+            <div class="card-body">
+              <h5 class="card-title" align="center"><%= b.name %></h5>
+              <div class = "card-text"></div>
+            </div>
+          </div></a>
+          <% end %>
+          </main>
     </article>
       </div>
   </div>
