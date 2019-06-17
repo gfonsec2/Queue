@@ -6,7 +6,10 @@ require_relative "kiosk.rb"
 require_relative "view.rb"
 require_relative "appointment_functions.rb"
 require_relative "pricingPage_functions.rb"
+require "stripe"
 
+set :publishable_key, 'pk_test_xeSjb7wEgf1ev4bIzVgipQRB'
+set :secret_key, 'sk_test_M4899DJHvorvnSgy5PAJ7JCY'
 
 if ENV['DATABASE_URL']
   DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
