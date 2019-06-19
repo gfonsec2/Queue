@@ -76,109 +76,106 @@ button:hover {
   background-color: #4CAF50;
 }
 </style>
-
 <body>
   <b><h1 align="center">Queue-up</h1></b>
-  
   <form id="regForm" action="/infomessage">
     <!-- One "tab" for each step in the form: -->
-      <div class="tab">
-        <center>
-    Choose your style:<p>
-  </center>
-        <script>
-          $('.select2').select2();
-        </script>
-        <div align="center">
-          <font style="color: black">Hairstyle:</font>
-        </div>
-          
-            <select class="custom-select" name="hairtype" list="Hair"  style="font-style:italic">
-              <option value="" disabled selected>Choose a service / Elija un servicio:</option> 
-              <% @hairtypes.each do |h| %>
-              <option value= "<%= h.id %>"><%= h.hair_type %>: <%= h.price %></option>
-              <% end %> 
-              <option value="N/A">N/A</option>
-            </select><hr>
+    
+    <div class="tab">
+      <center>Choose your style:<p></center>
+      <script>
+        $('.select2').select2();
+      </script>
+      <div align="center">
+        <font style="color: black">Hairstyle:</font>
+      </div>
+      <select class="custom-select" name="hairtype" list="Hair"  style="font-style:italic">
+        <option value="" disabled selected>Choose a service / Elija un servicio:</option> 
+        <% @hairtypes.each do |h| %>
+          <option value= "<%= h.id %>"><%= h.hair_type %>: <%= h.price %></option>
+        <% end %> 
+        <option value="N/A">N/A</option>
+      </select>
+      <hr>
 
-          <div align="center">
-          <font style="color: black">Beardstyle:</font>
-        </div>
-            <select class="custom-select" name="beardtype" list="Hair"  style="font-style:italic">
-              <option value="" disabled selected>Choose a service / Elija un servicio:</option>
-              <% @beardtypes.each do |b| %>
-              <option value="<%= b.id %>"><%= b.hair_type %>: <%= b.price %></option>
-              <% end %>
-              <option value="N/A">N/A</option>
-            </select><hr>
+      <div align="center">
+        <font style="color: black">Beardstyle:</font>
+      </div>
+      <select class="custom-select" name="beardtype" list="Hair"  style="font-style:italic">
+        <option value="" disabled selected>Choose a service / Elija un servicio:</option>
+        <% @beardtypes.each do |b| %>
+          <option value="<%= b.id %>"><%= b.hair_type %>: <%= b.price %></option>
+        <% end %>
+        <option value="N/A">N/A</option>
+      </select>
+      <hr>
 
-          <div align="center">
-          <font style="color: black">Extras:</font>
-        </div>
-            <select class="custom-select" name="extratype" list="Extra"  style="font-style:italic">
-              <option value="" disabled selected>Choose a service / Elija un servicio:</option>
-              <% @extra.each do |b| %>
-              <option value="<%= b.id %>"><%= b.name %>: <%= b.price %></option>
-              <% end %>
-              <option value="N/A">N/A</option>
-            </select>
-          </p>
+      <div align="center">
+        <font style="color: black">Extras:</font>
+      </div>
+      <select class="custom-select" name="extratype" list="Extra"  style="font-style:italic">
+        <option value="" disabled selected>Choose a service / Elija un servicio:</option>
+        <% @extra.each do |b| %>
+          <option value="<%= b.id %>"><%= b.name %>: <%= b.price %></option>
+        <% end %>
+        <option value="N/A">N/A</option>
+      </select>
+    </p>
+    </div>
+
+    <% c = 20 
+    barber = 0;
+    @barbers.each do |b|
+    d = b.wait_list
+    e = d.length
+    if ( e < c)
+    c = e
+    barber = b.id
+    end
+    end
+    %>
+
+    <div class="tab">
+      <center>
+        Pick your Barber:<p>
+      </center>
+      <select class="custom-select" id='barber.id' name='id' type='text' style="font-style:italic">
+        <option value= "<%= barber %>" selected>Next Available / Siguiente disponible:</option>
+        <% @barbers.each do |b| %>
+          <% if b.wait_list.length == 0 %>
+            <option value="<%= b.id%>"> <%= b.name %> Available / Disponible</option>
+          <% elsif b.wait_list.length == 1 %>
+            <option value="<%= b.id%>"> <%= b.name %>: <%= b.wait_list.length %> person ahead / <%= b.wait_list.length %> persona adelante </option>
+          <% else %>
+            <option value="<%= b.id%>"> <%= b.name %>: <%= b.wait_list.length %> persons ahead / <%= b.wait_list.length %> personas adelante </option>
+          <% end %>
+          <br>
+          <br>
+        <% end %>
+      </select>
+      </p>
       </div>
 
-<% c = 20 
-  barber = 0;
-  @barbers.each do |b|
-  d = b.wait_list
-  e = d.length
-  if ( e < c)
-  c = e
-  barber = b.id
-  end
-  end
-%>
+    <div class="tab">
+      <center>
+        Enter your name:<p>
+      </center>
+      <input type="text" name="name">
+    </div>
 
-<div class="tab">
-  <center>
-    Pick your Barber:<p>
-  </center>
-  <select class="custom-select" id='barber.id' name='id' type='text' style="font-style:italic">
-    <option value= "<%= barber %>" selected>Next Available / Siguiente disponible:</option>
-    <% @barbers.each do |b| %>
-    <% if b.wait_list.length == 0 %>
-    <option value="<%= b.id%>"> <%= b.name %> Available / Disponible</option>
-    <% elsif b.wait_list.length == 1 %>
-    <option value="<%= b.id%>"> <%= b.name %>: <%= b.wait_list.length %> person ahead / <%= b.wait_list.length %> persona adelante </option>
-    <% else %>
-    <option value="<%= b.id%>"> <%= b.name %>: <%= b.wait_list.length %> persons ahead / <%= b.wait_list.length %> personas adelante </option>
-    <% end %>
+    <div style="overflow:auto;">
+      <div style="float:right;">
+        <br>
+        <label type="button" id="nextBtn" class="btn btn-dark" onclick="nextPrev(1)" >Next</label>
+      </div>
+    </div>
 
-      <br><br>
-    <% end %>
-  </select>
-  </p>
-</div>
-
-<div class="tab">
-  <center>
-    Enter your name:<p>
-  </center>
-  <input type="text" name="name">
-</div>
-
-<div style="overflow:auto;">
-  <div style="float:right;"> <br>
-    <!-- <button type="button" id="nextBtn" class="btn btn-info" onclick="nextPrev(1)">Next</button> -->
-    <label type="button" id="nextBtn" class="btn btn-dark" onclick="nextPrev(1)" >Next</label>
-    <!-- <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
-  </div>
-</div>
-
-  <!-- Circles which indicates the steps of the form: -->
-<div style="text-align:center;margin-top:40px;">
-  <span class="step"></span>
-  <span class="step"></span>
-  <span class="step"></span>
-</div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
 </form>
 
 <script>
@@ -272,6 +269,5 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 </script>
-
 </body>
 </html>

@@ -5,48 +5,33 @@
 	<link rel="stylesheet" href="/stylesheet/signinsout.css">
 </head>
 <body>
-
-
-		<h4 style = "color: black"> Sign-Out 
-			<ol class="breadcrumb float-right">
-					<li class="breadcrumb-item">
-						<a href="/viewA">
-							Queue
-						</a>
-					</li>
-					<li class="breadcrumb-item active">
-						<a href="/sign_out">Sign-Out</a>
-					</li>
-			</ol>
-			<div class = "date"><small> <span id="datetime"></span></small></div>
-		</h4>
-		<br>
-
-
-
-
-
-<div align="center">
-	<div class="card bg-light text-dark">
-	<form>
+	<h4 style = "color: black"> Sign-Out 
+		<ol class="breadcrumb float-right">
+			<li class="breadcrumb-item"><a href="/viewA">Queue</a></li>
+			<li class="breadcrumb-item active"><a href="/sign_out">Sign-Out</a></li>
+		</ol>
+		<div class = "date"><small> <span id="datetime"></span></small></div>
+	</h4>
+	<br>
+	<div align="center">
+		<div class="card bg-light text-dark">
+			<form>
 				<div class="card-body">
 					<h3> Sign-Out </h3>
 					<p class="card-text">
 						<ol class="list-group list-group-flush" style = "width:350px; list-style-type:none;" >
 							<% @barbers.each do |b| %>
-				   			<li> <a href = "/sign_out/<%= b.id %>" class= "list-group-item bg-light"><%= b.name %> </a>  </li>
-
-				 		<% end %>
+				   				<li> <a href = "/sign_out/<%= b.id %>" class= "list-group-item bg-light"><%= b.name %></a></li>
+				 			<% end %>
 						</ol>
 					</p>
 				</div>
 			</form>
+		</div>
 	</div>
-</div>
-
 </body>
-	<script>
-		var dt = new Date();
-		document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-	</script>
+<script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
 </html>

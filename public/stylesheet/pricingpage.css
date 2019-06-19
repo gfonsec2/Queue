@@ -7,7 +7,6 @@
 .card-header:first-child {
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 }
-
 pl-3, .px-3 {
     padding-left: 1rem!important;
 }

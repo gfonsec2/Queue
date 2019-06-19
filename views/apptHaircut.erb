@@ -51,9 +51,16 @@
       </div>
       <br>
       <div style="overflow:auto;" align="center">
+        <button class="btn btn-dark" onclick="goBack()">Back</button>
         <button type="Submit" class="btn btn-dark">Next</button>
       </div>
     </div>
   </form>
 </body>
 </html>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>

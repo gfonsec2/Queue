@@ -33,69 +33,53 @@
 
 </head>
 <body>
-
 	<% moneyToday = 0%>
 	<% customersToday = 0%>
 	<% @barbers.each do |b| %>
 	<% moneyToday += b.money %>
 	<% customersToday += b.total %>
 	<%end%>
-		<h4 style = "color: black"> Dashboard 
-			<ol class="breadcrumb float-right">
-					<li class="breadcrumb-item">
-						<a href="/admin">
-							<i class="fa fa-home"></i>
-						</a>
-					</li>
-					<li class="breadcrumb-item active">
-						<a href="/admin">Dashboard</a>
-					</li>
-			</ol>
-			<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
-		</h4>
-		<br>
-
-		<div class="card bg-light text-dark" >
-	    		<div class="card-body">
-	     			<h3 align="center"> <%= current_user.email %> </h3>
-	     			<div class = "card-text">
-	     				<i class="fas fa-dollar-sign"></i>
-					  		<font color="green">
-					  			Revenue:<font color="black"> $<%= moneyToday%> </font>
-					  		</font>
-					  		<br>
-					  	<i class="fas fa-user-alt"></i>
-					  		<font color = " red">
-					  			Customers:<font color="black"> <%= customersToday %></font>
-					  		</font>
-
-					  </div>
-	    		</div>
+	<h4 style = "color: black"> Dashboard 
+		<ol class="breadcrumb float-right">
+			<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home"></i></a></li>
+			<li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
+		</ol>
+		<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+	</h4>
+	<br>
+	<div class="card bg-light text-dark" >
+		<div class="card-body">
+			<h3 align="center"> <%= current_user.email %> </h3>
+			<div class = "card-text">
+				<i class="fas fa-dollar-sign"></i>
+				<font color="green">Revenue:<font color="black"> $<%= moneyToday%> </font></font>
+				<br>
+				<i class="fas fa-user-alt"></i>
+				<font color = " red">Customers:<font color="black"> <%= customersToday %></font></font>
 			</div>
-
-			<hr>
-
-<main class="grid">
-		<% @barbers.each do |b| %>
-  <div class="card bg-light text-dark">
-  	<div class="card-body">
-	  <h5 class="card-title" align="center"><%= b.name %>  </h5>
-		 <div class = "card-text">
-			<i class="fas fa-dollar-sign"></i>
-	  		<font color="green">
-	  			Revenue:<font color="black"> $<%= b.money %></font>
-	  		</font>
-	  		<br>
-	  	<i class="fas fa-user-alt"></i>
-	  		<font color = " red">
-	  			Customers:<font color="black"> <%= b.total%></font>
-	  		</font>	
-	  </div>
-
+		</div>
 	</div>
-  </div>
-  <% end %>
-</main>
+	<hr>
+	<main class="grid">
+		<% @barbers.each do |b| %>
+			<div class="card bg-light text-dark">
+				<div class="card-body">
+					<h5 class="card-title" align="center"><%= b.name %>  </h5>
+					<div class = "card-text">
+						<i class="fas fa-dollar-sign"></i>
+						<font color="green">
+							Revenue:<font color="black"> $<%= b.money %></font>
+						</font>
+						<br>
+						<i class="fas fa-user-alt"></i>
+						<font color = " red">
+							Customers:<font color="black"> <%= b.total%></font>
+						</font>	
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</main>
 </body>
 <script>
 	var dt = new Date();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Stylist Choice</title>
+	<title>Barber Select</title>
 <style type="text/css">
 .card-deck{
   margin-left: 40px;
@@ -36,7 +36,7 @@
       <article class="card-body">
         <h1 class="card-title text-center mb-4 mt-1"><%= @shopName %> Professionals</h1>
         <hr>
-        <p class="text-success text-center">Choose the barber whom you want to schedule your appointment with.</p>
+        <p class="text-success text-center">Select the barber whom you want to schedule your appointment with.</p>
         <hr>
 	      <main class="grid">
           <% @barbers.each do |b| %>
@@ -50,9 +50,19 @@
             </a>
           <% end %>
         </main>
+        <br>
+        <div style="overflow:auto;" align="center">
+          <button class="btn btn-dark" onclick="goBack()">Back</button>
+        </div>
       </article>
     </div>
   </div>
 </main>
 </body>
 </html>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>

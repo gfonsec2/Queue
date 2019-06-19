@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Choose a Day</title>
+	<title>Date Selection</title>
 <style type="text/css">
 .card-deck{
   margin-left: 40px;
@@ -12,24 +12,28 @@
 <body>
 <div class="container">
   <article class="card-body">
-    <h1 class="card-title text-center mb-4 mt-1">Choice of Day</h1>
+    <h1 class="card-title text-center mb-4 mt-1">Date Selection</h1>
     <hr>
-    <p class="text-success text-center">Choose the day that you want to schedule your appointment with <%= @barberName.name %></p>
+    <p class="text-success text-center">Select the day that you want to schedule your appointment with <%= @barberName.name %></p>
     <hr>
     <br>
     <form action="/appointments/haircuts/<%= @id %>" method="POST">
 			<div align="center">
-				<i class="fas fa-calendar-alt"></i>
-				<select name="weekDay" required>
-					<option value="" disabled selected>Day of the Week</option>
-					<option value="Monday">Monday</option>
-					<option value="Tuesday">Tuesday</option>
-					<option value="Wednesday">Wednesday</option>
-					<option value="Thursday">Thursday</option>
-					<option value="Friday">Friday</option>
-					<option value="Saturday">Saturday</option>
-					<option value="Sunday">Sunday</option>
-				</select>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-calendar-alt"></i></label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" name="barberShop" required="">
+            <option value="" disabled selected>Day of the Week</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
 			</div>
 			<br>
       <br>
@@ -75,6 +79,15 @@
       </div>
 		</form>
   </article>
+  <div style="overflow:auto;" align="center">
+    <button class="btn btn-dark" onclick="goBack()">Back</button>
+  </div>
 </div>
 </body>
 </html>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>

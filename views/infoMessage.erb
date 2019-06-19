@@ -7,14 +7,12 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
- {
+{
   box-sizing: border-box;
 }
-
 body {
   background-color: white; /*can change this too lol*/
 }
-
 #regForm {
   background-color: #ffffff;
   margin: 100px auto;
@@ -24,16 +22,13 @@ body {
   min-width: 300px;
   margin-top: 0px;
 }
-
 h1 {
   text-align: center;  
 }
-
 </style>
 <body>
-
-<form id="regForm" action="/kiosk">
-  <h3>Thanks for Queuing-up, please wait for your turn. Your total will be $<%= @cus.price %></h3>
-</form>
+  <form id="regForm" action="/kiosk">
+    <h3>Thanks for Queuing-up, please wait for your turn. Your total will be $<%= @cus.price %></h3>
+  </form>
 </body>
 </html>

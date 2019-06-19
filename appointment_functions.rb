@@ -33,7 +33,6 @@ post "/appointments/haircuts/:id" do
 	@hairtypes = Haircuts.all(hair: true)
 	@beardtypes = Haircuts.all(hair: false)
 	@extra = Extra.all
-
 	currentAppt = Appointment.get(params[:id])
 	currentAppt.day = params["weekDay"]
 	currentAppt.time = params["time"]
@@ -67,7 +66,6 @@ post "/appointments/payment/:id" do
 	end
 	currentAppt.cost = @cost
 	currentAppt.save
-
 	@id = params[:id]
 	erb :apptFinalize
 end
@@ -90,60 +88,11 @@ post "/appointments/confirmation/:id" do
 		extratype = Extra.get(currentAppt.extraID)
 		@extraname = extratype.name
 	end
-
 	@name = currentAppt.name
 	@shopName = currentAppt.shopName
 	@day = currentAppt.day
 	@time = currentAppt.time
 	@barberName = @barber.name
 	@cost = currentAppt.cost
-
 	erb :apptSuccessMessage
-end
-
-
-
-
-
-
-
-get "/appointments/:id/dayChoice" do
-	app = appointments.get(params[:id])
-	@hairname = @beardname = @extraname = "N/A"
-	@shop = params["barberShop"]
-	@day = params["dayChoice"]
-	@customer = params["name"]
-	@cost = 0
-	if (params["hairtype"] != "N/A")
-		@hairtype = Haircuts.get(params["hairtype"])
-		@hairname = @hairtype.hair_type
-		@cost += @hairtype.price
-	end
-	if (params["beardtype"] != "N/A")
-		@beardtype = Haircuts.get(params["beardtype"])
-		@beardname = @beardtype.hair_type
-		@cost += @beardtype.price
-	end
-	if (params["extratype"] != "N/A")
-		@extratype = Extra.get(params["extratype"])
-		@extraname = @extratype.name
-		@cost += @extratype.price
-	end
-
-	b = Barber.get(params["id"])
-	n = params["name"]
-	@barberName = b.name
-	 
-
-	#b.total += cost
-	b.save
-
-	q = Queueitem.new
-	q.name = n
-	q.bid = b.id
-	q.price = @cost
-	q.save
-	@cus = q
-
-	erb :apptDayChoice
 end

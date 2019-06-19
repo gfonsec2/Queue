@@ -85,8 +85,6 @@ class Extra
 
 end
 
-
-
 DataMapper.finalize
 User.auto_upgrade!
 Barber.auto_upgrade!
@@ -115,4 +113,3 @@ end
 get "/" do
 	redirect "/admin" 
 end
-

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+  function preventBack(){window.history.forward();}
+  setTimeout("preventBack()", 0);
+  window.onunload=function(){null};
+</script>
 	<title>Finalize</title>
 <style type="text/css">
 input[type=text] {
@@ -47,7 +52,7 @@ label {
                 <div>
                   <h1>Payment Summary</h1>
                   <label>Total (Paid in Store): $<%= @cost %>.00</label>
-                  <label>Appointment Fee ( Paid for now using card info below): $3.00</label>
+                  <label>Appointment Fee (Paid using card info below): $3.00</label>
 
                   <h3>Personal Information</h3>
                   <label for="pname">Customer Name</label>
