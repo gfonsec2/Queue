@@ -3,16 +3,16 @@
 <head>
 	<title>Stylist Choice</title>
 <style type="text/css">
-    .card-deck{
-      margin-left: 40px;
-      margin-right: 40px; 
-    }
-    .grid { 
+.card-deck{
+  margin-left: 40px;
+  margin-right: 40px; 
+}
+.grid { 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
   align-items: stretch;
-  }
+}
 .grid > article {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
@@ -22,36 +22,37 @@
 }
 .card2:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  </style>
+  border-color: green;
+}
+.card2{
+  border-radius: 0;
+}
+</style>
 </head>
 <body>
-	<main class="grid2">
-    <div class="card-deck">
-
-      <div class="container">
-        <article class="card-body">
-      <h4 class="card-title text-center mb-4 mt-1">Choice of Stylist</h4>
-      <hr>
-      <br>
-      <p class="text-success text-center">Choose the stylist whom you want to schedule your appointment with.</p>
-      <br>
-      <hr>
-      <br>
-			   <main class="grid">
+<main class="grid2">
+  <div class="card-deck">
+    <div class="container">
+      <article class="card-body">
+        <h1 class="card-title text-center mb-4 mt-1"><%= @shopName %> Professionals</h1>
+        <hr>
+        <p class="text-success text-center">Choose the barber whom you want to schedule your appointment with.</p>
+        <hr>
+	      <main class="grid">
           <% @barbers.each do |b| %>
-          <a href="/appointments/stylistAvailability/<%= b.id %>">
-          <div class="card2 bg-light text-dark">
-            <div class="card-body">
-              <h5 class="card-title" align="center"><%= b.name %></h5>
-              <div class = "card-text"></div>
-            </div>
-          </div></a>
+            <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>">
+              <div class="card2 bg-light text-dark">
+                <div class="card-body">
+                  <h5 class="card-title" align="center"><%= b.name %></h5>
+                  <div class = "card-text"></div>
+                </div>
+              </div>
+            </a>
           <% end %>
-          </main>
-    </article>
-      </div>
+        </main>
+      </article>
+    </div>
   </div>
-  </main>
+</main>
 </body>
 </html>

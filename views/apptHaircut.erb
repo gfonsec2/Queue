@@ -3,64 +3,57 @@
 <head>
 	<title>Service Choice</title>
 <style type="text/css">
-    .card-deck{
-      margin-left: 40px;
-      margin-right: 40px; 
-    }
-  </style>
+.card-deck{
+  margin-left: 40px;
+  margin-right: 40px; 
+}
+</style>
 </head>
 <body>
-	<main class="grid">
-    <div class="card-deck">
-
-      <div class="container">
-        <article class="card-body">
-      <h4 class="card-title text-center mb-4 mt-1">Available Services</h4>
+  <center>
+    <h1><%= @shopName %> Services</h1>
+  </center>
+  <div class="container">
+    <form action="/appointments/payment/<%= @id %>" method="POST">
       <hr>
-      <p class="text-success text-center">Choose the services you wish to receive.</p>
+      <p class="text-success text-center">Choose the services you wish to receive during your visit.</p>
       <hr>
-	    <form action="/appointments/confirmAppt" method="GET">
-			 <center>
-            <p> Hairstyle:</p>
-          </center>
-            <select class="custom-select" name="hairtype" list="Hair"  style="font-style:italic" required="">
-              <option value="" disabled selected>Hair Service</option> 
-              <% @hairtypes.each do |h| %>
-                <option value= "<%= h.id %>"><%= h.hair_type %>: $<%= h.price %></option>
-              <% end %> 
-              <option value="N/A">N/A</option>
-            </select>
-
-          <center>
-            <p> Beardstyle:</p>
-          </center>
-            <select class="custom-select" name="beardtype" list="Hair"  style="font-style:italic" required="">
-              <option value="" disabled selected>Beard Service</option>
-              <% @beardtypes.each do |b| %>
-              <option value="<%= b.id %>"><%= b.hair_type %>: $<%= b.price %></option>
-              <% end %>
-              <option value="N/A">N/A</option>
-            </select>
-          
-
-          <center>
-            <p> Extras:</p>
-          </center>
-            <select class="custom-select" name="extratype" list="Extra"  style="font-style:italic" required="">
-              <option value="" disabled selected>Extra Services</option>
-              <% @extra.each do |b| %>
-              <option value="<%= b.id %>"><%= b.name %>: $<%= b.price %></option>
-              <% end %>
-              <option value="N/A">N/A</option>
-            </select>
-          <hr>
-          <div align="center">
-            <input type="submit" name="Submit" value="Next">
-          </div>
-		  </form>
-    </article>
+      <div>
+        <select class="custom-select" name="hairtype" list="Hair"  style="font-style:italic" required="">
+          <option value="" disabled selected>Hair Service</option> 
+          <% @hairtypes.each do |h| %>
+            <option value= "<%= h.id %>"><%= h.hair_type %>: $<%= h.price %></option>
+          <% end %> 
+          <option value="0">N/A</option>
+        </select>
       </div>
-  </div>
-  </main>
+      <br>
+
+      <div>
+        <select class="custom-select" name="beardtype" list="Hair"  style="font-style:italic" required="">
+          <option value="" disabled selected>Beard Service</option>
+          <% @beardtypes.each do |b| %>
+            <option value="<%= b.id %>"><%= b.hair_type %>: $<%= b.price %></option>
+          <% end %>
+          <option value="0">N/A</option>
+        </select>
+      </div>
+      <br>
+
+      <div>
+        <select class="custom-select" name="extratype" list="Extra"  style="font-style:italic" required="">
+          <option value="" disabled selected>Extra Services</option>
+          <% @extra.each do |b| %>
+            <option value="<%= b.id %>"><%= b.name %>: $<%= b.price %></option>
+          <% end %>
+          <option value="0">N/A</option>
+        </select>
+      </div>
+      <br>
+      <div style="overflow:auto;" align="center">
+        <button type="Submit" class="btn btn-dark">Next</button>
+      </div>
+    </div>
+  </form>
 </body>
 </html>
