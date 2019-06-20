@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "vue-form-wizard": "^0.8.4"
+  }
+}
