@@ -25,7 +25,7 @@ class Barber
 	property :total, Integer, :default => 0
 	property :available, Boolean, :default => true
 	property :money, Integer, :default => 0
-
+	property :shopID, Integer
 	#fill in the rest
 	def wait_list
 		return Queueitem.all(bid: id) #gets list of customers 
@@ -54,6 +54,7 @@ class Queueitem
 	include DataMapper::Resource
 
 	property :id, Serial
+	property :shopID
 	property :name, Text
 	property :price, Integer
 	property :bid, Integer
@@ -78,6 +79,7 @@ class Haircuts
 	property :hair, Boolean 
 	property :hair_type, Text
 	property :price, Integer
+	property :shopID, Integer
 end
 
 class Extra
@@ -86,6 +88,21 @@ class Extra
 	property :id, Serial
 	property :name, Text
 	property :price, Integer
+	property :shopID, Integer
+
+end
+
+class Barbershop
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :name, Text
+	property :address, Text
+	property :zipcode, Integer
+	property :phone, Text
+	property :uID, Integer
+	property :OpeningTime, Integer
+	property :ClosingTime, Integer
 
 end
 
@@ -97,6 +114,7 @@ Date.auto_upgrade!
 Haircuts.auto_upgrade!
 Extra.auto_upgrade!
 Appointment.auto_upgrade!
+Barbershop.auto_upgrade!
 
 # Perform basic sanity checks and initialize all relationships
 # Call this when you've defined all your models
