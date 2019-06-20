@@ -11,7 +11,6 @@
   left:0; 
   right: 0;           /*and to the left of the window.*/
 }
-
 #left {
   position: fixed;
   bottom: -4px;
@@ -24,14 +23,14 @@
 }
 </style>
 <html>
- <meta http-equiv="refresh" content="30">
- <style>
+	<meta http-equiv="refresh" content="30">
+<style>
 .grid { 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
   align-items: stretch;
-  }
+}
 .grid > article {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
@@ -48,110 +47,85 @@
   color: white;
   padding: 10px;
   width: 100%;
-  }
+}
 </style>
 <body>
-
 	<h4 style = "color: black"> Queue
-			<ol class="breadcrumb float-right">
-					<li class="breadcrumb-item">
-						<a href="/admin">
-							<i class="fa fa-home"></i>
-						</a>
-					</li>
-					<li class="breadcrumb-item active">
-						<a href="/admin">Queue</a>
-					</li>
-			</ol>
-			<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
-		</h4>
-		<br>
-		
-
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home"></i></a></li>
+		<li class="breadcrumb-item active"><a href="/admin">Queue</a></li>
+	</ol>
+	<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+	</h4>
+	<br>
 	<main class="grid">
-		<% @barbers.each do |b| %>
-			<% customers = b.wait_list %>
-  			<div class="card bg-light text-dark">
-  				<% if customers[0] == nil %> <!-- checks if its empty -->
+	<% @barbers.each do |b| %>
+		<% customers = b.wait_list %>
+			<div class="card bg-light text-dark">
+				<% if customers[0] == nil %> <!-- checks if its empty -->
 					<div class="card-body">
 						<center><h4 class="card-title"><%= b.name %>  </h4></center>
-							<p class="card-text">
+						<p class="card-text">
 							<ul class="list-group list-group-flush">  </ul>
 						</p>
 					</div>
-
-				 <% else %>
-				<div class="card-body">
-					<center><h4 class="card-title"><%= b.name %></h4></center>
-					<a class="btn" href="/pop/<%= customers[0].id %>" role="button">Next</a> 
-					<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModalLong<%= b.id %>">Full List</a> 
-					<p class="card-text">
-
-						<ul class="list-group"> 	
-					     	<li class="list-group-item list-group-item-success" ><%= customers[0].name %>
-					     		<i class="fas fa-user-alt float-right"></i>
-					     	 </li>
-					  </ul>
-					</p>
-				</div>
+				<% else %>
+					<div class="card-body">
+						<center><h4 class="card-title"><%= b.name %></h4></center>
+						<a class="btn" href="/pop/<%= customers[0].id %>" role="button">Next</a> 
+						<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModalLong<%= b.id %>">Full List</a> 
+						<p class="card-text">
+							<ul class="list-group"> 	
+								<li class="list-group-item list-group-item-success" ><%= customers[0].name %>
+									<i class="fas fa-user-alt float-right"></i>
+								</li>
+							</ul>
+						</p>
+					</div>
 				<% end %>
 			</div>
-	 	<% end %>
-</main>
-
-
-     		<div>
-     			<!-- Modal -->
-					 <% @barbers.each do |b| %>
-					      	<% customers = b.wait_list %>			      	
-					<div class="modal fade" id="exampleModalLong<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-						
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					      	
-							    <h5 align = "center" class="modal-title" id="exampleModalLabel"><%= b.name %></h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					     <!--  <div class="modal-body"> -->
-					      	<ul class="list-group list-group-flush">
-					      		<% customers.each do |c| %>					      	
-					      			<li class="list-group-item list-group-item" data-toggle="modal" data-target="#exampleModalLong<%= c.id %>">
-					      				<a href="/pop/<%= c.id %>" class="btn float-right" role="button"><i class="fas fa-trash-alt"></i></a>
-					      				<font class=" text float-left"><%= c.name %></font>		
-					       		 	</li> 
-					       		 						      							      		
-					      	</ul>
-					      <!-- </div> -->
-					      	<!-- <div class="modal-footer">
-							    <button type="button" class="btn btn-secondary" data-dismiss="modal">		Close
-							    </button>
-							    <a href="/pop/<%= c.id %>" class="btn btn-primary">Delete</a>
-							</div> -->
+		<% end %>
+	</main>
+	<div>
+		<!-- Modal -->
+		<% @barbers.each do |b| %>
+			<% customers = b.wait_list %>			      	
+				<div class="modal fade" id="exampleModalLong<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 align = "center" class="modal-title" id="exampleModalLabel"><%= b.name %></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<!--  <div class="modal-body"> -->
+							<ul class="list-group list-group-flush">
+							<% customers.each do |c| %>					      	
+							<li class="list-group-item list-group-item" data-toggle="modal" data-target="#exampleModalLong<%= c.id %>">
+								<a href="/pop/<%= c.id %>" class="btn float-right" role="button"><i class="fas fa-trash-alt"></i></a>
+								<font class=" text float-left"><%= c.name %></font>		
+							</li> 					      		
+							</ul>
 							<% end %>
-					    </div>
-					  </div>
+						</div>
 					</div>
-					<% end %>
-     		</div>
-
+				</div>
+			<% end %>
+	</div>
 </body>
-		<footer id="sticky">
-			  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-				  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				    <div class="navbar-nav"> 
-
-				    		 <h6><i class="fas fa-user-alt"></i> :<a class=" btn" href="/sign_in">sign in</a></h6>
-				             <h6><i class="fas fa-user-alt"></i> :<a class="btn" href="/sign_out">sign out</a></h6>
-				    	   	 
-				    </div>				    	
-				  </div>
-				</nav>
-		</footer>
+<footer id="sticky">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav"> 
+				<h6><i class="fas fa-user-alt"></i> :<a class=" btn" href="/sign_in">sign in</a></h6>
+				<h6><i class="fas fa-user-alt"></i> :<a class="btn" href="/sign_out">sign out</a></h6>
+			</div>
+		</div>
+	</nav>
+</footer>
 <script>
-		var dt = new Date();
-		document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-	</script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
 </html>

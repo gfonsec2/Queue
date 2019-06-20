@@ -3,17 +3,14 @@
   color: #a3a4a6;
 }
 .column {
-
   float: left;
   width: 50%;
   padding: 0 10px;
 }
-
 /* Remove extra left and right margins, due to padding in columns */
 .row {
   margin: 15px;
 }
-
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -21,12 +18,12 @@
   clear: both;
 }
 @media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-  .card {
+.column {
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+}
+.card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
   text-align: center;

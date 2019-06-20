@@ -25,11 +25,29 @@ class Barber
 	property :total, Integer, :default => 0
 	property :available, Boolean, :default => true
 	property :money, Integer, :default => 0
+
 	#fill in the rest
 	def wait_list
 		return Queueitem.all(bid: id) #gets list of customers 
 	end
 	
+end
+
+class Appointment
+	include DataMapper::Resource
+	property :id, Serial
+	property :shopID, Integer, :default => 0
+	property :shopName, Text
+	property :barberID, Integer, :default => 0
+	property :weekDay, Integer, :default => 0
+	property :day, Text
+	property :time, Integer, :default => 0
+	property :hairID, Integer
+	property :beardID, Integer
+	property :extraID, Integer
+	property :cost, Integer
+	property :name, Text
+	property :valid, Integer, :default => 0
 end
 
 class Queueitem
@@ -71,8 +89,6 @@ class Extra
 
 end
 
-
-
 DataMapper.finalize
 User.auto_upgrade!
 Barber.auto_upgrade!
@@ -80,6 +96,7 @@ Queueitem.auto_upgrade!
 Date.auto_upgrade!
 Haircuts.auto_upgrade!
 Extra.auto_upgrade!
+Appointment.auto_upgrade!
 
 # Perform basic sanity checks and initialize all relationships
 # Call this when you've defined all your models
@@ -103,4 +120,5 @@ end
 
 get "/pay" do
 	erb :checkout
+
 end

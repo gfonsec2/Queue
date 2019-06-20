@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Barber Shop Search</title>
+</head>
+<body>
+  <center>
+    <h1>Barber Shop Search</h1>
+  </center>
+  <div class="container">
+    <hr>
+    <p class="text-success text-center">Find the shop you would like to make an appointment at.</p>
+    <hr>
+    <br>
+    <form action="/appointments/stylistChoice/<%= @appointment %>" method="POST">
+      <div align="center">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-store-alt"></i></label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" name="barberShop" required="">
+            <option selected>Select Barber Shop</option>
+            <option value="Olympus Barber Shop">Olympus Barber Shop</option>
+            <option value="NY Style Barber Shop">NY Style Barber Shop</option>
+            <option value="Papi Chulos Barber Shop">Papi Chulos Barber Shop</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div style="overflow:auto;" align="center">
+        <button type="Submit" class="btn btn-dark">Next</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
