@@ -44,6 +44,7 @@ class Appointment
 	property :extraID, Integer
 	property :cost, Integer
 	property :name, Text
+	property :valid, Integer, :default => 0
 end
 
 class Queueitem

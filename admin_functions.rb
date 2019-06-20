@@ -20,6 +20,10 @@ get "/admin" do
 	authenticate!
 	if current_user.administrator 
 	@barbers = Barber.all
+	@all = Appointment.all(valid: 0)
+	@all.each do |a|
+		a.destroy
+	end
 	erb :homeDashboard
 	#flash[:success] = "succesfully logged in"
 	end

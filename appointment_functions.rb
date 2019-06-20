@@ -73,6 +73,7 @@ end
 post "/appointments/confirmation/:id" do
 	currentAppt = Appointment.get(params[:id])
 	currentAppt.name = params["pname"]
+	currentAppt.valid = 1
 	currentAppt.save
 	@barber = Barber.get(currentAppt.barberID)
 	@hairname = @beardname = @extraname = "None"
