@@ -7,13 +7,10 @@ get "/login" do
 	erb :"authentication/login"
 end
 
-
 post "/process_login" do
 	email = params[:email]
 	password = params[:password]
-
 	user = User.first(email: email.downcase)
-
 	if(user && user.login(password))
 		session[:user_id] = user.id
 		redirect "/admin"
@@ -31,20 +28,15 @@ get "/sign_up" do
 	erb :"authentication/sign_up"
 end
 
-
 post "/register" do
 	email = params[:email]
 	password = params[:password]
-
 	u = User.new
 	u.email = email.downcase
 	u.password =  password
 	u.save
-
 	session[:user_id] = u.id
-
 	erb :"authentication/successful_signup"
-
 end
 
 #This method will return the user object of the currently signed in user

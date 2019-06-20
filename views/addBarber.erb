@@ -1,48 +1,41 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="/stylesheet/addbarber.css">
 </head>
-	<body>
-
-		<h4 style = "color: black"> Add Barber 
-			<ol class="breadcrumb float-right">
-					<li class="breadcrumb-item">
-						<a href="/admin">
-							<i class="fa fa-home"></i>
-						</a>
-					</li>
-					<li class="breadcrumb-item active">
-						<a href="/admin/addbarber">Add Barber</a>
-					</li>
-			</ol>
-			<div class = "date_addB"><small> <span id="datetime"></span></small></div>
-		</h4>
-		
-			<br>
-		<div align = "center">
-	  		<div class="card bg-light text-dark" >
-	    		<div class="card-body">
-	     			<form action="/admin/new" method="POST">
-		    			<!-- <br><br> -->
-						
-						<h5><label>Full Name:</label></h5>
-							<div>
-								<input type="text" name="name">
-							</div>
-								<br><br><br>
-							<input type="submit" class = "btn btn-dark" value="Add" >
-								<br>
-					</form>
-	    		</div>
+<body>
+	<h4 style = "color: black"> Add Barber 
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item">
+			<a href="/admin"><i class="fa fa-home"></i></a>
+		</li>
+		<li class="breadcrumb-item active">
+			<a href="/admin/addbarber">Add Barber</a>
+		</li>
+	</ol>
+	<div class = "date_addB"><small> <span id="datetime"></span></small></div>
+	</h4>
+	<br>
+	<div align = "center">
+		<div class="card bg-light text-dark" >
+			<div class="card-body">
+				<form action="/admin/new" method="POST">
+					<h5><label>Full Name:</label></h5>
+					<div>
+						<input type="text" name="name">
+					</div>
+					<br>
+					<input type="submit" class = "btn btn-dark" value="Add" >
+					<br>
+				</form>
 			</div>
 		</div>
+	</div>
+</body>
 
-	</body>
-	<script>
-		var dt = new Date();
-		document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-	</script>
+<script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+
 </html>
-

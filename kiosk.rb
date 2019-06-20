@@ -5,7 +5,6 @@ get "/kiosk" do
 	@beardtypes = Haircuts.all(hair: false)
 	@extra = Extra.all
 	@barbers = Barber.all(available: true)
-
 	erb :kiosk
 end
 
@@ -25,21 +24,16 @@ get "/infomessage" do
 		extratype = Extra.get(params["extratype"])
 		extraprice = extratype.price
 	end
-
 	b = Barber.get(params["id"])
 	n = params["name"]
 	cost = beardprice + hairprice + extraprice
-	 
-
 	#b.total += cost
 	b.save
-
 	q = Queueitem.new
 	q.name = n
 	q.bid = b.id
 	q.price = cost
 	q.save
 	@cus = q
-
 	erb :infoMessage
 end
