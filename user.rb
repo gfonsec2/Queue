@@ -16,6 +16,8 @@ class User
     property :password, String
     property :created_at, DateTime
     property :administrator, Boolean, :default => false
+    property :pro, Boolean, :default => false
+    property :basic, Boolean, :default => false
 
     def login(password)
     	return self.password == password
