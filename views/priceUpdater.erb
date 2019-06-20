@@ -26,6 +26,9 @@
   padding: 10px;
   width: 100%;
   }
+.input-group > mb-3{
+	margin-width: 20px;
+}
 </style>
 </head>
 <body>
@@ -44,21 +47,29 @@
 			<h3 align="center">Add a Service</h3>
 			<div class = "card-text">
 				<form action="/admin/updateprice/add" method="POST">
-					<div>
-						<i class="fas fa-bars"></i>
-						<select name="type" required>
-		    				<option value="" disabled selected>Category</option>
-							<option value="hair">Hairstyle</option>
-							<option value="beard">Beardstyle</option>
-							<option value="extra">Extras</option>
-						</select>
-				
-			  			<i class="fas fa-cut"></i>
-						<input  placeholder="Service Name" type="text" name="name" required>
+					<div class="add">
+						<div class="input-group mb-3">
+	                    	<div class="input-group-prepend">
+	                    		<span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
+	                    	</div>
+	                    	<select name="type" required>
+			    				<option value="" disabled selected>Category</option>
+								<option value="hair">Hairstyle</option>
+								<option value="beard">Beardstyle</option>
+								<option value="extra">Extras</option>
+							</select>
 
-						<i class="fas fa-dollar-sign"></i>
-						<input type="number" step="any" min="0" max="100" size="10" name="price" placeholder="Service Price" required>
-						<button name="Submit" value="Add" type="submit" class="btn btn-dark" style="float: right;">Add</button>
+		                    <div class="input-group-prepend">
+		                    	<span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
+		                    </div>
+		                    <input type="text" class="form-control" placeholder="Service Name" aria-label="Username" aria-describedby="basic-addon1" required="" name="name">
+
+		                    <div class="input-group-prepend">
+		                    	<span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+		                    </div>
+		                    <input type="number" class="form-control" placeholder="Service Price" aria-label="Username" aria-describedby="basic-addon1" required="" name="price" min="0" max="100" size="10">
+		                    <button name="Submit" value="Add" type="submit" class="btn btn-dark" style="float: right;">Add</button>
+                  		</div>
 					</div>
 				</form>
 			</div>
