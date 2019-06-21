@@ -157,3 +157,18 @@ get "/admin/homeDashboard" do
 	erb :homeDashboard
 end
 
+get "/admin/viewAppointments" do
+	@appointments = Appointment.all(valid: 1)
+	erb :viewAppointments
+end
+
+get "/admin/deleteAppointment/:id" do
+	authenticate!
+	if current_user.administrator
+	app = Appointment.get(params[:id])
+	app.destroy
+	redirect "/admin/viewAppointments"
+else
+	redirect "/login"
+end
+end

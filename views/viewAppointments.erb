@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<style type="text/css">
+#sticky {
+  width:100%;
+  height:80px;
+  padding-top:6px;
+  color:black;
+  text-align:center;
+  position:fixed;    /*Here's what sticks it*/
+  bottom:0;          /*to the bottom of the window*/
+  left:0; 
+  right: 0;           /*and to the left of the window.*/
+}
+#left {
+  position: fixed;
+  bottom: -4px;
+  left: 10px;
+}
+#right {
+  position: fixed;
+  bottom: -4px;
+  right: 10px;
+}
+</style>
+<html>
+<style>
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+}
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+}
+</style>
+<body>
+	<h4 style = "color: black"> Queue
+	<ol class="breadcrumb float-right">
+		<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home"></i></a></li>
+		<li class="breadcrumb-item active"><a href="/admin">Queue</a></li>
+	</ol>
+	<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+	</h4>
+	<br>
+	<main class="grid">
+	<% @appointments.each do |b| %>
+		<div class="card bg-light text-dark">
+			<div class="card-body">
+				<center><h4 class="card-title"><%= b.name %></h4></center>
+				
+				<p class="card-text">
+					<ul class="list-group" style="list-style: none;"> 	
+						<li>Barber ID: <%= b.barberID %></li>
+						<li>Day: <%= b.day %></li>
+						<li>Time: <%= b.time %></li>
+						<li>Cost: <%= b.cost %></li>
+					</ul>
+					<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModalLong<%= b.id %>"><i class="fas fa-trash"></i></a> 
+				</p>
+			</div>
+		</div>
+	<% end %>
+	</main>
+	<div>
+		<!-- Modal -->
+		<% @appointments.each do |b| %>
+			<div class="modal fade" id="exampleModalLong<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				<form action="/admin/deleteAppointment/<%= b.id %>" method="PATCH">
+			  		<div class="modal-dialog" role="document">
+			    		<div class="modal-content">
+			      			<div class="modal-header">
+			        			<h5 class="modal-title" id="exampleModalLabel"><%= b.name %></h5>
+			        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          				<span aria-hidden="true">&times;</span>
+			        			</button>
+			      			</div>
+			      			<div class="modal-body">
+			      				Remove this appointment from record?
+			      			</div>
+			      			<div class="modal-footer">
+			        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        			<button name="Submit" value="Delete" type="submit" class="btn btn-dark" style="float: right;">Delete</button>
+			      			</div>
+			    		</div>
+			  		</div>
+				</form>
+			</div>
+		<% end %>
+	</div>
+</body>
+<footer id="sticky">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav"> 
+				<h6><i class="fas fa-user-alt"></i> :<a class=" btn" href="/sign_in">sign in</a></h6>
+				<h6><i class="fas fa-user-alt"></i> :<a class="btn" href="/sign_out">sign out</a></h6>
+			</div>
+		</div>
+	</nav>
+</footer>
+<script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+</html>
