@@ -5,33 +5,75 @@
 	<link rel="stylesheet" href="/stylesheet/deletebarber.css">
 </head>
 <style type="text/css">
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
 	.card{
 		margin-bottom: 5%;
+		box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
 	}
+	.card-content{
+		padding: 30px;
+	}
+	.vl {
+  border-left: 2px solid black;
+  height: 40px;
+}
+
 </style>
 <body>
-	<h4 style = "color: black"> Delete Barber 
-		<ol class="breadcrumb float-right">
+	<div  class="container" style="width: 1020px;">
+	<h4 style = "color: gray"> Delete Barber 
+		<ol class="breadcrumb float-right" style="background-color: white">
 			<li class="breadcrumb-item">
-				<a href="/admin"><i class="fa fa-home"></i></a>
+				<a href="/admin"><i class="fa fa-home" style="color:gray"></i></a>
 			</li>
 			<li class="breadcrumb-item active">
-				<a href="/admin/deletebarber">Delete Barber</a>
+				<a href="/admin/deletebarber" style="color:gray">Delete Barber</a>
 			</li>
 		</ol>
 		<div class = "date_delB"><small><span id="datetime"></span></small></div>
 	</h4>
 	<br>
 	<div align = "center">
-		<div class="card bg-light text-dark" >
-		   <div class="card-body">
-				<div>
-					<h5><label>Current Barbers:<label></h5>
+
+
+		<div class="card card-outline " style="background-color: white;">
+  <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
+  <div class="card-content card-content-padding">
+  	<h5><label style="color: gray">Current Barbers:<label></h5>
+  		<!-- <ul class="list-group" style = "width:350px"> -->
+  			<main class="grid">
+				<% @barbers.each do |b| %>
+				<div class="card card-outline ">
+				  <div class="card-content card-content-padding" style="color: gray">
+					<%= b.name %>
+					<a style="float: right;" data-toggle="modal" data-target="#exampleModal<%= b.id %>"style = fontclass= "list-group-item">
+						<i class="fas fa-trash" style="color: gray"></i>
+					</a>
+				  </div>
 				</div>
-				<ul class="list-group" style = "width:350px">
-					<% @barbers.each do |b| %>
-				   		<li style="list-style: none;"><%= b.name %>
-						<a style="float: right;" data-toggle="modal" data-target="#exampleModal<%= b.id %>"style = fontclass= "list-group-item"><i class="fas fa-trash"></i></a><hr></li>
 
 						<!-- Modal -->
 						<div class="modal fade" id="exampleModal<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,17 +91,19 @@
 						      	</div>
 						      	<div class="modal-footer">
 						        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        	<button name="Submit" value="Delete" type="submit" class="btn btn-dark" style="float: right;">Delete</button>
+						        	<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
 						      	</div>
 						    	</div>
 						  		</div>
 							</form>
 						</div>
 					<% end %>
-				</ul>		
-			</div>
-		</div>
-	</div>
+				<!-- </ul> --></main>
+  </div>
+</div>
+</div>
+
+	
 </body>
 <script>
 	var dt = new Date();
