@@ -34,14 +34,14 @@
   	box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
   }
   .card-content{
-  	padding: 10px;
+  	padding: 5px;
   }
  
 </style>
 </head>
 <body>
 	<div  class="container" style="width: 1020px;">
-	<h4 style = "color: gray">Services 
+	<h4 style = "color: gray; ">Services 
 		<ol class="breadcrumb float-right" style="background-color: white">
 			<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home" style="color: gray"></i></a></li>
 			<li class="breadcrumb-item active"><a href="/admin/updateprice" style="color: gray">Services</a></li>
@@ -54,7 +54,7 @@
 
 	<div class="card card-outline ">
 	  <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
-	  <div class="card-content card-content-padding">
+	  <div class="card-content card-content-padding" style="padding: 45px;">
 	  	<form action="/admin/updateprice/add" method="POST">
 					<div>
 						<i class="fas fa-bars"></i>
