@@ -12,13 +12,19 @@ require_relative "app.rb"
 get "/aboutUs" do
 	erb :aboutUs
 end
+
 get "/pricingPage" do
 	erb :pricePage
 end
 
 get "/admin" do
 	authenticate!
-	if current_user.administrator 
+	authenticate2!
+	if current_user.basic || current_user.pro 
+	barbershops = current_user.barbershops
+	if barbershops == nil
+		redirect "/registerBarbershop"
+	end
 	@barbers = Barber.all
 	@all = Appointment.all(valid: 0)
 	@all.each do |a|
@@ -26,8 +32,11 @@ get "/admin" do
 	end
 	erb :homeDashboard
 	#flash[:success] = "succesfully logged in"
-	end
+	
+else
+	erb :pricing
 	#redirect "/login"
+end
 end
 
 post "/admin/new" do 
@@ -44,6 +53,8 @@ end
 
 get "/admin/addbarber" do
 	authenticate!
+	authenticate2!
+
 	if current_user.administrator 
 	@barbers = Barber.all
 	erb :addBarber
@@ -54,6 +65,7 @@ end
 
 get "/admin/delete/:id" do
 	authenticate!
+	authenticate2!
 	if current_user.administrator 
 		b = Barber.get(params[:id])
 		b.destroy
@@ -65,6 +77,7 @@ end
 
 get "/admin/deletebarber" do
 	authenticate!
+	authenticate2!
 	if current_user.administrator 
 		@barbers = Barber.all
 		erb :deleteBarber
@@ -75,6 +88,7 @@ end
 
 get "/admin/updateprice/:id" do
 	authenticate!
+	authenticate2!
 	haircut = Haircuts.get(params[:id])
 	haircut.update(:price => params["price"])
 	haircut.save
@@ -83,6 +97,7 @@ end
 
 get "/admin/updateprice/extra/:id" do
 	authenticate!
+	authenticate2!
 	e = Extra.get(params[:id])
 	e.update(:price => params["price"])
 	e.save
@@ -91,6 +106,7 @@ end
 
 get "/admin/updateprice/delete/:id" do
 	authenticate!
+	authenticate2!
 	if current_user.administrator
 	haircut = Haircuts.get(params[:id])
 	haircut.destroy
@@ -102,6 +118,7 @@ end
 
 post "/admin/updateprice/add" do
 	authenticate!
+	authenticate2!
 	type = params["type"]
 	name = params["name"]
 	price = params["price"]
@@ -129,6 +146,7 @@ end
 
 get "/admin/updateprice/deleteExtra/:id" do
 	authenticate!
+	authenticate2!
 	if current_user.administrator
 	extra = Extra.get(params[:id])
 	extra.destroy
@@ -146,6 +164,7 @@ get "/admin/calendar" do
 	erb :calendar
 end
 get "/admin/updateprice" do
+	authenticate2!
 @haircuts = Haircuts.all(hair: true)
 
 @beards = Haircuts.all(hair: false)

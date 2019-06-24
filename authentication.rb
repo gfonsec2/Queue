@@ -1,6 +1,6 @@
 require 'sinatra'
 require_relative "user.rb"
-
+require_relative "admin_functions.rb"
 enable :sessions
 
 get "/login" do
@@ -25,7 +25,7 @@ get "/logout" do
 end
 
 get "/sign_up" do
-	erb :"authentication/sign_up"
+	erb :"signup"
 end
 
 post "/register" do
@@ -55,4 +55,11 @@ def authenticate!
 	if !current_user
 		redirect "/login"
 	end
+	if !current_user.pro && !current_user.basic
+		redirect "/pricingPage"
+	end
+end
+
+def authenticate2!
+	
 end

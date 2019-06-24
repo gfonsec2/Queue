@@ -6,6 +6,8 @@ require_relative "kiosk.rb"
 require_relative "view.rb"
 require_relative "appointment_functions.rb"
 require_relative "pricingPage_functions.rb"
+require_relative "signup.rb"
+require_relative "user.rb"
 require 'stripe'
 
 set :publishable_key, 'pk_test_xeSjb7wEgf1ev4bIzVgipQRB'
@@ -54,7 +56,7 @@ class Queueitem
 	include DataMapper::Resource
 
 	property :id, Serial
-	property :shopID
+	property :shopID, Integer
 	property :name, Text
 	property :price, Integer
 	property :bid, Integer

@@ -1,4 +1,5 @@
 require 'data_mapper' # metagem, requires common plugins too.
+#require_relative "app.rb"
 
 # need install dm-sqlite-adapter
 # if on heroku, use Postgres database
@@ -19,9 +20,15 @@ class User
     property :pro, Boolean, :default => false
     property :basic, Boolean, :default => false
 
+
     def login(password)
     	return self.password == password
     end
+    
+    def barbershops
+        return Barbershop.all(uID: id)
+    end
+
 end
 
 
