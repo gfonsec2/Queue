@@ -9,6 +9,16 @@ require_relative "app.rb"
 
 require_relative "app.rb"
 
+def current_barbershop 
+	barbershop = Barbershop.get(u_id: current_user.id)
+	return barbershop
+end
+
+get "/display" do
+
+	return current_barbershop
+end
+
 get "/aboutUs" do
 	erb :aboutUs
 end
@@ -19,20 +29,19 @@ end
 
 get "/admin" do
 	authenticate!
-	authenticate2!
-	if current_user.basic || current_user.pro 
+if current_user.basic || current_user.pro 
 	barbershops = current_user.barbershops
-	if barbershops == nil
-		redirect "/registerBarbershop"
+	if current_barbershop == nil
+		redirect "/admin/registerBarbershop"
 	end
-	@barbers = Barber.all
-	@all = Appointment.all(valid: 0)
+
+	@barbers = Barber.all(shopID: current_barbershop.id)
+	@all = Appointment.all(valid: 0, shopID: current_barbershop.id)
 	@all.each do |a|
 		a.destroy
 	end
 	erb :homeDashboard
-	#flash[:success] = "succesfully logged in"
-	
+	#flash[:success] = "succesfully logged in"	
 else
 	erb :pricing
 	#redirect "/login"
@@ -43,6 +52,7 @@ post "/admin/new" do
 	if params["name"] != ""
 		b = Barber.new
 		b.name = params["name"]
+		b.shopID = current_barbershop.id
 		b.save
 		redirect "/admin/addbarber"
 	else
@@ -52,43 +62,27 @@ post "/admin/new" do
 end	
 
 get "/admin/addbarber" do
-	authenticate!
-	authenticate2!
-
-	if current_user.administrator 
-	@barbers = Barber.all
+	authenticate! 
+	@barbers = Barber.all(shopID: current_barbershop.id)
 	erb :addBarber
-	else 
-	redirect "/login"
-	end
 end
 
 get "/admin/delete/:id" do
 	authenticate!
-	authenticate2!
-	if current_user.administrator 
 		b = Barber.get(params[:id])
 		b.destroy
 		redirect "/admin/deletebarber"
-	else
-	redirect "/login"
-	end
 end
 
 get "/admin/deletebarber" do
 	authenticate!
-	authenticate2!
-	if current_user.administrator 
+
 		@barbers = Barber.all
 		erb :deleteBarber
-	else
-	redirect "/login"
-end
 end
 
 get "/admin/updateprice/:id" do
 	authenticate!
-	authenticate2!
 	haircut = Haircuts.get(params[:id])
 	haircut.update(:price => params["price"])
 	haircut.save
@@ -97,7 +91,6 @@ end
 
 get "/admin/updateprice/extra/:id" do
 	authenticate!
-	authenticate2!
 	e = Extra.get(params[:id])
 	e.update(:price => params["price"])
 	e.save
@@ -106,7 +99,6 @@ end
 
 get "/admin/updateprice/delete/:id" do
 	authenticate!
-	authenticate2!
 	if current_user.administrator
 	haircut = Haircuts.get(params[:id])
 	haircut.destroy
@@ -118,7 +110,6 @@ end
 
 post "/admin/updateprice/add" do
 	authenticate!
-	authenticate2!
 	type = params["type"]
 	name = params["name"]
 	price = params["price"]
@@ -146,25 +137,13 @@ end
 
 get "/admin/updateprice/deleteExtra/:id" do
 	authenticate!
-	authenticate2!
-	if current_user.administrator
 	extra = Extra.get(params[:id])
 	extra.destroy
 	redirect "/admin/updateprice"
-	else
-	redirect "/login"
-	end
 end
 
-get "/admin/datatable" do
-	erb :datatable
-end
-
-get "/admin/calendar" do
-	erb :calendar
-end
 get "/admin/updateprice" do
-	authenticate2!
+authenticate!
 @haircuts = Haircuts.all(hair: true)
 
 @beards = Haircuts.all(hair: false)
@@ -173,6 +152,35 @@ get "/admin/updateprice" do
 erb :priceUpdater
 end
 get "/admin/homeDashboard" do
+	authenticate!
 	erb :homeDashboard
+end
+
+get "/admin/registerBarbershop" do
+	authenticate!
+	erb :registerBarbershop
+end
+
+post "/addBarbershop" do
+authenticate!
+address = params["address"]
+name = params["name"]
+start = params["start"]
+end1 = params["end"]
+phone = params["phone"]
+zip = params["zip"]
+
+b = Barbershop.new
+
+b.name = name
+b.address = address
+b.phone = phone
+b.zipcode = zip
+b.OpeningTime = start
+b.ClosingTime = end1
+b.uID = current_user.id
+
+b.save
+
 end
 

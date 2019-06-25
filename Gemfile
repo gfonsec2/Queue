@@ -6,7 +6,7 @@ gem 'stripe'
 group :development do
   gem "sqlite3-ruby"
   gem "dm-sqlite-adapter"
-  gem 'sqlite3', '< 1.4'
+  # gem 'sqlite3', '< 1.4'
 end
 
 group :production do

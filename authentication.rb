@@ -50,6 +50,7 @@ def current_user
 	end
 end
 
+
 #if the user is not signed in, will redirect to login page
 def authenticate!
 	if !current_user
@@ -58,8 +59,4 @@ def authenticate!
 	if !current_user.pro && !current_user.basic
 		redirect "/pricingPage"
 	end
-end
-
-def authenticate2!
-	
 end
