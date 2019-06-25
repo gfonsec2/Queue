@@ -7,10 +7,6 @@ group :development do
   gem "sqlite3-ruby"
   gem "dm-sqlite-adapter"
   gem 'sqlite3', '< 1.4'
-<<<<<<< HEAD
-=======
-
->>>>>>> isaibranch
 end
 
 group :production do
