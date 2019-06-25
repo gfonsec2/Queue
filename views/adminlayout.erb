@@ -5,12 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Queue-Up</title>
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="/stylesheet/main.css">
+    <link rel="stylesheet" href="/styleshee/main.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
@@ -19,21 +20,31 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 </head>
-<body >
-  <div class="wrapper">
-  	<% if current_user %>
-  		<%= erb :navbar %>
-        <!-- Page Content  -->
-        <div id="content">
-        	<%= yield %>
-        </div>
-    <% else %>
-      <%= erb :landingNavbar %>
-    	<div>
-    		<%= yield %>
-    	</div>
-  	<% end %>
-  </div>
+
+<body>
+
+
+    <div class="wrapper">
+    	<% if current_user %>
+    		<%= erb :navbar %>
+
+	        <!-- Page Content  -->
+	        <div id="content">
+            
+	        	<%= yield %>
+	            
+	        </div>
+
+	    <% else %>
+
+	    	<div>
+	    		<%= yield %>
+	    	</div>
+
+    	<% end %>
+
+
+    </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -44,17 +55,37 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-<script type="text/javascript">
-  $(document).ready(function () {
-  $("#sidebar").mCustomScrollbar({
-    theme: "minimal"
-  });
-  $('#sidebarCollapse').on('click', function () {
-    $('#sidebar, #content').toggleClass('active');
-    $('.collapse.in').toggleClass('in');
-    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-  });
-});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
 </body>
+
 </html>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Q-UP</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/homeDashboard"></a>
+      <a class="nav-item nav-link active" href="/login">Log-In<span class="sr-only">(current)</span></a>
+      <a class="nav-link nav-link" href="/admin/datatable">Datatable</a>
+      <a class="nav-item nav-link" href="/admin/addbarber">Add Barber</a>
+      <a class="nav-item nav-link" href="/admin/deletebarber">Delete Barber</a>
+      <a class="nav-item nav-link" href="/admin/updateprice">Update Prices</a>
+    </div>
+  </div>
+</nav> -->
