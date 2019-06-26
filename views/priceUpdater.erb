@@ -36,6 +36,9 @@
   .card-content{
   	padding: 5px;
   }
+.input-group{
+	width: 100%;
+}
  
 </style>
 </head>
@@ -56,24 +59,27 @@
 	  <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
 	  <div class="card-content card-content-padding" style="padding: 45px;">
 	  	<form action="/admin/updateprice/add" method="POST">
-					<div>
-						<i class="fas fa-bars"></i>
-						<select name="type" required>
-		    				<option value="" disabled selected>Category</option>
-							<option value="hair">Hairstyle</option>
-							<option value="beard">Beardstyle</option>
-							<option value="extra">Extras</option>
-						</select>
-				
-			  			<i class="fas fa-cut"></i>
-						<input  placeholder="Service Name" type="text" name="name" required>
-
-						<i class="fas fa-dollar-sign"></i>
-						<input type="number" step="any" min="0" max="100" size="10" name="price" placeholder="Service Price" required>
-						<button name="Submit" value="Add" type="submit" class="btn btn-primary" style="float: right;">Submit</button>
-
-					</div>
-				</form>
+	  		<div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
+                </div>
+                <select name="type" required style="margin-right: 20px;">
+					<option value="" disabled selected>Category</option>
+					<option value="hair">Hairstyle</option>
+					<option value="beard">Beardstyle</option>
+					<option value="extra">Extras</option>
+				</select>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Service Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="" style="margin-right: 20px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="number" class="form-control" placeholder="Service Price" aria-label="Username" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+            </div>
+            <div align="center"><button type="submit" class="btn btn-primary">Add</button></div>
+		</form>
 	  </div>
 	</div>
 
@@ -101,7 +107,12 @@
 							        			</button>
 							      			</div>
 							      			<div class="modal-body">
-				   								<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+				   								<div class="input-group mb-3">
+				   									<div class="input-group-prepend">
+									                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+									                </div>
+									                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+				   								</div>
 							      			</div>
 							      			<div class="modal-footer">
 							        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -161,7 +172,12 @@
 						        			</button>
 						      			</div>
 						      			<div class="modal-body">
-			   								<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+			   								<div class="input-group mb-3">
+			   									<div class="input-group-prepend">
+								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+								                </div>
+								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+			   								</div>
 						      			</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -220,7 +236,12 @@
 						        			</button>
 						      			</div>
 						      			<div class="modal-body">
-			   								<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+			   								<div class="input-group mb-3">
+			   									<div class="input-group-prepend">
+								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+								                </div>
+								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+			   								</div>
 						      			</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -39,6 +39,7 @@ class Appointment
 	property :shopID, Integer, :default => 0
 	property :shopName, Text
 	property :barberID, Integer, :default => 0
+	property :barberName, Text
 	property :weekDay, Integer, :default => 0
 	property :day, Text
 	property :time, Integer, :default => 0

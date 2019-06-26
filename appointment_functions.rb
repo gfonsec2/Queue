@@ -20,9 +20,10 @@ post "/appointments/stylistChoice/:id" do
 	erb :apptStylistChoice
 end
 
-get "/appointments/stylistAvailability/:id/:bid" do
+get "/appointments/stylistAvailability/:id/:bid/:bname" do
 	currentAppt = Appointment.get(params[:id])
 	currentAppt.barberID = params[:bid]
+	currentAppt.barberName = params[:bname]
 	currentAppt.save
 	@id = params[:id]
 	@barberName = Barber.get(currentAppt.barberID)

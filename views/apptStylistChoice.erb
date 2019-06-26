@@ -40,7 +40,7 @@
         <hr>
 	      <main class="grid">
           <% @barbers.each do |b| %>
-            <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>">
+            <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>/<%= b.name %>">
               <div class="card2 bg-light text-dark">
                 <div class="card-body">
                   <h5 class="card-title" align="center"><%= b.name %></h5>

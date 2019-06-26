@@ -34,33 +34,18 @@
 		<div class="card card-outline">
 		  <div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
 		  <div class="card-content card-content-padding">
-		  	<h5 align="center" style="color: gray"> Full Name:</h5>
+		  	<h5 align="center" style="color: gray">Barber's Full Name:</h5>
 		  	<form action="/admin/new" method="POST">
-					<div>
-						<input type="text" name="name">
-					</div>
-					<br>
+		  		<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="John Moore Doe" aria-label="Username" aria-describedby="basic-addon1" name="name">
+                </div>
 					<input type="submit" class = "btn btn-primary" value="Add" >
-					<br>
 			</form>
 		  </div>
 		</div>
-		<!-- <div class="card bg-light text-dark" >
-			<div class="card-body">
-				<form action="/admin/new" method="POST">
-					<h5><label>Barber's Full Name:</label></h5>
-					<div class="input-group mb-3">
-	                    <div class="input-group-prepend">
-	                    	<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-	                    </div>
-	                    <input type="text" class="form-control" placeholder="John Moore Doe" aria-label="Username" aria-describedby="basic-addon1" required="" name="name">
-                  	</div>
-					<br>
-					<input type="submit" class = "btn btn-dark" value="Add" >
-					<br>
-				</form>
-			</div>
-		</div> -->
 	</div>
 </div>
 </body>
