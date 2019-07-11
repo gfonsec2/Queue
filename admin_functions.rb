@@ -8,6 +8,9 @@ require_relative "app.rb"
 #Calendar
 
 require_relative "app.rb"
+get "/admin/date" do
+	erb :testDate
+end
 
 get "/aboutUs" do
 	erb :aboutUs

@@ -7,6 +7,9 @@
   margin-left: 40px;
   margin-right: 40px; 
 }
+.input-group{
+  align-items: center;
+}
 </style>
 </head>
 <body>
@@ -14,74 +17,24 @@
   <article class="card-body">
     <h1 class="card-title text-center mb-4 mt-1">Date Selection</h1>
     <hr>
-    <p class="text-success text-center">Select the day that you want to schedule your appointment with <%= @barberName.name %></p>
+    <p class="text-success text-center">Select the day that you want to schedule your appointment with <%= @barberName.name %>.</p>
     <hr>
     <br>
-    <form action="/appointments/haircuts/<%= @id %>" method="POST">
-			<div align="center">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-calendar-alt"></i></label>
-          </div>
-          <select class="custom-select" id="inputGroupSelect01" name="weekDay" required="">
-            <option value="" disabled selected>Day of the Week</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
-          </select>
+    <form action="/appointments/time/<%= @id %>" method="POST">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
         </div>
-			</div>
-			<br>
-      <br>
-			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <main class="grid2">
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="10">10 a.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="11">11 a.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="12">12 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="1">1 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="2">2 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="3">3 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="4">4 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="5">5 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="6">6 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="7">7 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="8">8 p.m.</button>
-          </div>
-          <div class="btn-group mr-2" role="group" aria-label="Third group">
-            <button type="submit" class="btn btn-secondary" name="time" value="9">9 p.m.</button>
-          </div>
-        </main>
+        <input type="date" id="input" name="date" required>
       </div>
+			<br>
+			<div style="overflow:auto;" align="center">
+    <button class="btn btn-dark" onclick="goBack()">Back</button>
+    <button class="btn btn-dark" type="Submit">Next</button>
+  </div>
 		</form>
   </article>
-  <div style="overflow:auto;" align="center">
-    <button class="btn btn-dark" onclick="goBack()">Back</button>
-  </div>
+  
 </div>
 </body>
 </html>

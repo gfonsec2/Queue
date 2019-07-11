@@ -60,9 +60,19 @@
 				<p class="card-text">
 					<ul class="list-group" style="list-style: none;"> 	
 						<li>Barber: <%= b.barberName %></li>
-						<li>Day: <%= b.day %></li>
-						<li>Time: <%= b.time %></li>
-						<li>Cost: <%= b.cost %></li>
+						<li>Scheduled For: <%= b.date %></li>
+						<% if b.time.to_i < 12 %>
+							<li>Time: <%= b.time %> A.M.</li>
+						<% elsif b.time.to_i == 12 %>
+							<li>Time: <%= b.time %> P.M.</li>
+						<% else %>
+							<% a = b.time.to_i - 12 %>
+							<li>Time: <%= a %>:00 P.M.</li>
+						<% end %>
+						<li>Cost: $<%= b.cost %>.00</li>
+						<li>Hair: <%= b.hairID %></li>
+						<li>Beard: <%= b.beardID %></li>
+						<li>Extra: <%= b.extraID %></li>
 					</ul>
 					<a class="btn float-right" role="button" data-toggle="modal" data-target="#exampleModalLong<%= b.id %>"><i class="fas fa-trash"></i></a> 
 				</p>

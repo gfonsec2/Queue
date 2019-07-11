@@ -9,7 +9,7 @@
   </center>
   <div class="container">
     <hr>
-    <p class="text-success text-center">Thank you <%= @name %> for using Queue-Up. Your appointment at <%= @shopName %> for <%= @day %> at <%= @time %> o'clock has been confirmed. Your barber will be <%= @barberName %> and your total will be $<%= @cost %>.00 to be paid at the barber shop. For your reference, here are the services you selected.</p>
+    <p class="text-success text-center">Thank you <%= @name %> for using Queue-Up. Your appointment at <%= @shopName %> for <%= @date %> at <% if @time.to_i < 12 %><%= @time %> A.M <% elsif @time.to_i == 12 %><%= @time %> Noon<% else %><% a = @time.to_i %><%= a - 12 %>:00 P.M. <% end %> has been confirmed. Your barber will be <%= @barberName %> and your total will be $<%= @cost %>.00 to be paid at the barber shop. For your reference, here are the services you selected.</p>
     <hr>
     <div>
       <label>Hair Service: <%= @hairname %></label>

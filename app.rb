@@ -40,15 +40,14 @@ class Appointment
 	property :shopName, Text
 	property :barberID, Integer, :default => 0
 	property :barberName, Text
-	property :weekDay, Integer, :default => 0
-	property :day, Text
-	property :time, Integer, :default => 0
+	property :time, Text
 	property :hairID, Integer
 	property :beardID, Integer
 	property :extraID, Integer
 	property :cost, Integer
 	property :name, Text
 	property :valid, Integer, :default => 0
+	property :date, Date
 end
 
 class Queueitem
