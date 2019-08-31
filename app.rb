@@ -7,6 +7,7 @@ require_relative "view.rb"
 require_relative "appointment_functions.rb"
 require_relative "pricingPage_functions.rb"
 require 'stripe'
+require 'date'
 
 set :publishable_key, 'pk_test_xeSjb7wEgf1ev4bIzVgipQRB'
 set :secret_key, 'sk_test_M4899DJHvorvnSgy5PAJ7JCY'
@@ -28,7 +29,7 @@ class Barber
 
 	#fill in the rest
 	def wait_list
-		return Queueitem.all(bid: id) #gets list of customers 
+		return Queueitem.all(bid: id) & Queueitem.all(created: nil) #gets list of customers 
 	end
 	
 end
@@ -57,6 +58,10 @@ class Queueitem
 	property :name, Text
 	property :price, Integer
 	property :bid, Integer
+	property :hairID, Integer
+	property :beardID, Integer
+	property :extraID, Integer
+	property :created, Date
 
 	def barber 
 		return Barber.get(bid)

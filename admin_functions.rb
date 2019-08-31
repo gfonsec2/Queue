@@ -33,6 +33,56 @@ get "/admin" do
 	#redirect "/login"
 end
 
+post "/admin/report" do
+	if current_user.administrator
+	@startDate = params["startDate"]
+	@endDate = params["endDate"]
+	first = @startDate.split('-')
+	second = @endDate.split('-')
+	@startYear = first[0]
+	@startMonth = first[1]
+	@startDay = first[2]
+	@endYear = second[0]
+	@endMonth = second[1]
+	@endDay = second[2]
+
+	@queues = Queueitem.all(:created.gte => Date.parse(@startDate)) & Queueitem.all(:created.lte => Date.parse(@endDate))
+	@barbers = Barber.all
+	@totalRevenue = 0
+	@customers = 0
+
+	@barbersArray = Array.new
+	@barberNameArray = Array.new
+	@totalArray = Array.new
+	@numberCustomers = Array.new
+	@index = 0
+	@index2 = 0
+
+	@queues.each do |q|
+		@totalRevenue += q.price
+		@customers += 1
+		if @barbersArray.include?(q.bid)
+			@index = @barbersArray.index(q.bid)
+			@totalArray[@index] += q.price
+			@numberCustomers[@index] += 1
+		else
+			@barbersArray.push(q.bid)
+			@tempBarber = Barber.get(q.bid)
+			@barberNameArray.push(@tempBarber.name)
+			@totalArray.push(q.price)
+			@numberCustomers.push(1)
+			@index2 += 1
+		end
+	end
+
+	@all = Appointment.all(valid: 0)
+	@all.each do |a|
+		a.destroy
+	end
+	erb :revenueReport
+	end
+end
+
 post "/admin/new" do 
 	if params["name"] != ""
 		b = Barber.new
