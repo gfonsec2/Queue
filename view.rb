@@ -39,7 +39,8 @@ get "/sign_in/:id" do
 	b = Barber.get(params[:id])
 	b.available = true
 	b.save
-	redirect "/viewA"
+	redirect "/sign_in"
+	# redirect "/viewA"
 end
 
 get "/sign_out" do 
@@ -51,5 +52,6 @@ get "/sign_out/:id" do
 	b = Barber.get(params[:id])
 	b.available = false
 	b.save
-	redirect "/viewA"
+	redirect "/sign_out"
+	# redirect "/viewA"
 end

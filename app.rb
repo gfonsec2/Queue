@@ -21,7 +21,8 @@ class Barber
 	include DataMapper::Resource
 
 	property :id, Serial
-	property :name, Text
+	property :name, Text  
+	property :phoneNumber, String  
 	property :total, Integer, :default => 0
 	property :available, Boolean, :default => true
 	property :money, Integer, :default => 0

@@ -31,9 +31,10 @@ get "/admin" do
 end
 
 post "/admin/new" do 
-	if params["name"] != ""
+	if params["name"] != "" && params["phoneNumber"] !=""
 		b = Barber.new
 		b.name = params["name"]
+		b.phoneNumber = params["phoneNumber"]
 		b.save
 		redirect "/admin/addbarber"
 	else
