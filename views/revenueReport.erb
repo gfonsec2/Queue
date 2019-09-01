@@ -73,7 +73,7 @@
 
 	<div class="card card-outline ">
 		<form action="/admin" method="GET">
-  <div class="card-header"><h3 align="left" class="split-para">Revenue Report Between: <%=@startMonth%>/<%=@startDay%>/<%=@startYear%> - <%=@endMonth%>/<%=@endDay%>/<%=@endYear%><span><button type="submit" class="btn btn-dark">Default</button></span></h3></div></form>
+  <div class="card-header"><h3 align="left" class="split-para">Revenue Report Between: <%=@startMonth%>/<%=@startDay%>/<%=@startYear%> - <%=@endMonth%>/<%=@endDay%>/<%=@endYear%><span><a href="/admin/downloadpdf" style="font-size: 10px; margin-right: 20px; color: blue;">Download pdf.</a><button type="submit" class="btn btn-dark">Default</button></span></h3></div></form>
   <div class="card-content card-content-padding">
   	<form action="/admin/report" method="POST">
   		<a class="split-para">Start Date:<span>End Date:</span></a>

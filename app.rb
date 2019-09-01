@@ -8,6 +8,8 @@ require_relative "appointment_functions.rb"
 require_relative "pricingPage_functions.rb"
 require 'stripe'
 require 'date'
+require 'prawn'
+require 'prawn/table'
 
 set :publishable_key, 'pk_test_xeSjb7wEgf1ev4bIzVgipQRB'
 set :secret_key, 'sk_test_M4899DJHvorvnSgy5PAJ7JCY'

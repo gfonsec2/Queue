@@ -7,7 +7,6 @@ require_relative "app.rb"
 #Data table
 #Calendar
 
-require_relative "app.rb"
 get "/admin/date" do
 	erb :testDate
 end
@@ -33,10 +32,20 @@ get "/admin" do
 	#redirect "/login"
 end
 
+$barbers
+$customers
+$revenue
+$totalCustomers
+$totalRevenue
+$startDate
+$endDate
+
 post "/admin/report" do
 	if current_user.administrator
 	@startDate = params["startDate"]
 	@endDate = params["endDate"]
+	$startDate = @startDate
+	$endDate = @endDate
 	first = @startDate.split('-')
 	second = @endDate.split('-')
 	@startYear = first[0]
@@ -75,12 +84,48 @@ post "/admin/report" do
 		end
 	end
 
+	$barbers = @barberNameArray
+	$customers = @numberCustomers
+	$revenue = @totalArray
+	$totalCustomers = @customers
+	$totalRevenue = @totalRevenue
+
 	@all = Appointment.all(valid: 0)
 	@all.each do |a|
 		a.destroy
 	end
 	erb :revenueReport
 	end
+end
+
+get "/admin/downloadpdf" do
+	Prawn::Document.generate('revenueReport.pdf') do
+		pad_bottom(10) { text "Revenue Report", :size => 25}
+		stroke_horizontal_rule
+		pad(20) { text "Dates: #{$startDate} through #{$endDate}" }
+		data = [ ["Barber Name", "Visitors", "Revenue"] ]
+		table(data, :column_widths => [270, 135, 135], :row_colors => ["F0F0F0"])
+		$barbers.each_index do |i|
+			data = [["#{$barbers[i]}", "#{$customers[i]}", "$#{$revenue[i]}.00"]]
+			table(data, :column_widths => [270, 135, 135])
+		end
+		data = [ ["Total Visitors: #{$totalCustomers}", "Total Revenue: $#{$totalRevenue}.00"] ]
+		table(data, :column_widths => [135, 135], :position => :right)
+		create_stamp("approved") do
+			rotate(30, :origin => [-5, -5]) do
+				stroke_color "FF3333"
+				stroke_ellipse [0, 0], 29, 15
+				stroke_color "000000"
+				fill_color "993333"
+				font("Times-Roman") do
+					draw_text "Approved", :at => [-23, -3]
+				end
+				fill_color "000000"
+			end
+		end
+		stamp "approved"
+	end
+	redirect "/admin"
 end
 
 post "/admin/new" do 

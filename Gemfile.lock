@@ -70,7 +70,13 @@ GEM
     mustermann (1.0.3)
     net-http-persistent (3.0.1)
       connection_pool (~> 2.2)
+    pdf-core (0.7.0)
     pg (1.1.4-x86-mingw32)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     public_suffix (3.1.0)
     rack (2.0.7)
     rack-protection (2.0.5)
@@ -88,6 +94,7 @@ GEM
       faraday (~> 0.13)
       net-http-persistent (~> 3.0)
     tilt (2.0.9)
+    ttfunk (1.5.1)
     uuidtools (2.1.5)
 
 PLATFORMS
@@ -98,6 +105,8 @@ DEPENDENCIES
   dm-postgres-adapter
   dm-sqlite-adapter
   pg
+  prawn
+  prawn-table
   sinatra
   sqlite3 (< 1.4)
   sqlite3-ruby

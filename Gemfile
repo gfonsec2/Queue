@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'data_mapper'
 gem 'stripe'
+gem 'prawn'
+gem 'prawn-table'
 
 group :development do
   gem "sqlite3-ruby"
