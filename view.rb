@@ -1,12 +1,16 @@
 require_relative "app.rb"
-
+require 'date'
 get "/pop/:id" do
 	c = Queueitem.get(params[:id])
 	b = Barber.get(c.bid)
+	shop = Barbershops.get(current_user.id)
 	if c != nil
 		b.money += c.price
 		b.total +=1
-		c.destroy
+		shop.revenue += c.price
+		shop.customers += 1
+		c.created = Time.now.strftime("%Y-%m-%d")
+		c.save
 	end
 	b.save
 	redirect "/viewA"
@@ -21,11 +25,11 @@ get "/pop2/:id" do
 end
 
 get "/viewC" do
-	@barbers = Barber.all(available: true)
+	@barbers = Barber.all(available: true) & Barber.all(shop_id: current_user.id)
 	erb :customerQ
 end
 get "/viewA" do
-	@barbers = Barber.all(available: true)
+	@barbers = Barber.all(available: true) & Barber.all(shop_id: current_user.id)
 	erb :adminQ
 end
 

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Barber Select</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <style type="text/css">
 .card-deck{
   margin-left: 40px;
@@ -30,24 +31,31 @@
 </style>
 </head>
 <body>
+
+
+
 <main class="grid2">
   <div class="card-deck">
     <div class="container">
       <article class="card-body">
         <h1 class="card-title text-center mb-4 mt-1"><%= @shopName %> Professionals</h1>
         <hr>
-        <p class="text-success text-center">Select the barber whom you want to schedule your appointment with.</p>
+        <p class="text-success text-center">Call or text to check for availability and set up an appointment.</p>
         <hr>
 	      <main class="grid">
           <% @barbers.each do |b| %>
-            <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>">
+            <!-- <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>/<%= b.name %>"> -->
+
               <div class="card2 bg-light text-dark">
                 <div class="card-body">
                   <h5 class="card-title" align="center"><%= b.name %></h5>
-                  <div class = "card-text"></div>
+                  <div><i class="fas fa-mobile-alt"></i>  <%= b.phone %></div>
+                  <div><i class="fab fa-twitter"></i>  <%= b.twitter %></div>
+                  <div><i class="fab fa-instagram"></i>  <%= b.insta %></div>
+                  <div><i class="fab fa-snapchat-ghost"></i>  <%= b.snap %></div>
                 </div>
               </div>
-            </a>
+            <!-- </a> -->
           <% end %>
         </main>
         <br>

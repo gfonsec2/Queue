@@ -1,27 +1,23 @@
-<!-- <form action="register" method="POST">
-	Email: <input type="text" name="email"><br/>
-	Password: <input type="password" name="password"><br/>
-	<input type="submit" value="Register">
-</form> -->
-
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-
+  <title>Q-UP</title>
+  <style type="text/css">
+    .card-deck{
+      margin-left: 40px;
+      margin-right: 40px; 
+    }
+  </style>
 </head>
-</style>
 <body>
-
-	<main class="grid">
+  <main class="grid">
     <div class="card-deck">
 
       
       <div class="container" style="width: 415px;">
         <article class="card-body">
           <br>
-      <h3 class="card-title text-center mb-4 mt-1" style="color: gray">Create Account</h3>
+      <h3 class="card-title text-center mb-4 mt-1" style="color: gray">Sign-In</h3>
 
       <hr>
       <form action="/process_login" method="post" name="Login_Form" class="form-signin">
@@ -42,24 +38,15 @@
           <input class="form-control" placeholder="Password" type="password" name="password" required="">
       </div> <!-- input-group.// -->
       </div> <!-- form-group// -->
-      <div class="form-group input-group">
-	    	<div class="input-group-prepend">
-			    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-			</div>
-	        	<input class="form-control" placeholder="Repeat password" type="password">
-      </div> 
       <hr>
       <div class="form-group">
-      <button name="Submit" value="Login" type="Submit" class="btn btn-primary btn-block"> Create Account   </button>
+      <button name="Submit" value="Login" type="Submit" class="btn btn-dark btn-block"> Login  </button>
       </div> <!-- form-group// -->
-      <p class="text-center" style="color: black"> Have an account?<a href="/login" style="color: blue;"> Log In</a> </p>
+      <p class="text-center" style="color: black"> Don't have an account? <a href="/sign_up" style="color: blue;">Create account</a> </p>
       </form>
     </article>
       </div>
     </div>
   </main>
-
-
->>>>>>> isaibranch
-</body>
+<body>
 </html>

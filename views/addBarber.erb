@@ -2,35 +2,77 @@
 <html>
 <head>
 	<link rel="stylesheet" href="/stylesheet/addbarber.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
+<style type="text/css">
+	 .card
+  {
+  	margin-bottom: 5%;
+  	box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+
+
+  }
+  .card-content{
+  	background-color: white;
+  	padding: 30px;
+  }
+</style>
 <body>
-	<h4 style = "color: black"> Add Barber 
-	<ol class="breadcrumb float-right">
+	<div  class="container" style="width: 1020px;">
+	<h4 style = "color: gray"> Add Barber 
+	<ol class="breadcrumb float-right" style="background-color: white">
 		<li class="breadcrumb-item">
-			<a href="/admin"><i class="fa fa-home"></i></a>
+			<a href="/admin"><i class="fa fa-home" style="color: gray"></i></a>
 		</li>
 		<li class="breadcrumb-item active">
-			<a href="/admin/addbarber">Add Barber</a>
+			<a href="/admin/addbarber" style="color: gray">Add Barber</a>
 		</li>
 	</ol>
 	<div class = "date_addB"><small> <span id="datetime"></span></small></div>
 	</h4>
 	<br>
 	<div align = "center">
-		<div class="card bg-light text-dark" >
-			<div class="card-body">
-				<form action="/admin/new" method="POST">
-					<h5><label>Full Name:</label></h5>
-					<div>
-						<input type="text" name="name">
-					</div>
-					<br>
-					<input type="submit" class = "btn btn-dark" value="Add" >
-					<br>
-				</form>
-			</div>
+		<div class="card card-outline">
+		  <div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
+		  <div class="card-content card-content-padding">
+		  	<h5 align="center" style="color: gray">Barber Contact Information</h5>
+		  	<form action="/admin/new" method="POST">
+		  		<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Barber's Full Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
+                    </div>
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="123-456-7890" aria-label="Username" aria-describedby="basic-addon1" name="phone" required="">
+				</div>
+				<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-instagram"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="instagram_username" aria-label="Username" aria-describedby="basic-addon1" name="insta">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="@twitter_username" aria-label="Username" aria-describedby="basic-addon1" name="twitter">
+                </div>
+				<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-snapchat-ghost"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="snapchat_username" aria-label="Username" aria-describedby="basic-addon1" name="snap">
+                </div>
+					<input type="submit" class = "btn btn-primary" value="Add" >
+			</form>
+		  </div>
 		</div>
 	</div>
+</div>
 </body>
 
 <script>

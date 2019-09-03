@@ -62,7 +62,7 @@
 
 
 	<div  class="container" style="width: 1020px;">
-	<h4 style="color: gray;"> Dashboard 
+	<h4 style="color: gray;"> Dashboard
 		<ol class="breadcrumb float-right" style="background-color: white; ">
 			<li class="breadcrumb-item" ><a href="/admin"><i class="fa fa-home" style="color: gray;"></i></a></li>
 			<li class="breadcrumb-item active" style="color: gray"><a href="/admin" style="color: gray">Dashboard</a></li>
@@ -73,7 +73,7 @@
 
 	<div class="card card-outline ">
 		<form action="/admin" method="GET">
-  <div class="card-header"><h3 align="left" class="split-para">Revenue Report<span><button type="submit" class="btn btn-dark">Default</button></span></h3></div></form>
+  <div class="card-header"><h3 align="left" class="split-para">Revenue Report Between: <%=@startMonth%>/<%=@startDay%>/<%=@startYear%> - <%=@endMonth%>/<%=@endDay%>/<%=@endYear%><span><a href="/admin/downloadpdf" style="font-size: 10px; margin-right: 20px; color: blue;">Download pdf.</a><button type="submit" class="btn btn-dark">Default</button></span></h3></div></form>
   <div class="card-content card-content-padding">
   	<form action="/admin/report" method="POST">
   		<a class="split-para">Start Date:<span>End Date:</span></a>
@@ -88,6 +88,9 @@
                 </div>
                 <input type="date" id="input" name="endDate" required>
             </div>
+            <% @queues.each do |a| %>
+            	<%= a.name %> - <%= a.created %>
+            <%end%>
             <div align="center"><button type="submit" class="btn btn-dark">Submit</button></div>
 		</form>
   </div>
@@ -97,30 +100,24 @@
   <div class="card-header"><h3 align="center"><%= current_user.email %></h3> </div>
   <div class="card-content card-content-padding">
   	<i class="fas fa-dollar-sign"></i>
-	<font color="green">Total Revenue:<font color="gray"> $<%= @revenue %>.00 </font></font>
+	<font color="green">Revenue:<font color="gray"> $<%= @totalRevenue %> </font></font>
 	<br>
 	<i class="fas fa-user-alt"></i>
-	<font color = " red">Total Customers:<font color="gray"> <%= @customers %></font></font>
-	<br>
-  	<i class="fas fa-dollar-sign"></i>
-	<font color="green">Hired Barbers Revenue:<font color="gray"> $<%= moneyToday%> </font></font>
-	<br>
-	<i class="fas fa-user-alt"></i>
-	<font color = " red">Hired Barbers Customers:<font color="gray"> <%= customersToday %></font></font>
+	<font color = " red">Customers:<font color="gray"> <%= @customers %></font></font>
   </div>
 </div>
 
 	<hr>
 	<main class="grid">
-		<% @barbers.each do |b| %>
+		<% @barberNameArray.each_index do |i| %>
 		<div class="card card-outline ">
-		  <div class="card-header"><h5 align="center"><%= b.name %> </h5> </div>
+		  <div class="card-header"><h5 align="center"><%= @barberNameArray[i] %> </h5> </div>
 		  <div class="card-content card-content-padding">
 		  	<i class="fas fa-dollar-sign"></i>
-			<font color="green">Revenue:<font color="gray"> $<%= b.money%> </font></font>
+			<font color="green">Revenue:<font color="gray"> $<%= @totalArray[i] %> </font></font>
 			<br>
 			<i class="fas fa-user-alt"></i>
-			<font color = " red">Customers:<font color="gray"> <%= b.total %></font></font>
+			<font color = " red">Customers:<font color="gray"> <%= @numberCustomers[i] %></font></font>
 		  </div>
 		</div>
 		<% end %>

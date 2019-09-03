@@ -4,29 +4,41 @@ get "/aboutUs" do
 	erb :aboutUs
 end
 get "/appointments/barbershop" do
-	app = Appointment.new
-	app.save
-	@appointment = app.id
+	#app = Appointment.new
+	#app.save
+	#@appointment = app.id
+	@shops = Barbershops.all
 	erb :apptBarberShop
 end
 
-post "/appointments/stylistChoice/:id" do
-	@barbers = Barber.all
-	currentAppt = Appointment.get(params[:id])
-	@id = params[:id]
-	currentAppt.shopName = params["barberShop"]
-	currentAppt.save
-	@shopName = currentAppt.shopName
+post "/appointments/stylistChoice" do
+	@barbers = Barber.all(shop_id: params["barberShop"])
+	@shop = Barbershops.get(params["barberShop"])
+	@shopName = @shop.name
+	#currentAppt = Appointment.get(params[:id])
+	#@id = params[:id]
+	#currentAppt.shopName = params["barberShop"]
+	#currentAppt.save
+	#@shopName = currentAppt.shopName
 	erb :apptStylistChoice
 end
 
-get "/appointments/stylistAvailability/:id/:bid" do
+get "/appointments/stylistAvailability/:id/:bid/:bname" do
 	currentAppt = Appointment.get(params[:id])
 	currentAppt.barberID = params[:bid]
+	currentAppt.barberName = params[:bname]
 	currentAppt.save
 	@id = params[:id]
 	@barberName = Barber.get(currentAppt.barberID)
 	erb :apptDayChoice
+end
+
+post "/appointments/time/:id" do
+	app = Appointment.get(params[:id])
+	@id = params[:id]
+	app.date = params["date"]
+	app.save
+	erb :apptTime
 end
 
 post "/appointments/haircuts/:id" do
@@ -34,10 +46,9 @@ post "/appointments/haircuts/:id" do
 	@beardtypes = Haircuts.all(hair: false)
 	@extra = Extra.all
 	currentAppt = Appointment.get(params[:id])
-	currentAppt.day = params["weekDay"]
 	currentAppt.time = params["time"]
-	@id = params[:id]
 	currentAppt.save
+	@id = params[:id]
 	@shopName = currentAppt.shopName
 	erb :apptHaircut
 end
@@ -91,7 +102,7 @@ post "/appointments/confirmation/:id" do
 	end
 	@name = currentAppt.name
 	@shopName = currentAppt.shopName
-	@day = currentAppt.day
+	@date = currentAppt.date
 	@time = currentAppt.time
 	@barberName = @barber.name
 	@cost = currentAppt.cost

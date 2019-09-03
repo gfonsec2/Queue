@@ -4,10 +4,13 @@
 	<link rel="stylesheet" href="/stylesheet/services.css">
 	<style>
 .grid { 
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 12px;
   align-items: stretch;
+  margin-bottom: 5%;
+  color: gray;
   }
 .grid > article {
   border: 1px solid #ccc;
@@ -26,57 +29,71 @@
   padding: 10px;
   width: 100%;
   }
+  .card
+  {
+  	box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  }
+  .card-content{
+  	padding: 5px;
+  }
+.input-group{
+	width: 100%;
+}
+ 
 </style>
 </head>
 <body>
-	<h4 style = "color: black">Services 
-		<ol class="breadcrumb float-right">
-			<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home"></i></a></li>
-			<li class="breadcrumb-item active"><a href="/admin/updateprice">Services</a></li>
+	<div  class="container" style="width: 1020px;">
+	<h4 style = "color: gray; ">Services 
+		<ol class="breadcrumb float-right" style="background-color: white">
+			<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home" style="color: gray"></i></a></li>
+			<li class="breadcrumb-item active"><a href="/admin/updateprice" style="color: gray">Services</a></li>
 		</ol>
 		<div class = "date_priceupdate">
 			<small><span id="datetime"></span></small>
 		</div>
 	</h4>
 	<br>
-	<div class="card bg-light text-dark" >
-		<div class="card-body">
-			<h3 align="center">Add a Service</h3>
-			<div class = "card-text">
-				<form action="/admin/updateprice/add" method="POST">
-					<div>
-						<i class="fas fa-bars"></i>
-						<select name="type" required>
-		    				<option value="" disabled selected>Category</option>
-							<option value="hair">Hairstyle</option>
-							<option value="beard">Beardstyle</option>
-							<option value="extra">Extras</option>
-						</select>
-				
-			  			<i class="fas fa-cut"></i>
-						<input  placeholder="Service Name" type="text" name="name" required>
 
-						<i class="fas fa-dollar-sign"></i>
-						<input type="number" step="any" min="0" max="100" size="10" name="price" placeholder="Service Price" required>
-						<button name="Submit" value="Add" type="submit" class="btn btn-dark" style="float: right;">Add</button>
-					</div>
-				</form>
-			</div>
-		</div>
+	<div class="card card-outline ">
+	  <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
+	  <div class="card-content card-content-padding" style="padding: 45px;">
+	  	<form action="/admin/updateprice/add" method="POST">
+	  		<div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
+                </div>
+                <select name="type" required style="margin-right: 20px;">
+					<option value="" disabled selected>Category</option>
+					<option value="hair">Hairstyle</option>
+					<option value="beard">Beardstyle</option>
+					<option value="extra">Extras</option>
+				</select>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Service Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="" style="margin-right: 20px;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="number" class="form-control" placeholder="Service Price" aria-label="Username" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+            </div>
+            <div align="center"><button type="submit" class="btn btn-primary">Add</button></div>
+		</form>
+	  </div>
 	</div>
+
 	<hr>
 
 	<main class="grid">
-		<div class="card-deck">
-			<div class="card bg-light text-dark">
-				<div class="card-body">
-					<h5 class="card-title" align="center">Hair</h5>
-					<p class="card-text">
-						<ul class="list-group list-group-flush">
+		<div class="card card-outline " >
+  <div class="card-header"><h3 align="center" style="color: gray"> Hair</h3> </div>
+  <div class="card-content card-content-padding">
+  	<ul class="list-group list-group-flush">
 						<% @haircuts.each do |c| %>
-				    		<li style="list-style: none;"><%= c.hair_type %>: $<%= c.price %>
-				    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit"></i></a>
-				    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal2<%= c.id %>"><i class="fas fa-trash"></i></a><hr></li>
+				    		<li style="list-style: none; color: gray"><%= c.hair_type %>: $<%= c.price %>
+				    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit" style="color: gray"></i></a>
+				    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal2<%= c.id %>"><i class="fas fa-trash" style="color: gray"></i></a></li>
 
 					     	<!-- Modal -->
 							<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,17 +101,22 @@
 									<div class="modal-dialog" role="document">
 							    		<div class="modal-content">
 							      			<div class="modal-header">
-							        			<h5 class="modal-title" id="exampleModalLabel"><%= c.hair_type %></h5>
+							        			<h5 class="modal-title" id="exampleModalLabel" style="color: gray"><%= c.hair_type %></h5>
 							        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							          				<span aria-hidden="true">&times;</span>
 							        			</button>
 							      			</div>
 							      			<div class="modal-body">
-				   								<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+				   								<div class="input-group mb-3">
+				   									<div class="input-group-prepend">
+									                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+									                </div>
+									                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+				   								</div>
 							      			</div>
 							      			<div class="modal-footer">
 							        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        			<button name="Submit" value="Update" type="submit" class="btn btn-dark" style="float: right;">Update</button>
+							        			<button name="Submit" value="Update" type="submit" class="btn btn-primary" style="float: right;">Update</button>
 							      			</div>
 							    		</div>
 							  		</div>
@@ -117,7 +139,7 @@
 							      			</div>
 							      			<div class="modal-footer">
 							        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        			<button name="Submit" value="Delete" type="submit" class="btn btn-dark" style="float: right;">Delete</button>
+							        			<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
 							      			</div>
 							    		</div>
 							  		</div>
@@ -125,20 +147,18 @@
 							</div>
 						<% end %>
 						</ul>
-					</p>
-				</div>
-			</div>
- 		</div>
+	</div>
+</div>
 
-  		<div class="card bg-light text-dark">
-			<div class="card-body">
-				<h5 class="card-title" align="center">Beard</h5>
-					<p class="card-text">
-					<ul class="list-group list-group-flush">
+
+	<div class="card card-outline ">
+	  <div class="card-header"><h3 align="center" style="color: gray"> Beard</h3> </div>
+	  <div class="card-content card-content-padding">
+	  	<ul class="list-group list-group-flush">
 					<% @beards.each do |c| %>
-				    	<li style="list-style: none;"><%= c.hair_type %>: $<%= c.price %>
-				    	<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit"></i></a>
-				    	<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal2<%= c.id %>"><i class="fas fa-trash"></i></a><hr></li>
+				    	<li style="list-style: none; color: gray" ><%= c.hair_type %>: $<%= c.price %>
+				    	<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit"style="color: gray"></i></a>
+				    	<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal2<%= c.id %>"><i class="fas fa-trash"style="color: gray"></i></a></li>
 					    
 				     	<!-- Modal -->
 						<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -146,17 +166,22 @@
 						  		<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
-						        			<h5 class="modal-title" id="exampleModalLabel"><%= c.hair_type %></h5>
+						        			<h5 class="modal-title" id="exampleModalLabel" style="color: gray"><%= c.hair_type %></h5>
 						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          				<span aria-hidden="true">&times;</span>
 						        			</button>
 						      			</div>
 						      			<div class="modal-body">
-			   								<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+			   								<div class="input-group mb-3">
+			   									<div class="input-group-prepend">
+								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+								                </div>
+								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+			   								</div>
 						      			</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button name="Submit" value="Update" type="submit" class="btn btn-dark" style="float: right;">Update</button>
+											<button name="Submit" value="Update" type="submit" class="btn btn-primary" style="float: right;">Update</button>
 										</div>
 						   			</div>
 						  		</div>
@@ -169,7 +194,7 @@
 								<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
-						        			<h5 class="modal-title" id="exampleModalLabel"><%= c.hair_type %></h5>
+						        			<h5 class="modal-title" id="exampleModalLabel"style="color: gray"><%= c.hair_type %></h5>
 						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          				<span aria-hidden="true">&times;</span>
 						        			</button>
@@ -179,7 +204,7 @@
 								      	</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        			<button name="Submit" value="Delete" type="submit" class="btn btn-dark" style="float: right;">Delete</button>
+						        			<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
 						      			</div>
 						    		</div>
 						  		</div>
@@ -187,19 +212,17 @@
 						</div>
 					<% end %>
 				</ul>
-			</p>
-		</div>
-		</div>
+	  </div>
+	</div>
 
-		<div class="card bg-light text-dark">
-			<div class="card-body">
-				<h5 class="card-title" align="center">Extras</h5>
-				<p class="card-text">
-					<ul class="list-group list-group-flush">
+<div class="card card-outline ">
+	  <div class="card-header"><h3 align="center" style="color: gray"> Extras</h3> </div>
+	  <div class="card-content card-content-padding">
+	  <ul class="list-group list-group-flush">
 					<% @extras.each do |c| %>
-			    		<li style="list-style: none;"><%= c.name %>: $<%= c.price %>
-			    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal0<%= c.id %>"><i class="fas fa-edit"></i></a>
-			    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal3<%= c.id %>"><i class="fas fa-trash"></i></a><hr></li>
+			    		<li style="list-style: none; color: gray"><%= c.name %>: $<%= c.price %>
+			    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal0<%= c.id %>"><i class="fas fa-edit"style="color: gray"></i></a>
+			    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal3<%= c.id %>"><i class="fas fa-trash"style="color: gray"></i></a></li>
 				    
 				     	<!-- Modal -->
 						<div class="modal fade" id="exampleModal0<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -207,17 +230,22 @@
 						  		<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
-						        			<h5 class="modal-title" id="exampleModalLabel"><%= c.name %></h5>
+						        			<h5 class="modal-title" id="exampleModalLabel"style="color: gray"><%= c.name %></h5>
 						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          				<span aria-hidden="true">&times;</span>
 						        			</button>
 						      			</div>
 						      			<div class="modal-body">
-			   								<input size="10" type = "number" name = "price" placeholder="Enter new price" style="float: left;">
+			   								<div class="input-group mb-3">
+			   									<div class="input-group-prepend">
+								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+								                </div>
+								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+			   								</div>
 						      			</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button name="Submit" value="Update" type="submit" class="btn btn-dark" style="float: right;">Update</button>
+											<button name="Submit" value="Update" type="submit" class="btn btn-primary" style="float: right;">Update</button>
 										</div>
 						   			</div>
 						  		</div>
@@ -230,7 +258,7 @@
 								<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
-						        			<h5 class="modal-title" id="exampleModalLabel"><%= c.name %></h5>
+						        			<h5 class="modal-title" id="exampleModalLabel"style="color: gray"><%= c.name %></h5>
 						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          				<span aria-hidden="true">&times;</span>
 						        			</button>
@@ -240,7 +268,7 @@
 						      			</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        			<button name="Submit" value="Delete" type="submit" class="btn btn-dark" style="float: right;">Delete</button>
+						        			<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
 						      			</div>
 						    		</div>
 						  		</div>
@@ -248,10 +276,10 @@
 						</div>
 					<% end %>
 					</ul>
-				</p>
-			</div>
-		</div>
+				</div>
+	</div>	
 	</main>
+</div>
 </body>
 <script>
 	var dt = new Date();

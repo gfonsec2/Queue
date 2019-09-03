@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Date Selection</title>
+<style type="text/css">
+.card-deck{
+  margin-left: 40px;
+  margin-right: 40px; 
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <article class="card-body">
+    <h1 class="card-title text-center mb-4 mt-1">Time Selection</h1>
+    <hr>
+    <p class="text-success text-center">Select the time that you want to schedule your appointment.</p>
+    <hr>
+    <br>
+    <form action="/appointments/haircuts/<%= @id %>" method="POST">
+			<div align="center">
+        <input name="time" type="time" step="3600" min="10:00" max='20:00' required="">
+			</div>
+			<br>
+  <div style="overflow:auto;" align="center">
+    <button class="btn btn-dark" onclick="goBack()">Back</button>
+    <button class="btn btn-dark" type="Submit">Next</button>
+  </div>
+		</form>
+  </article>
+  
+</div>
+</body>
+</html>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>

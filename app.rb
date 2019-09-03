@@ -9,6 +9,9 @@ require_relative "pricingPage_functions.rb"
 require_relative "signup.rb"
 require_relative "user.rb"
 require 'stripe'
+require 'date'
+require 'prawn'
+require 'prawn/table'
 
 set :publishable_key, 'pk_test_xeSjb7wEgf1ev4bIzVgipQRB'
 set :secret_key, 'sk_test_M4899DJHvorvnSgy5PAJ7JCY'
@@ -27,11 +30,32 @@ class Barber
 	property :total, Integer, :default => 0
 	property :available, Boolean, :default => true
 	property :money, Integer, :default => 0
-	property :shopID, Integer
+	property :shop_id, Integer
+	property :phone, Text
+	property :insta, Text
+	property :snap, Text
+	property :twitter, Text
+
 	#fill in the rest
 	def wait_list
-		return Queueitem.all(bid: id) #gets list of customers 
+		return Queueitem.all(bid: id) & Queueitem.all(created: nil) #gets list of customers 
 	end
+	
+end
+
+class Barbershops
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :name, Text
+	property :address, Text
+	property :zipcode, Text
+	property :phone, Text
+	property :u_id, Text
+	property :opening_time, Text
+	property :closing_time, Text
+	property :revenue, Integer, :default => 0
+	property :customers, Integer, :default => 0
 	
 end
 
@@ -41,15 +65,15 @@ class Appointment
 	property :shopID, Integer, :default => 0
 	property :shopName, Text
 	property :barberID, Integer, :default => 0
-	property :weekDay, Integer, :default => 0
-	property :day, Text
-	property :time, Integer, :default => 0
+	property :barberName, Text
+	property :time, Text
 	property :hairID, Integer
 	property :beardID, Integer
 	property :extraID, Integer
 	property :cost, Integer
 	property :name, Text
 	property :valid, Integer, :default => 0
+	property :date, Date
 end
 
 class Queueitem
@@ -60,6 +84,11 @@ class Queueitem
 	property :name, Text
 	property :price, Integer
 	property :bid, Integer
+	property :hairID, Integer
+	property :beardID, Integer
+	property :extraID, Integer
+	property :created, Date
+	property :shop_id, Integer
 
 	def barber 
 		return Barber.get(bid)
@@ -81,7 +110,7 @@ class Haircuts
 	property :hair, Boolean 
 	property :hair_type, Text
 	property :price, Integer
-	property :shopID, Integer
+	property :shop_id, Integer
 end
 
 class Extra
@@ -90,22 +119,7 @@ class Extra
 	property :id, Serial
 	property :name, Text
 	property :price, Integer
-	property :shopID, Integer
-
-end
-
-class Barbershop
-	include DataMapper::Resource
-
-	property :id, Serial
-	property :name, Text
-	property :address, Text
-	property :zipcode, Integer
-	property :phone, Text
-	property :uID, Integer
-	property :OpeningTime, Integer
-	property :ClosingTime, Integer
-
+	property :shop_id, Integer
 end
 
 DataMapper.finalize
@@ -116,7 +130,7 @@ Date.auto_upgrade!
 Haircuts.auto_upgrade!
 Extra.auto_upgrade!
 Appointment.auto_upgrade!
-Barbershop.auto_upgrade!
+Barbershops.auto_upgrade!
 
 # Perform basic sanity checks and initialize all relationships
 # Call this when you've defined all your models

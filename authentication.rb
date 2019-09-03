@@ -34,8 +34,9 @@ post "/register" do
 	u = User.new
 	u.email = email.downcase
 	u.password =  password
+	u.administrator = true
 	u.save
-	session[:user_id] = u.id
+	#session[:user_id] = u.id
 	erb :"authentication/successful_signup"
 end
 
