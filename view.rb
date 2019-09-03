@@ -3,9 +3,12 @@ require 'date'
 get "/pop/:id" do
 	c = Queueitem.get(params[:id])
 	b = Barber.get(c.bid)
+	shop = Barbershops.get(current_user.id)
 	if c != nil
 		b.money += c.price
 		b.total +=1
+		shop.revenue += c.price
+		shop.customers += 1
 		c.created = Time.now.strftime("%Y-%m-%d")
 		c.save
 	end

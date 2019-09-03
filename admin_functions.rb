@@ -260,6 +260,9 @@ get "/admin/updateprice" do
 erb :priceUpdater
 end
 get "/admin/homeDashboard" do
+	@shop = Babershops.get(current_user.id)
+	@revenue = @shop.revenue
+	@customers = @shop.customers
 	erb :homeDashboard
 end
 

@@ -52,6 +52,8 @@ class Barbershops
 	property :u_id, Text
 	property :opening_time, Text
 	property :closing_time, Text
+	property :revenue, Integer, :default => 0
+	property :customers, Integer, :default => 0
 	
 end
 

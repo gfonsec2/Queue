@@ -97,10 +97,16 @@
   <div class="card-header"><h3 align="center"><%= current_user.email %></h3> </div>
   <div class="card-content card-content-padding">
   	<i class="fas fa-dollar-sign"></i>
-	<font color="green">Revenue:<font color="gray"> $<%= moneyToday%> </font></font>
+	<font color="green">Total Revenue:<font color="gray"> $<%= @revenue %>.00 </font></font>
 	<br>
 	<i class="fas fa-user-alt"></i>
-	<font color = " red">Customers:<font color="gray"> <%= customersToday %></font></font>
+	<font color = " red">Total Customers:<font color="gray"> <%= @customers %></font></font>
+	<br>
+  	<i class="fas fa-dollar-sign"></i>
+	<font color="green">Hired Barbers Revenue:<font color="gray"> $<%= moneyToday%> </font></font>
+	<br>
+	<i class="fas fa-user-alt"></i>
+	<font color = " red">Hired Barbers Customers:<font color="gray"> <%= customersToday %></font></font>
   </div>
 </div>
 
