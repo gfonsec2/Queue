@@ -11,36 +11,15 @@ get "/admin/date" do
 	erb :testDate
 end
 
-def current_barbershop 
-	barbershop = Barbershop.get(u_id: current_user.id)
-	return barbershop
-end
-
-get "/display" do
-
-	return current_barbershop
-end
-
 get "/aboutUs" do
 	erb :aboutUs
 end
-
 get "/pricingPage" do
 	erb :pricePage
 end
 
 get "/admin" do
 	authenticate!
-# <<<<<<< HEAD
-# if current_user.basic || current_user.pro 
-# 	barbershops = current_user.barbershops
-# 	if current_barbershop == nil
-# 		redirect "/admin/registerBarbershop"
-# 	end
-
-# 	@barbers = Barber.all(shopID: current_barbershop.id)
-# 	@all = Appointment.all(valid: 0, shopID: current_barbershop.id)
-# =======
 	if current_user.administrator 
 	@barbers = Barber.all(shop_id: current_user.id)
 	@all = Appointment.all(valid: 0)
@@ -48,11 +27,9 @@ get "/admin" do
 		a.destroy
 	end
 	erb :homeDashboard
-	#flash[:success] = "succesfully logged in"	
-else
-	erb :pricing
+	#flash[:success] = "succesfully logged in"
+	end
 	#redirect "/login"
-end
 end
 
 $barbers
@@ -160,7 +137,6 @@ post "/admin/new" do
 		b.insta = params["insta"]
 		b.snap = params["snap"]
 		b.twitter = params["twitter"]
-
 		b.save
 		redirect "/admin/addbarber"
 	else
@@ -174,13 +150,20 @@ get "/admin/addbarber" do
 	if current_user.administrator 
 	@barbers = Barber.all(shop_id: current_user.id)
 	erb :addBarber
+	else 
+	redirect "/login"
+	end
 end
 
 get "/admin/delete/:id" do
 	authenticate!
+	if current_user.administrator 
 		b = Barber.get(params[:id])
 		b.destroy
 		redirect "/admin/deletebarber"
+	else
+	redirect "/login"
+	end
 end
 
 get "/admin/deletebarber" do
@@ -188,6 +171,9 @@ get "/admin/deletebarber" do
 	if current_user.administrator 
 		@barbers = Barber.all(shop_id: current_user.id)
 		erb :deleteBarber
+	else
+	redirect "/login"
+end
 end
 
 get "/admin/updateprice/:id" do
@@ -249,16 +235,24 @@ end
 
 get "/admin/updateprice/deleteExtra/:id" do
 	authenticate!
+	if current_user.administrator
 	extra = Extra.get(params[:id])
 	extra.destroy
 	redirect "/admin/updateprice"
+	else
+	redirect "/login"
+	end
 end
 
+get "/admin/datatable" do
+	erb :datatable
+end
+
+get "/admin/calendar" do
+	erb :calendar
+end
 get "/admin/updateprice" do
-authenticate!
-
 @haircuts = Haircuts.all(hair: true) & Haircuts.all(shop_id: current_user.id)
-
 
 @beards = Haircuts.all(hair: false) & Haircuts.all(shop_id: current_user.id)
 @extras = Extra.all(shop_id: current_user.id)
@@ -287,4 +281,3 @@ else
 	redirect "/login"
 end
 end
-
