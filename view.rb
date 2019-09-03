@@ -22,11 +22,11 @@ get "/pop2/:id" do
 end
 
 get "/viewC" do
-	@barbers = Barber.all(available: true)
+	@barbers = Barber.all(available: true) & Barber.all(shop_id: current_user.id)
 	erb :customerQ
 end
 get "/viewA" do
-	@barbers = Barber.all(available: true)
+	@barbers = Barber.all(available: true) & Barber.all(shop_id: current_user.id)
 	erb :adminQ
 end
 

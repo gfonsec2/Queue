@@ -28,11 +28,30 @@ class Barber
 	property :total, Integer, :default => 0
 	property :available, Boolean, :default => true
 	property :money, Integer, :default => 0
+	property :shop_id, Integer
+	property :phone, Text
+	property :insta, Text
+	property :snap, Text
+	property :twitter, Text
 
 	#fill in the rest
 	def wait_list
 		return Queueitem.all(bid: id) & Queueitem.all(created: nil) #gets list of customers 
 	end
+	
+end
+
+class Barbershops
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :name, Text
+	property :address, Text
+	property :zipcode, Text
+	property :phone, Text
+	property :u_id, Text
+	property :opening_time, Text
+	property :closing_time, Text
 	
 end
 
@@ -64,6 +83,7 @@ class Queueitem
 	property :beardID, Integer
 	property :extraID, Integer
 	property :created, Date
+	property :shop_id, Integer
 
 	def barber 
 		return Barber.get(bid)
@@ -85,6 +105,7 @@ class Haircuts
 	property :hair, Boolean 
 	property :hair_type, Text
 	property :price, Integer
+	property :shop_id, Integer
 end
 
 class Extra
@@ -93,6 +114,7 @@ class Extra
 	property :id, Serial
 	property :name, Text
 	property :price, Integer
+	property :shop_id, Integer
 
 end
 

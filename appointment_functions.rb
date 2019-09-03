@@ -4,19 +4,22 @@ get "/aboutUs" do
 	erb :aboutUs
 end
 get "/appointments/barbershop" do
-	app = Appointment.new
-	app.save
-	@appointment = app.id
+	#app = Appointment.new
+	#app.save
+	#@appointment = app.id
+	@shops = Barbershops.all
 	erb :apptBarberShop
 end
 
-post "/appointments/stylistChoice/:id" do
-	@barbers = Barber.all
-	currentAppt = Appointment.get(params[:id])
-	@id = params[:id]
-	currentAppt.shopName = params["barberShop"]
-	currentAppt.save
-	@shopName = currentAppt.shopName
+post "/appointments/stylistChoice" do
+	@barbers = Barber.all(shop_id: params["barberShop"])
+	@shop = Barbershops.get(params["barberShop"])
+	@shopName = @shop.name
+	#currentAppt = Appointment.get(params[:id])
+	#@id = params[:id]
+	#currentAppt.shopName = params["barberShop"]
+	#currentAppt.save
+	#@shopName = currentAppt.shopName
 	erb :apptStylistChoice
 end
 

@@ -21,7 +21,7 @@ end
 get "/admin" do
 	authenticate!
 	if current_user.administrator 
-	@barbers = Barber.all
+	@barbers = Barber.all(shop_id: current_user.id)
 	@all = Appointment.all(valid: 0)
 	@all.each do |a|
 		a.destroy
@@ -55,8 +55,8 @@ post "/admin/report" do
 	@endMonth = second[1]
 	@endDay = second[2]
 
-	@queues = Queueitem.all(:created.gte => Date.parse(@startDate)) & Queueitem.all(:created.lte => Date.parse(@endDate))
-	@barbers = Barber.all
+	@queues = Queueitem.all(:created.gte => Date.parse(@startDate)) & Queueitem.all(:created.lte => Date.parse(@endDate)) & Queueitem.all(:shop_id.eql => current_user.id)
+	@barbers = Barber.all(shop_id: current_user.id)
 	@totalRevenue = 0
 	@customers = 0
 
@@ -132,6 +132,11 @@ post "/admin/new" do
 	if params["name"] != ""
 		b = Barber.new
 		b.name = params["name"]
+		b.shop_id = current_user.id
+		b.phone = params["phone"]
+		b.insta = params["insta"]
+		b.snap = params["snap"]
+		b.twitter = params["twitter"]
 		b.save
 		redirect "/admin/addbarber"
 	else
@@ -143,7 +148,7 @@ end
 get "/admin/addbarber" do
 	authenticate!
 	if current_user.administrator 
-	@barbers = Barber.all
+	@barbers = Barber.all(shop_id: current_user.id)
 	erb :addBarber
 	else 
 	redirect "/login"
@@ -164,7 +169,7 @@ end
 get "/admin/deletebarber" do
 	authenticate!
 	if current_user.administrator 
-		@barbers = Barber.all
+		@barbers = Barber.all(shop_id: current_user.id)
 		erb :deleteBarber
 	else
 	redirect "/login"
@@ -209,17 +214,20 @@ post "/admin/updateprice/add" do
 		h.hair = true
 		h.hair_type = name
 		h.price = price
+		h.shop_id = current_user.id
 		h.save
 	elsif(type == "beard")
 		h = Haircuts.new
 		h.hair = false
 		h.hair_type = name
 		h.price = price
+		h.shop_id= current_user.id
 		h.save
 	else
 		e = Extra.new
 		e.name = name
 		e.price = price
+		e.shop_id = current_user.id
 		e.save
 	end
 	redirect "/admin/updateprice"
@@ -244,10 +252,10 @@ get "/admin/calendar" do
 	erb :calendar
 end
 get "/admin/updateprice" do
-@haircuts = Haircuts.all(hair: true)
+@haircuts = Haircuts.all(hair: true) & Haircuts.all(shop_id: current_user.id)
 
-@beards = Haircuts.all(hair: false)
-@extras = Extra.all
+@beards = Haircuts.all(hair: false) & Haircuts.all(shop_id: current_user.id)
+@extras = Extra.all(shop_id: current_user.id)
 
 erb :priceUpdater
 end

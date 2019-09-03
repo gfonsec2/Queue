@@ -1,10 +1,10 @@
 require_relative "app.rb"
 
 get "/kiosk" do
-	@hairtypes = Haircuts.all(hair: true)
-	@beardtypes = Haircuts.all(hair: false)
-	@extra = Extra.all
-	@barbers = Barber.all(available: true)
+	@hairtypes = Haircuts.all(hair: true) & Haircuts.all(shop_id: current_user.id)
+	@beardtypes = Haircuts.all(hair: false) & Haircuts.all(shop_id: current_user.id)
+	@extra = Extra.all(shop_id: current_user.id)
+	@barbers = Barber.all(available: true) & Barber.all(shop_id: current_user.id)
 	erb :kiosk
 end
 
@@ -37,6 +37,7 @@ get "/infomessage" do
 	q.name = n
 	q.bid = b.id
 	q.price = cost
+	q.shop_id = current_user.id
 	q.save
 	@cus = q
 	erb :infoMessage
