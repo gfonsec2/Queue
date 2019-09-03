@@ -3,18 +3,40 @@
 <head>
   <title>Q-UP</title>
   <style type="text/css">
-    .card-deck{
+   /* .card-deck{
       margin-left: 40px;
       margin-right: 40px; 
-    }
+    }*/
+  .grid { 
+  display: grid;
+  grid-template-columns: 1fr 0fr;
+  grid-gap: 0px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+/*    html { 
+  background: url(https://immtga.by.files.1drv.com/y4m8gfqmDNC1VNqWjlOLN3zxFLa57H9thyL49gYAGQAntvo3MRwdWmT7dJH90WB2SQcGv0PpdtNDxmTUcpbZI3RHpMNPcWhSaTick8_HCoV78KBHTagyAhUrmrnWEwcD0IXjkJHZ5O7R9MvzxJjr6sNsm0cOqscC2VgH-Fkwugz_VGzNkJEwxulqeIFmxxEWA7Vvz96Ir_qrc0xUrMH5c7M_Q?width=1024&height=576&cropmode=none) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
   </style>
 </head>
-<body>
+<body style="overflow-x: hidden">
   <main class="grid">
-    <div class="card-deck">
 
-      
-      <div class="container" style="width: 415px;">
+    <div class="card-deck">  
+      <div class="container" style="width: 400px; height: 600px;">
         <article class="card-body">
           <br>
       <h3 class="card-title text-center mb-4 mt-1" style="color: gray">Sign-In</h3>
@@ -47,6 +69,8 @@
     </article>
       </div>
     </div>
+
+
   </main>
 <body>
 </html>

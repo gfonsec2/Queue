@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
 <style type="text/css">
 #left {
   position: fixed;
@@ -10,15 +13,47 @@
   bottom: -4px;
   right: 10px;
 }
+nav{
+  display: none!important;
+}
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+html 
+{ 
+  overflow-y: hidden; 
+}
+/*html { 
+  background: url(https://i.etsystatic.com/13567406/r/il/22675e/1497993443/il_1588xN.1497993443_qs36.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+
 </style>
 <html>
 <meta http-equiv="refresh" content="15">
 <body>
-	<div class="card-deck">
+
+
+		<main class="grid" id="hello">
 		<% @barbers.each do |b| %>
 		<% customers = b.wait_list %>
-			<div class="card" style="width: 18rem;">				
-				<% if customers[0] == nil %>
+		<div class="card card-outline " >
+		  <div class="card-content card-content-padding">
+		  		<% if customers[0] == nil %>
 					<div class="card-body">
 						<h5 class="card-title"><%= b.name %></h5>
 						<p class="card-text"><ul class="list-group list-group-flush"></ul></p>
@@ -28,13 +63,25 @@
 						<h5 class="card-title"><%= b.name %></h5>
 						<p class="card-text">
 							<ol class="list-group list-group-flush">
-							  	<% customers.each do |c| %><li class="list-group-item"><%= c.name %></li><% end %>
+							  	<% customers.each do |c| %>
+							  	<li class="list-group-item">
+							  		<%= c.name %>
+							  	</li><% end %>
+
 							</ol>
 						</p>
 					</div>
 				<% end %>
-			</div>
-	 	<% end %>
- 	</div>
+		  </div>
+		</div>
+		<% end %>
+	</main>
+
 </body>
 </html>
+<script type="text/javascript">
+//time to scroll to bottom
+    $("html, body").animate({ scrollTop: $(document).height() }, 9650);
+    //scroll to top
+    $('html, body').animate({scrollTop:0}, 8000);
+</script>

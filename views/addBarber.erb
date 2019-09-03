@@ -2,21 +2,42 @@
 <html>
 <head>
 	<link rel="stylesheet" href="/stylesheet/addbarber.css">
+<<<<<<< HEAD
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+=======
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+>>>>>>> isaibranch
 </head>
 <style type="text/css">
-	 .card
+	.card
   {
   	margin-bottom: 5%;
-  	box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
-
-
+  	/*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
   }
   .card-content{
   	background-color: white;
   	padding: 30px;
+  	align-items: center;
   }
+  .grid { 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 60px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  /*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+}
+.grid > article img {
+  max-width: 100%;
+}
+
 </style>
+<header >
+
+</header>
 <body>
 	<div  class="container" style="width: 1020px;">
 	<h4 style = "color: gray"> Add Barber 
@@ -72,12 +93,20 @@
 		  </div>
 		</div>
 	</div>
+
 </div>
 </body>
 
 <script>
 	var dt = new Date();
 	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+<script>
+$(document).ready(function(){
+    $('input').click(function(){
+        $('.alert').show()
+    }) 
+});
 </script>
 
 </html>

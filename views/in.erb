@@ -4,35 +4,62 @@
 	<title></title>
 	<link rel="stylesheet" href="/stylesheet/signinsout.css">
 </head>
+<style type="text/css">
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+/*  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+}
+.grid > article img {
+  max-width: 100%;
+}
+
+</style>
 <body>
-	<h4 style = "color: black"> Sign-In 
-		<ol class="breadcrumb float-right">
-			<li class="breadcrumb-item">
-				<a href="/viewA">Queue</a>
-			</li>
-			<li class="breadcrumb-item active">
-				<a href="/sign_in">Sign-In</a>
-			</li>
-		</ol>
-		<div class = "date"><small> <span id="datetime"></span></small></div>
+	<div  class="container" style="width: 1020px;">
+	<h4 style = "color: gray"> Sign-In
+	<ol class="breadcrumb float-right" style="background-color: white">
+		<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home" style="color: gray"></i></a></li>
+		<li class="breadcrumb-item active"><a href="/admin" style="color: gray">Sign-In</a></li>
+	</ol>
+	<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
 	</h4>
 	<br>
+
+	<div class="alert alert-primary" role="alert">
+	  <h4 style="color: #2980b9">Welcome back!</h4>
+	  <p style="color: #2980b9">You are about to sign in to work, please select your name so you appear in the kiosk and the customer view.</p>
+	  <hr>
+	  <p class="mb-0" style="color: #2980b9">Está a punto de iniciar sesión para trabajar, seleccione su nombre para que aparezca en el quiosco y en la vista del cliente.</p>
+	</div>
+
 	<div align="center">
-		<div class="card bg-light text-dark">
+		<div class="card card-outline-center" style="margin-bottom: 5%;">
+			<div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
 			<form>
-				<div class="card-body">
-					<h3> Sign-In </h3>
-					<p class="card-text">
-						<ol class="list-group list-group-flush" style = "width:350px; list-style-type:none;" >
-							<% @barbers.each do |b| %>
-					   			<li> <a href = "/sign_in/<%= b.id %>" class= "list-group-item bg-light"><%= b.name %> </a>  </li>
-					 		<% end %>
-						</ol>
-					</p>
+				<main class="grid" style="padding: 20px;">
+				<% @barbers.each do |b| %>
+				<a href="/sign_in/<%= b.id %>">
+				<div class="card card-outline " style="padding: 20px; :hover{ border-color: green;}" >
+					
+						<div class="card-content card-content-padding" style="color: gray;">
+							<%= b.name %>
+						  </div>
+				</div>
+				</a>
+				<% end %>
+			</main>
 				</div>
 			</form>
 		</div>
 	</div>
+</div>
 </body>
 <script>
 	var dt = new Date();

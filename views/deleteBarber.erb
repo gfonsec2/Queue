@@ -14,7 +14,7 @@
   }
 .grid > article {
   border: 1px solid #ccc;
-  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+/*  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
 }
 .grid > article img {
   max-width: 100%;
@@ -31,10 +31,10 @@
   }
 	.card{
 		margin-bottom: 5%;
-		box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+		/*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
 	}
 	.card-content{
-		padding: 30px;
+		padding: 20px;
 	}
 	.vl {
   border-left: 2px solid black;
@@ -69,8 +69,9 @@
 				<div class="card card-outline ">
 				  <div class="card-content card-content-padding" style="color: gray">
 					<%= b.name %>
+					<%= b.phoneNumber %>
 					<a style="float: right;" data-toggle="modal" data-target="#exampleModal<%= b.id %>"style = fontclass= "list-group-item">
-						<i class="fas fa-trash" style="color: gray"></i>
+						<i class="fas fa-trash-alt"style="color: gray"></i>
 					</a>
 				  </div>
 				</div>

@@ -129,7 +129,7 @@ get "/admin/downloadpdf" do
 end
 
 post "/admin/new" do 
-	if params["name"] != ""
+	if params["name"] != "" && params["phoneNumber"] !=""
 		b = Barber.new
 		b.name = params["name"]
 		b.shop_id = current_user.id
