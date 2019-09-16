@@ -2,11 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="/stylesheet/addbarber.css">
-<<<<<<< HEAD
-	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-=======
-	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
->>>>>>> isaibranch
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <style type="text/css">
 	.card
@@ -34,19 +30,20 @@
   max-width: 100%;
 }
 
+
 </style>
 <header >
 
 </header>
 <body>
 	<div  class="container" style="width: 1020px;">
-	<h4 style = "color: gray"> Add Barber 
+	<h4 style = "color: gray"> Add Professional
 	<ol class="breadcrumb float-right" style="background-color: white">
 		<li class="breadcrumb-item">
 			<a href="/admin"><i class="fa fa-home" style="color: gray"></i></a>
 		</li>
 		<li class="breadcrumb-item active">
-			<a href="/admin/addbarber" style="color: gray">Add Barber</a>
+			<a href="/admin/addbarber" style="color: gray">Add Professional</a>
 		</li>
 	</ol>
 	<div class = "date_addB"><small> <span id="datetime"></span></small></div>
@@ -56,40 +53,44 @@
 		<div class="card card-outline">
 		  <div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
 		  <div class="card-content card-content-padding">
-		  	<h5 align="center" style="color: gray">Barber Contact Information</h5>
-		  	<form action="/admin/new" method="POST">
-		  		<div class="input-group mb-3">
+        <form action="/admin/new" method="POST">
+            <h3 style="color:gray;"> E. Sign-Up <span class="badge badge-pill badge-secondary">New</span></h3>
+            <div class = "container" style="width:400px;">
+            <hr>
+		  		       <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                      <span class="input-group-text" id="basic-addon1" style="width:35px;"><i class="fas fa-user" ></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Barber's Full Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="">
+                    <input type="text" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="">
                 </div>
+
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
+                      <span class="input-group-text" id="basic-addon1" style="width:35px;"><i class="fas fa-mobile-alt" ></i></span>
                     </div>
-                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="123-456-7890" aria-label="Username" aria-describedby="basic-addon1" name="phone" required="">
-				</div>
-				<div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-instagram"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="instagram_username" aria-label="Username" aria-describedby="basic-addon1" name="insta">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="@twitter_username" aria-label="Username" aria-describedby="basic-addon1" name="twitter">
-                </div>
-				<div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-snapchat-ghost"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="snapchat_username" aria-label="Username" aria-describedby="basic-addon1" name="snap">
-                </div>
-					<input type="submit" class = "btn btn-primary" value="Add" >
-			</form>
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="956-***-****" aria-label="Username" aria-describedby="basic-addon1" name="phone" required="">
+                 </div>
+                 
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1" style="width:35px;"><i class="fab fa-instagram" ></i></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="@johndoe123" aria-label="Username" aria-describedby="basic-addon1" name="insta">
+                  </div>
+                              <hr>
+             </div>
+          <input type="submit" class = "btn btn-primary btn-block" value="Submit" style ="width:375px;">
+      </form>
+      <br>
+
+      <div class="container" style="width:560px;" align ="center">
+        Why add social media? 
+          <font class =" text-primary"> 
+            Social media helps your clients connect with you and they get to see pictures/videos of your work.
+          </font>
+      </div>
+
+      
 		  </div>
 		</div>
 	</div>

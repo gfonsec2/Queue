@@ -4,7 +4,8 @@
 <head>
 	<title>Admin</title>
 	<link rel="stylesheet" href="/stylesheet/dashboard.css">
-
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 <style>
 .card-header{
 	color:gray;
@@ -27,9 +28,6 @@
 .grid > article img {
   max-width: 100%;
 }
-.text {
-  padding: 0 20px 20px;
-}
 .text > button {
   background: gray;
   border: 0;
@@ -46,13 +44,13 @@
   	/*background-color: white;*/
   	padding: 30px;
   }
-  .split-para      { display:block;margin:10px;}
-.split-para span { display:block;float:right;margin-left:10px;}
+
 
 </style>
 
 </head>
 <body >
+
 	<% moneyToday = 0%>
 	<% customersToday = 0%>
 	<% @barbers.each do |b| %>
@@ -73,40 +71,54 @@
 
 	<div class="card card-outline ">
 		<form action="/admin" method="GET">
-  <div class="card-header"><h3 align="left" class="split-para">Revenue Report<span><button type="submit" class="btn btn-dark">Default</button></span></h3></div></form>
+  <div class="card-header"><h3 align="center" class="split-para">Revenue Report</h3></div></form>
   <div class="card-content card-content-padding">
-  	<form action="/admin/report" method="POST">
-  		<a class="split-para">Start Date:<span>End Date:</span></a>
-	  		<div class="input-group mb-3" class="split-para">
-                <div class="input-group-prepend">
-					<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                </div>
-                <input type="date" id="input" name="startDate" style="margin-right: 20px" required>
-                
-                <div class="input-group-prepend">
-					<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                </div>
-                <input type="date" id="input" name="endDate" required>
-            </div>
-            <div align="center"><button type="submit" class="btn btn-dark">Submit</button></div>
+	  <form action="/admin/report" method="POST">
+	 <div align="right"> <button type="submit" class="btn btn-primary" style="height: 45px;"><i class="material-icons" style="font-size:30px;">&#xe5d5;</i></button></div>
+		
+	 <div class="row" >
+		<div class="container" align ="center">
+
+			<div class="d-inline-flex p-2" >
+						<div class="input-group mb-3" >
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+							</div>
+							<input type="date" id="input" class="form-control" aria-describedby="basic-addon1" name="startDate" required>
+						</div>
+			</div>
+			<div class="d-inline-flex p-2">
+					<div class="input-group mb-3" >
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						<input type="date" id="input" class="form-control" aria-describedby="basic-addon1" name="endDate" required>
+					</div>
+			</div>
+		</div>
+		</div>
+
+		  <div align="center"><button type="submit" class="btn btn-primary btn-block" style="width:375px;">Submit</button></div>
+		  <br> 
+		  <div class="container" style="width:560px;" align="center">
+				What is a Revenue Report?
+				<font class =" text-primary"> 
+					A revenue report helps you see how your shop is doing. You get an easy managable date picker just pick a start date and an end date.
+				</font>
+			</div>
 		</form>
   </div>
-</div><hr>
+</div>
+<hr>
 
 	<div class="card card-outline ">
   <div class="card-header"><h3 align="center"><%= current_user.email %></h3> </div>
   <div class="card-content card-content-padding">
   	<i class="fas fa-dollar-sign"></i>
-	<font color="green">Total Revenue:<font color="gray"> $<%= @revenue %>.00 </font></font>
+	<font color="green"> Revenue:<font color="gray"> $<%= @revenue %>.00 </font></font>
 	<br>
 	<i class="fas fa-user-alt"></i>
-	<font color = " red">Total Customers:<font color="gray"> <%= @customers %></font></font>
-	<br>
-  	<i class="fas fa-dollar-sign"></i>
-	<font color="green">Hired Barbers Revenue:<font color="gray"> $<%= moneyToday%> </font></font>
-	<br>
-	<i class="fas fa-user-alt"></i>
-	<font color = " red">Hired Barbers Customers:<font color="gray"> <%= customersToday %></font></font>
+	<font color = " red"> Customers:<font color="gray"> <%= @customers %></font></font>
   </div>
 </div>
 
@@ -117,7 +129,7 @@
 		  <div class="card-header"><h5 align="center"><%= b.name %> </h5> </div>
 		  <div class="card-content card-content-padding">
 		  	<i class="fas fa-dollar-sign"></i>
-			<font color="green">Revenue:<font color="gray"> $<%= b.money%> </font></font>
+			<font color="green">Revenue:<font color="gray"> $<%= b.money%>.00 </font></font>
 			<br>
 			<i class="fas fa-user-alt"></i>
 			<font color = " red">Customers:<font color="gray"> <%= b.total %></font></font>
@@ -130,5 +142,16 @@
 <script>
 	var dt = new Date();
 	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+<script>
+$.ajax({
+    url:'/admin/addbarber',
+    data: params,
+    type:'POST',
+    beforeSend: function() {
+        alert("loading")
+    },
+    success:function(html){ alert(html) }
+}); 
 </script>
 </html>

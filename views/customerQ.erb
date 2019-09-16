@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <style type="text/css">
 #left {
@@ -42,6 +43,7 @@ html
   background-size: cover;
 }*/
 
+
 </style>
 <html>
 <meta http-equiv="refresh" content="15">
@@ -56,11 +58,13 @@ html
 		  		<% if customers[0] == nil %>
 					<div class="card-body">
 						<h5 class="card-title"><%= b.name %></h5>
+						<i class="fab fa-instagram" ></i><h7 style="color:gray"> <%= b.insta %></h7>
 						<p class="card-text"><ul class="list-group list-group-flush"></ul></p>
 					</div>
 				<% else %>
 					<div class="card-body">
 						<h5 class="card-title"><%= b.name %></h5>
+						<i class="fab fa-instagram" ></i><h7 style="color:gray"> <%= b.insta %></h7>
 						<p class="card-text">
 							<ol class="list-group list-group-flush">
 							  	<% customers.each do |c| %>

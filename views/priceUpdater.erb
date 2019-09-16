@@ -36,13 +36,8 @@
   .card-content{
   	padding: 5px;
   }
-<<<<<<< HEAD
 .input-group{
 	width: 100%;
-=======
-  .input-group{
-    width: 100%;
->>>>>>> isaibranch
 }
  
 </style>
@@ -68,22 +63,30 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
                 </div>
-                <select name="type" required style="margin-right: 20px;">
+                <select name="type" required style="margin-right: 20px;border-top-left-radius: 0px ;border-bottom-left-radius: 0px;">
 					<option value="" disabled selected>Category</option>
-					<option value="hair">Hairstyle</option>
-					<option value="beard">Beardstyle</option>
+					<option value="hair">Hair Service</option>
+					<option value="beard">Beard Service</option>
 					<option value="extra">Extras</option>
 				</select>
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
+                  <span class="input-group-text" id="basic-addon1" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;"><i class="fas fa-cut" style="font-size:23px;"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Service Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="" style="margin-right: 20px;">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                  <span class="input-group-text" id="basic-addon1" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px; width:40px;"><i class="fas fa-dollar-sign" style="font-size:23px;"></i></span>
                 </div>
                 <input type="number" class="form-control" placeholder="Service Price" aria-label="Username" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
-            </div>
-            <div align="center"><button type="submit" class="btn btn-primary">Add</button></div>
+			</div>
+			<br>
+			<div align="center"><button type="submit" class="btn btn-primary btn-block" style="width:375px;">Submit</button></div>
+			<br>
+			<div class="container" style="width:560px;" align="center">
+				What services do we offer?
+				<font class =" text-primary"> 
+					There are three main categories in which you can add or update your services.
+				</font>
+			</div>
 		</form>
 	  </div>
 	</div>

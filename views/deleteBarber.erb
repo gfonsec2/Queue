@@ -44,13 +44,13 @@
 </style>
 <body>
 	<div  class="container" style="width: 1020px;">
-	<h4 style = "color: gray"> Delete Barber 
+	<h4 style = "color: gray"> Delete Professional 
 		<ol class="breadcrumb float-right" style="background-color: white">
 			<li class="breadcrumb-item">
 				<a href="/admin"><i class="fa fa-home" style="color:gray"></i></a>
 			</li>
 			<li class="breadcrumb-item active">
-				<a href="/admin/deletebarber" style="color:gray">Delete Barber</a>
+				<a href="/admin/deletebarber" style="color:gray">Delete Professional</a>
 			</li>
 		</ol>
 		<div class = "date_delB"><small><span id="datetime"></span></small></div>
@@ -62,7 +62,8 @@
 		<div class="card card-outline " style="background-color: white;">
   <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
   <div class="card-content card-content-padding">
-  	<h5><label style="color: gray">Current Barbers:<label></h5>
+	  <h3><label style="color: gray">Professionals:<label></h3>
+	  <hr style="width:400px;">
   		<!-- <ul class="list-group" style = "width:350px"> -->
   			<main class="grid">
 				<% @barbers.each do |b| %>
