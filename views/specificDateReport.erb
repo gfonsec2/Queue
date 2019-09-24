@@ -70,8 +70,9 @@
 
 	<div class="card card-outline ">
 		<form action="/admin" method="GET">
-  <div class="card-header"><h3 align="center" class="split-para">Revenue Report</h3></div></form>
+		<div class="card-header"><h3 align="center" class="split-para">Revenue Report Between: <%=@startMonth%>/<%=@startDay%>/<%=@startYear%> - <%=@endMonth%>/<%=@endDay%>/<%=@endYear%><span><a href="/admin/downloadpdf" style="font-size: 10px; margin-right: 20px; color: blue;">Download pdf.</a></span></h3></div>
   <div class="card-content card-content-padding">
+  <div align="right"> <button type="submit" class="btn btn-primary" style="height: 45px;"><i class="material-icons" style="font-size:30px;">&#xe5d5;</i></button></div></form>
 
 	<form action="/admin/report" method="POST">
 			<div class="row" >
@@ -177,24 +178,24 @@
   <div class="card-header"><h3 align="center"><%= current_user.email %></h3> </div>
   <div class="card-content card-content-padding">
   	<i class="fas fa-dollar-sign"></i>
-	<font color="green"> Revenue:<font color="gray"> $<%= moneyToday %>.00 </font></font>
+	<font color="green"> Revenue:<font color="gray"> $<%= @totalRevenue %>.00 </font></font>
 	<br>
 	<i class="fas fa-user-alt"></i>
-	<font color = " red"> Customers:<font color="gray"> <%= customersToday %></font></font>
+	<font color = " red"> Customers:<font color="gray"> <%= @customers %></font></font>
   </div>
 </div>
 
 	<hr>
 	<main class="grid">
-		<% @barbers.each do |b| %>
+		<% @barberNameArray.each_index do |i| %>
 		<div class="card card-outline ">
-		  <div class="card-header"><h5 align="center"><%= b.name %> </h5> </div>
+		  <div class="card-header"><h5 align="center"><%= @barberNameArray[i] %> </h5> </div>
 		  <div class="card-content card-content-padding">
 		  	<i class="fas fa-dollar-sign"></i>
-			<font color="green">Revenue:<font color="gray"> $<%= b.money%>.00 </font></font>
+			<font color="green">Revenue:<font color="gray"> $<%= @totalArray[i] %>.00 </font></font>
 			<br>
 			<i class="fas fa-user-alt"></i>
-			<font color = " red">Customers:<font color="gray"> <%= b.total %></font></font>
+			<font color = " red">Customers:<font color="gray"> <%= @numberCustomers[i] %></font></font>
 		  </div>
 		</div>
 		<% end %>

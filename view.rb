@@ -9,6 +9,7 @@ get "/pop/:id" do
 		b.total +=1
 		shop.revenue += c.price
 		shop.customers += 1
+		shop.save
 		c.created = Time.now.strftime("%Y-%m-%d")
 		c.save
 	end
