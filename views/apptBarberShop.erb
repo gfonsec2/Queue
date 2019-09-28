@@ -4,36 +4,49 @@
 	<title>Barber Shop Search</title>
 </head>
 <body>
-
-  
-  <center>
-    <h1>Barber Shop Search</h1>
-  </center>
-  <div class="container">
-    <hr>
-    <p class="text-success text-center">Find the shop you would like to make an appointment at.</p>
-    <hr>
-    <br>
-    <!-- <form action="/appointments/stylistChoice/<%= @appointment %>" method="POST"> -->
-      <form action="/appointments/stylistChoice" method="POST">
-      <div align="center">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-store-alt"></i></label>
-          </div>
-          <select class="custom-select" id="inputGroupSelect01" name="barberShop" required="">
-            <option value="" disabled selected>Select Barber Shop</option>
-            <% @shops.each do |s| %>
-              <option value='<%= s.id %>'><%= s.name %></option>
-            <% end %>
-          </select>
-        </div>
-      </div>
-      <br>
-      <div style="overflow:auto;" align="center">
-        <button type="Submit" class="btn btn-dark">Next</button>
-      </div>
-    </form>
+  <br>
+  <div class="container" style="width: 1020px;">
+<h4 style="color: gray;">Barbershop Search
+    <ol class="breadcrumb float-right" style="background-color: white; ">
+      <li class="breadcrumb-item" ><a href="/admin"><i class="fa fa-home" style="color: gray;"></i></a></li>
+      <li class="breadcrumb-item active" style="color: gray"><a href="/appointments/barbershop" style="color: gray">Search</a></li>
+    </ol>
+    <div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+  </h4>
   </div>
+<div class="container" style="width: 1020px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+  <div align = "center">
+    <div class="container">
+      <!-- <h1 align="center" style="color: gray">Barbershop Search</h1> -->
+      <div class="card-content card-content-padding">
+        <!-- <h5 align="center" style="color: gray; padding-top: 20px; padding-bottom: 20px;">Barber Contact Information</h5> -->
+        <form action="/appointments/stylistChoice" method="POST">
+          <div align="center" style="width: 400px;">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-search"></i></label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01" name="barberShop" required="">
+                <option value="" disabled selected>Select Barbershop</option>
+                <% @shops.each do |s| %>
+                  <option value='<%= s.id %>'><%= s.name %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="container" style="padding: 20px;">
+            <div style="overflow:auto;" align="center">
+              <button type="Submit" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+<script>
+  var dt = new Date();
+  document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
