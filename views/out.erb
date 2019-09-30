@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="/stylesheet/signinsout.css">
 </head>
 <style type="text/css">
-	.grid { 
+.grid { 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
@@ -19,6 +19,27 @@
 .grid > article img {
   max-width: 100%;
 }
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+	.card{
+		margin-bottom: 5%;
+		/*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+	}
+	.card-content{
+		padding: 20px;
+	}
+	.vl {
+  border-left: 2px solid black;
+  height: 40px;
+}
 </style>
 <body>
 	<div  class="container" style="width: 1020px;">
@@ -28,34 +49,64 @@
 		<li class="breadcrumb-item active"><a href="/admin" style="color: gray">Sign-Out</a></li>
 	</ol>
 	<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
-	</h4>
-	<br>
-
-		<div class="alert alert-warning" role="alert">
-	  <h4 style="color: #A17917">See you later!</h4>
-	  <p style="color: #A17917">You are about to sign out of work, please make sure that you select your correct name.</p>
+	</h4><br>
+<% if flash[:out] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    <strong><%= flash[:out] %></strong> has been signed out and will not appear in the Queue, Kiosk, or Customer View.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+		<div class="alert alert-info" role="alert">
+	  <h4>See you later!</h4>
+	  <h6>You are about to sign out of work, please make sure that you select your correct name.</h6>
 	  <hr>
-	  <p class="mb-0" style="color: #A17917">Está a punto de cerrar la sesión de trabajo, asegúrese de seleccionar su nombre correcto.</p>
+	  <h6>Está a punto de cerrar la sesión de trabajo, asegúrese de seleccionar su nombre correcto.</h6>
 	</div>
 
 	<div align="center">
 		<div class="card card-outline-center" style="margin-bottom: 5%;">
 			<div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
-			<form>
-					<main class="grid" style="padding: 20px;">
-						<% @barbers.each do |b| %>
-						<div class="card card-outline " style="padding: 20px;">
-							<a href="/sign_out/<%= b.id %>">
-								<div class="card-content card-content-padding" style="color: gray;">
-									<%= b.name %>
-								  </div>
-								</a>
-						  
-						</div>
-						<% end %>
-					</main>
+			<main class="grid" style="padding: 20px;">
+				<% @barbers.each do |b| %>
+				<div class="card card-outline ">
+				  <div class="card-content card-content-padding" style="color: gray">
+					<%= b.name %><br>
+					<%= b.phone %>
+					<a style="float: right;" data-toggle="modal" data-target="#exampleModal<%= b.id %>"style = fontclass= "list-group-item">
+						<i class="fas fa-sign-out-alt" style="color: gray"></i>
+					</a>
+				  </div>
 				</div>
-			</form>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<form action="/sign_out/<%= b.id %>" method="POST">
+								<div class="modal-dialog" role="document">
+						    	<div class="modal-content">
+						      	<div class="modal-header">
+						        	<h5 class="modal-title" id="exampleModalLabel"><%= b.name%></h5>
+						        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          		<span aria-hidden="true">&times;</span>
+						        	</button>
+						      	</div>
+						      	<div class="modal-body">
+			   						<div class="alert alert-warning" role="alert">Sign Out this Barber?
+  									</div>
+						      	</div>
+						      	<div class="modal-footer">
+						        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        	<button name="Submit" type="submit" class="btn btn-primary" style="float: right;">Sign Out</button>
+						      	</div>
+						    	</div>
+						  		</div>
+							</form>
+						</div>
+					<% end %>
+				<!-- </ul> --></main>
+					
+				</div>
 		</div>
 	</div>
 </div>

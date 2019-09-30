@@ -7,6 +7,7 @@ get "/appointments/barbershop" do
 	#app = Appointment.new
 	#app.save
 	#@appointment = app.id
+	flash[:social] = "Call or text to check for availability to set up an appointment.<br>Follow and like us on social media."
 	@shops = Barbershops.all
 	erb :apptBarberShop
 end

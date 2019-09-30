@@ -58,6 +58,15 @@
 	<br>
 	<div align = "center">
 
+	<% if flash[:delete] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully removed <strong><%= flash[:delete] %></strong> from your shop!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
 
 		<div class="card card-outline " style="background-color: white;">
   <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
@@ -68,8 +77,8 @@
 				<% @barbers.each do |b| %>
 				<div class="card card-outline ">
 				  <div class="card-content card-content-padding" style="color: gray">
-					<%= b.name %>
-					<%= b.phoneNumber %>
+					<%= b.name %><br>
+					<%= b.phone %>
 					<a style="float: right;" data-toggle="modal" data-target="#exampleModal<%= b.id %>"style = fontclass= "list-group-item">
 						<i class="fas fa-trash-alt"style="color: gray"></i>
 					</a>
@@ -78,7 +87,7 @@
 
 						<!-- Modal -->
 						<div class="modal fade" id="exampleModal<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<form action="/admin/delete/<%= b.id %>" method="GET">
+							<form action="/admin/delete/<%= b.id %>" method="POST">
 								<div class="modal-dialog" role="document">
 						    	<div class="modal-content">
 						      	<div class="modal-header">
@@ -88,7 +97,8 @@
 						        	</button>
 						      	</div>
 						      	<div class="modal-body">
-			   						Are you sure you want to delete this barber?
+			   						<div class="alert alert-danger" role="alert">Permanently Delete This Barber?
+  									</div>
 						      	</div>
 						      	<div class="modal-footer">
 						        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -100,6 +110,12 @@
 						</div>
 					<% end %>
 				<!-- </ul> --></main>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" align="center">
+	    Warning, when you delete a barber, they are removed from the database. The money that they made during employment won't appear in the Revenue Reports.
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+  	</div>
   </div>
 </div>
 </div>

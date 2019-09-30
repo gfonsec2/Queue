@@ -6,7 +6,6 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
 <style>
-
 .card-header{
 	color:gray;
 }
@@ -41,7 +40,6 @@
   	/box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);/
   }
   .card-content{
-  	position: relative;
   	background-color: white;
   	padding: 30px;
   }
@@ -69,13 +67,15 @@
 		<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
 	</h4>
 	<br>
+	
 
 	<div class="card card-outline ">
 		<form action="/admin" method="GET">
-  <div class="card-header"><h3 align="center" class="split-para">Revenue Report</h3></div></form>
+		<div class="card-header"><h3 align="center" class="split-para">Revenue Report Between: <%=@startMonth%>/<%=@startDay%>/<%=@startYear%> - <%=@endMonth%>/<%=@endDay%>/<%=@endYear%><span><a href="/admin/downloadpdf" style="font-size: 10px; margin-right: 20px; color: blue;">Download pdf.</a></span></h3></div>
   <div class="card-content card-content-padding">
+  <div align="right"> <button type="submit" class="btn btn-primary" style="height: 45px;"><i class="material-icons" style="font-size:30px;">&#xe5d5;</i></button></div></form><br>
 
-  	<main class="grid">
+	<main class="grid">
 
 		<div class="card card-outline " >
 		 	<div class="card-header"><h5 align="center" style="color: gray">Specify Dates</h5></div>
@@ -163,10 +163,13 @@
 		  </div>
 		</div>
 	</main>
-	
-	<div class="container" style="width:560px;" align="center">What is a Revenue Report?
-		<font class =" text-primary"> A revenue report helps you see how your shop is doing. You get an easy managable date picker just pick a start date and an end date.</font>
-	</div>
+		
+		<div class="container" style="width:560px;" align="center">
+				What is a Revenue Report?
+				<font class =" text-primary"> 
+					A revenue report helps you see how your shop is doing. You get an easy managable date picker just pick a start date and an end date.
+				</font>
+			</div>
   </div>
 </div>
 <hr>
@@ -175,24 +178,24 @@
   <div class="card-header"><h3 align="center"><%= current_user.email %></h3> </div>
   <div class="card-content card-content-padding">
   	<i class="fas fa-dollar-sign"></i>
-	<font color="green"> Revenue:<font color="gray"> $<%= moneyToday %>.00 </font></font>
+	<font color="green"> Revenue:<font color="gray"> $<%= @totalRevenue %>.00 </font></font>
 	<br>
 	<i class="fas fa-user-alt"></i>
-	<font color = " red"> Customers:<font color="gray"> <%= customersToday %></font></font>
+	<font color = " red"> Customers:<font color="gray"> <%= @customers %></font></font>
   </div>
 </div>
 
 	<hr>
 	<main class="grid">
-		<% @barbers.each do |b| %>
+		<% @barberNameArray.each_index do |i| %>
 		<div class="card card-outline ">
-		  <div class="card-header"><h5 align="center"><%= b.name %> </h5> </div>
+		  <div class="card-header"><h5 align="center"><%= @barberNameArray[i] %> </h5> </div>
 		  <div class="card-content card-content-padding">
 		  	<i class="fas fa-dollar-sign"></i>
-			<font color="green">Revenue:<font color="gray"> $<%= b.money%>.00 </font></font>
+			<font color="green">Revenue:<font color="gray"> $<%= @totalArray[i] %>.00 </font></font>
 			<br>
 			<i class="fas fa-user-alt"></i>
-			<font color = " red">Customers:<font color="gray"> <%= b.total %></font></font>
+			<font color = " red">Customers:<font color="gray"> <%= @numberCustomers[i] %></font></font>
 		  </div>
 		</div>
 		<% end %>

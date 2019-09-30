@@ -1,4 +1,5 @@
 require "sinatra"
+require 'sinatra/flash'
 require_relative "authentication.rb"
 require_relative "admin_functions.rb"
 require_relative "haircuts.rb"
@@ -12,6 +13,7 @@ require 'stripe'
 require 'date'
 require 'prawn'
 require 'prawn/table'
+enable :sessions
 
 set :publishable_key, 'pk_test_xeSjb7wEgf1ev4bIzVgipQRB'
 set :secret_key, 'sk_test_M4899DJHvorvnSgy5PAJ7JCY'
