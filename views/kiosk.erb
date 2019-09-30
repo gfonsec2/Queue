@@ -142,7 +142,7 @@ html
     </svg>
     </div>
 
-  <form id="regForm" action="/infomessage">
+  <form id="regForm" action="/infomessage" class="needs-validation" novalidate>
     <!-- One "tab" for each step in the form: -->
     <div class="tab">
 <!--       <center>Choose your style:<p></center> -->
@@ -157,7 +157,7 @@ html
         <% @hairtypes.each do |h| %>
           <option value= "<%= h.id %>"><%= h.hair_type %>: <font>$</font><%= h.price %></option>
         <% end %> 
-        <option value="N/A">N/A</option>
+        <option value="N/A">None</option>
       </select>
       <hr>
 
@@ -169,7 +169,7 @@ html
         <% @beardtypes.each do |b| %>
           <option value="<%= b.id %>"><%= b.hair_type %>: <font>$</font><%= b.price %></option>
         <% end %>
-        <option value="N/A">N/A</option>
+        <option value="N/A">None</option>
       </select>
       <hr>
 
@@ -181,7 +181,7 @@ html
         <% @extra.each do |b| %>
           <option value="<%= b.id %>"><%= b.name %>: <font>$</font><%= b.price %></option>
         <% end %>
-        <option value="N/A">N/A</option>
+        <option value="N/A">None</option>
       </select>
     </p>
     </div>
@@ -244,6 +244,7 @@ html
 </form>
 
 <script>
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
 

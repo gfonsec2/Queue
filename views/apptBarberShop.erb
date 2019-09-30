@@ -14,24 +14,24 @@
     <div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
   </h4>
   </div>
+
 <div class="container" style="width: 1020px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
   <div align = "center">
     <div class="container">
-      <!-- <h1 align="center" style="color: gray">Barbershop Search</h1> -->
       <div class="card-content card-content-padding">
-        <!-- <h5 align="center" style="color: gray; padding-top: 20px; padding-bottom: 20px;">Barber Contact Information</h5> -->
-        <form action="/appointments/stylistChoice" method="POST">
+        <form action="/appointments/stylistChoice" method="POST" class="needs-validation" novalidate>
           <div align="center" style="width: 400px;">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-search"></i></label>
               </div>
-              <select class="custom-select" id="inputGroupSelect01" name="barberShop" required="">
+              <select class="custom-select" id="validationCustomUsername" name="barberShop" required="">
                 <option value="" disabled selected>Select Barbershop</option>
                 <% @shops.each do |s| %>
                   <option value='<%= s.id %>'><%= s.name %></option>
                 <% end %>
               </select>
+              <div class="invalid-feedback" align="left">Please select a Barbershop.</div>
             </div>
           </div>
           <div class="container" style="padding: 20px;">
@@ -47,6 +47,23 @@
 </body>
 </html>
 <script>
+  (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
   var dt = new Date();
   document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
 </script>

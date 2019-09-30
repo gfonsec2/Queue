@@ -19,7 +19,27 @@
 .grid > article img {
   max-width: 100%;
 }
-
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+	.card{
+		margin-bottom: 5%;
+		/*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+	}
+	.card-content{
+		padding: 20px;
+	}
+	.vl {
+  border-left: 2px solid black;
+  height: 40px;
+}
 </style>
 <body>
 	<div  class="container" style="width: 1020px;">
@@ -31,32 +51,62 @@
 	<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
 	</h4>
 	<br>
+	<% if flash[:in] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    <strong><%= flash[:in] %></strong> has been signed in and will now appear in the Kiosk.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
 
-	<div class="alert alert-primary" role="alert">
-	  <h4 style="color: #2980b9">Welcome back!</h4>
-	  <p style="color: #2980b9">You are about to sign in to work, please select your name so you appear in the kiosk and the customer view.</p>
+	<div class="alert alert-info" role="alert">
+	  <h4>Welcome back!</h4>
+	  <h6>You are about to sign in to work, please select your name so you appear in the kiosk and the customer view.</h6>
 	  <hr>
-	  <p class="mb-0" style="color: #2980b9">Está a punto de iniciar sesión para trabajar, seleccione su nombre para que aparezca en el quiosco y en la vista del cliente.</p>
+	  <h6>Está a punto de iniciar sesión para trabajar, seleccione su nombre para que aparezca en el quiosco y en la vista del cliente.</h6>
 	</div>
 
 	<div align="center">
 		<div class="card card-outline-center" style="margin-bottom: 5%;">
 			<div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
-			<form>
-				<main class="grid" style="padding: 20px;">
+			<main class="grid" style="padding: 20px;">
 				<% @barbers.each do |b| %>
-				<a href="/sign_in/<%= b.id %>">
-				<div class="card card-outline " style="padding: 20px; :hover{ border-color: green;}" >
-					
-						<div class="card-content card-content-padding" style="color: gray;">
-							<%= b.name %>
-						  </div>
+				<div class="card card-outline ">
+				  <div class="card-content card-content-padding" style="color: gray">
+					<%= b.name %><br>
+					<%= b.phone %>
+					<a style="float: right;" data-toggle="modal" data-target="#exampleModal<%= b.id %>"style = fontclass= "list-group-item">
+						<i class="fas fa-sign-in-alt" style="color: gray"></i>
+					</a>
+				  </div>
 				</div>
-				</a>
-				<% end %>
-			</main>
-				</div>
-			</form>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal<%= b.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<form action="/sign_in/<%= b.id %>" method="POST">
+								<div class="modal-dialog" role="document">
+						    	<div class="modal-content">
+						      	<div class="modal-header">
+						        	<h5 class="modal-title" id="exampleModalLabel"><%= b.name%></h5>
+						        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          		<span aria-hidden="true">&times;</span>
+						        	</button>
+						      	</div>
+						      	<div class="modal-body">
+			   						<div class="alert alert-primary" role="alert">Sign In this Barber?
+  									</div>
+						      	</div>
+						      	<div class="modal-footer">
+						        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        	<button name="Submit" type="submit" class="btn btn-primary" style="float: right;">Sign In</button>
+						      	</div>
+						    	</div>
+						  		</div>
+							</form>
+						</div>
+					<% end %>
+				<!-- </ul> --></main>
 		</div>
 	</div>
 </div>

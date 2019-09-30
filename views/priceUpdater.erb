@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="/stylesheet/services.css">
 	<style>
 .grid { 
 
@@ -54,32 +53,85 @@
 		</div>
 	</h4>
 	<br>
+	<% if flash[:addService] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully added <strong><%= flash[:addService] %></strong> to your list of <strong><%= flash[:addType]%></strong> services!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+  <% if flash[:updateName] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully updated <strong><%= flash[:updateName] %></strong> to the new price of: <strong>$<%= flash[:updatePrice]%> USD</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+  <% if flash[:deleted] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully deleted <strong><%= flash[:deleted] %></strong>, it will no longer appear in the customer Kiosk!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
 	<div class="card card-outline ">
 
 	  <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
 	  <div class="card-content card-content-padding" style="padding: 45px;">
-	  	<form action="/admin/updateprice/add" method="POST">
-	  		<div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
-                </div>
-                <select name="type" required style="margin-right: 20px;">
-					<option value="" disabled selected>Category</option>
+	  	<form action="/admin/updateprice/add" method="POST" class="needs-validation" novalidate>
+		  <div class="form-row">
+
+		    <div class="col-md-4 mb-3">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
+		        </div>
+		        <select name="type" class="form-control" id="validationCustomUsername" placeholder="Category" aria-describedby="inputGroupPrepend" required>
+		        	<option value="" disabled selected>Category</option>
 					<option value="hair">Hairstyle</option>
 					<option value="beard">Beardstyle</option>
 					<option value="extra">Extras</option>
 				</select>
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Service Name" aria-label="Username" aria-describedby="basic-addon1" name="name" required="" style="margin-right: 20px;">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
-                </div>
-                <input type="number" class="form-control" placeholder="Service Price" aria-label="Username" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
-            </div>
-            <div align="center"><button type="submit" class="btn btn-primary">Add</button></div>
-		</form>
+		        <div class="invalid-feedback">
+		          Please enter a category.
+		        </div>
+		    </div>
+			</div>
+
+		    <div class="col-md-4 mb-3">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
+		        </div>
+		        <input type="text" class="form-control" placeholder="Service Name" name="name" required="">
+                <div class="invalid-feedback" align="left">Please enter a name for your new service.</div>
+		    </div>
+		    </div>
+
+		    <div class="col-md-4 mb-3">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+		        </div>
+		        <input type="number" class="form-control" placeholder="Service Price" name="price" step="any" min="1" max="100" required="">
+                <div class="invalid-feedback" align="left">Please enter a price for your new service.</div>
+		    </div>
+		    </div>
+	</div>
+	<div align="center"><button type="submit" class="btn btn-primary">Add</button></div>
+</form><br>
+		<div class="alert alert-info alert-dismissible fade show" role="alert" align="center">
+	    These services will appear in the Kiosk for customers to see.
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+  	</div>
 	  </div>
 	</div>
 
@@ -97,7 +149,7 @@
 
 					     	<!-- Modal -->
 							<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<form action="/admin/updateprice/<%= c.id %>" method="PATCH">
+								<form action="/admin/updateprice/<%= c.id %>" method="GET" class="needs-validation" novalidate>
 									<div class="modal-dialog" role="document">
 							    		<div class="modal-content">
 							      			<div class="modal-header">
@@ -112,6 +164,7 @@
 									                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
 									                </div>
 									                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+									                <div class="invalid-feedback" align="left">Please enter a new price for this service.</div>
 				   								</div>
 							      			</div>
 							      			<div class="modal-footer">
@@ -125,7 +178,7 @@
 
 							<!-- Delete Modal -->
 							<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
+								<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH" class="needs-validation" novalidate>
 							  		<div class="modal-dialog" role="document">
 							    		<div class="modal-content">
 							      			<div class="modal-header">
@@ -135,7 +188,8 @@
 							        			</button>
 							      			</div>
 							      			<div class="modal-body">
-							      				Are you sure you want to delete this service?
+							      				<div class="alert alert-danger" role="alert">Are you sure you want to delete this service?
+  												</div>
 							      			</div>
 							      			<div class="modal-footer">
 							        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -162,7 +216,7 @@
 					    
 				     	<!-- Modal -->
 						<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<form action="/admin/updateprice/<%= c.id %>" method="PATCH">
+							<form action="/admin/updateprice/<%= c.id %>" method="GET" class="needs-validation" novalidate>
 						  		<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
@@ -177,6 +231,7 @@
 								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
 								                </div>
 								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+								                <div class="invalid-feedback" align="left">Please enter a new price for this service.</div>
 			   								</div>
 						      			</div>
 						      			<div class="modal-footer">
@@ -190,7 +245,7 @@
 
 						<!-- Delete Modal -->
 						<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH">
+							<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH" class="needs-validation" novalidate>
 								<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
@@ -200,7 +255,8 @@
 						        			</button>
 						      			</div>
 						      			<div class="modal-body">
-						      				Are you sure you want to delete this service?
+						      				<div class="alert alert-danger" role="alert">Are you sure you want to delete this service?
+  												</div>
 								      	</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -226,7 +282,7 @@
 				    
 				     	<!-- Modal -->
 						<div class="modal fade" id="exampleModal0<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<form action="/admin/updateprice/extra/<%= c.id %>" method="PATCH">
+							<form action="/admin/updateprice/extra/<%= c.id %>" method="GET" class="needs-validation" novalidate>
 						  		<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
@@ -241,6 +297,7 @@
 								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
 								                </div>
 								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+								                <div class="invalid-feedback" align="left">Please enter a new price for this service.</div>
 			   								</div>
 						      			</div>
 						      			<div class="modal-footer">
@@ -254,7 +311,7 @@
 
 						<!-- Delete Modal -->
 						<div class="modal fade" id="exampleModal3<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<form action="/admin/updateprice/deleteExtra/<%= c.id %>" method="PATCH">
+							<form action="/admin/updateprice/deleteExtra/<%= c.id %>" method="PATCH" class="needs-validation" novalidate>
 								<div class="modal-dialog" role="document">
 						    		<div class="modal-content">
 						      			<div class="modal-header">
@@ -264,7 +321,8 @@
 						        			</button>
 						      			</div>
 						      			<div class="modal-body">
-						      				Are you sure you want to delete this service?
+						      				<div class="alert alert-danger" role="alert">Are you sure you want to delete this service?
+  												</div>
 						      			</div>
 						      			<div class="modal-footer">
 						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -282,6 +340,23 @@
 </div>
 </body>
 <script>
+	(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
 	var dt = new Date();
 	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
 </script>

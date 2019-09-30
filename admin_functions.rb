@@ -303,6 +303,7 @@ get "/admin/downloadpdf" do
 		end
 		stamp "approved"
 	end
+	flash[:download] = "Successfully downloaded pdf!"
 	redirect "/admin"
 end
  
@@ -395,6 +396,7 @@ post "/admin/new" do
 	if params["name"] != "" && params["phoneNumber"] !=""
 		b = Barber.new
 		b.name = params["name"]
+		flash[:name] = b.name
 		b.shop_id = current_user.id
 		b.phone = params["phone"]
 		b.insta = params["insta"]
@@ -418,10 +420,11 @@ get "/admin/addbarber" do
 	end
 end
 
-get "/admin/delete/:id" do
+post "/admin/delete/:id" do
 	authenticate!
 	if current_user.administrator 
 		b = Barber.get(params[:id])
+		flash[:delete] = b.name
 		b.destroy
 		redirect "/admin/deletebarber"
 	else
@@ -444,6 +447,8 @@ get "/admin/updateprice/:id" do
 	haircut = Haircuts.get(params[:id])
 	haircut.update(:price => params["price"])
 	haircut.save
+	flash[:updateName] = haircut.hair_type
+	flash[:updatePrice] = haircut.price
 	redirect "/admin/updateprice"
 end
 
@@ -452,6 +457,8 @@ get "/admin/updateprice/extra/:id" do
 	e = Extra.get(params[:id])
 	e.update(:price => params["price"])
 	e.save
+	flash[:updateName] = e.name
+	flash[:updatePrice] = e.price
 	redirect "/admin/updateprice"
 end
 
@@ -459,6 +466,7 @@ get "/admin/updateprice/delete/:id" do
 	authenticate!
 	if current_user.administrator
 	haircut = Haircuts.get(params[:id])
+	flash[:deleted] = haircut.hair_type
 	haircut.destroy
 	redirect "/admin/updateprice"
 else
@@ -493,6 +501,8 @@ post "/admin/updateprice/add" do
 		e.shop_id = current_user.id
 		e.save
 	end
+	flash[:addService] = name
+	flash[:addType] = type
 	redirect "/admin/updateprice"
 end
 
@@ -500,6 +510,7 @@ get "/admin/updateprice/deleteExtra/:id" do
 	authenticate!
 	if current_user.administrator
 	extra = Extra.get(params[:id])
+	flash[:deleted] = extra.name
 	extra.destroy
 	redirect "/admin/updateprice"
 	else
@@ -515,12 +526,10 @@ get "/admin/calendar" do
 	erb :calendar
 end
 get "/admin/updateprice" do
-@haircuts = Haircuts.all(hair: true) & Haircuts.all(shop_id: current_user.id)
-
-@beards = Haircuts.all(hair: false) & Haircuts.all(shop_id: current_user.id)
-@extras = Extra.all(shop_id: current_user.id)
-
-erb :priceUpdater
+	@haircuts = Haircuts.all(hair: true) & Haircuts.all(shop_id: current_user.id)
+	@beards = Haircuts.all(hair: false) & Haircuts.all(shop_id: current_user.id)
+	@extras = Extra.all(shop_id: current_user.id)
+	erb :priceUpdater
 end
 get "/admin/homeDashboard" do
 	@shop = Barbershops.get(id: current_user.id)
