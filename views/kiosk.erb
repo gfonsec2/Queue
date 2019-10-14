@@ -73,7 +73,7 @@ html
   <!-- <div class="container" align="center" style="box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3); text-align: top; width: 300px;"> -->
     <div align="center" id="listofstuff">
       <svg id ="anitem"version="1.0"  xmlns="http://www.w3.org/2000/svg"
-     width="98.000000pt" height="98.000000pt" viewBox="0 0 600.000000 600.000000"
+     width="130.000000pt" height="130.000000pt" viewBox="0 0 600.000000 600.000000"
      preserveAspectRatio="xMidYMid meet">
     <metadata>
     Created by potrace 1.10, written by Peter Selinger 2001-2011
@@ -149,10 +149,10 @@ html
       <script>
         $('.select2').select2();
       </script>
-      <div align="center">
-        <div class="alert alert-primary" role="alert" style="font-size:20px;">
-        Hair Service / Corte de Pelo
-        </div>
+      <div align="left">
+        <h7>
+        Hair Service:
+        </h7>
       </div>
       <select class="custom-select" name="hairtype" list="Hair">
         <option value="" disabled selected>Choose a service / Elija un servicio:</option> 
@@ -163,10 +163,10 @@ html
       </select>
       <hr>
 
-      <div align="center">
-      <div class="alert alert-primary" role="alert" style="font-size:20px;">
-      Beard Service / Corte de Barba
-      </div>
+      <div align="left">
+      <h7>
+      Beard Service:
+      </h7>
       </div>
       <select class="custom-select" name="beardtype" list="Hair"  >
         <option value="" disabled selected >Choose a service / Elija un servicio:</option>
@@ -177,10 +177,10 @@ html
       </select>
       <hr>
 
-      <div align="center">
-        <div class="alert alert-primary" role="alert" style="font-size:20px;">
-        Extras
-        </div>
+      <div align="left">
+        <h7>
+        Extras:
+        </h7>
       </div>
       <select class="custom-select" name="extratype" list="Extra"  >
         <option value="" disabled selected>Choose a service / Elija un servicio:</option>
@@ -205,11 +205,11 @@ html
     %>
 
     <div class="tab">
-      <center>
-      <div class="alert alert-primary" role="alert" style="font-size:20px;">
-        Pick a Professional / Elige un Profesional 
+      <div align="left">
+      <h7>
+        Pick a Professional:
+      </h7>
       </div>
-      </center>
       <select class="custom-select" id='barber.id' name='id' type='text'>
         <option value= "<%= barber %>" selected>Next Available / Siguiente disponible:</option>
         <% @barbers.each do |b| %>
@@ -228,9 +228,10 @@ html
       </div>
 
     <div class="tab">
-      <center>
-      <div class="alert alert-primary" role="alert" style="font-size:20px;">
-      Enter your name / Intoduzca su nombre
+      <div align="left">
+      <h7>
+      Enter your name:
+    </h7>
     </div>
       </center>
       <input type="text" name="name">

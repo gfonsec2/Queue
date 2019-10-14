@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style type="text/css">
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+
+
+</style>
+
+<body>
+<br>
+<br>
+<div class ="container">
+<main class="grid">
+
+<div class="card card-outline ">
+    <div class="card-header"><h5 align="center" style="color:gray;"> Isai Maldonado</h5> 
+    </div>
+    <div class="card-content card-content-padding">
+    <img src="https://uwsyxw.by.files.1drv.com/y4m4ZQQLND_k1cr45BzIHJB4c6-7qyuCLUH8Ba55qQJF4Yiwk11DH_3O4My6UQqht9wrZYWTKViLPdyO62aIysjchpLd6N2H6TM1TEpF8ORot-v_cWnAfHXTdCKqDZW2kLJ04uZZMK9-thzlqxgwLAEYircbOQrPUNLNyoAqFxfKLEotCSt8RRnHvU_LIl6tsOYSasHbsIe-2akoyvVkNIxPw?width=256&height=255&cropmode=none" width="325" height="325"  style="border-radius:50%;"/>
+    <hr style="width:250px;">
+    <p style="color:black; padding:15px;" align="center"> I am currently a full-time student at The University of Texas Rio Grande Valley, I major in Computer Engineering 
+    with a concentration in Software. In my free time I read and cut hair.
+    </p>
+    </div>
+</div>
+
+<div class="card card-outline ">
+    <div class="card-header"><h5 align="center" style="color:gray;">Mauricio Flores</h5> 
+    </div>
+    <div class="card-content card-content-padding">
+    <img src="https://uwsyxw.by.files.1drv.com/y4m4ZQQLND_k1cr45BzIHJB4c6-7qyuCLUH8Ba55qQJF4Yiwk11DH_3O4My6UQqht9wrZYWTKViLPdyO62aIysjchpLd6N2H6TM1TEpF8ORot-v_cWnAfHXTdCKqDZW2kLJ04uZZMK9-thzlqxgwLAEYircbOQrPUNLNyoAqFxfKLEotCSt8RRnHvU_LIl6tsOYSasHbsIe-2akoyvVkNIxPw?width=256&height=255&cropmode=none" width="325" height="325" style="border-radius:50%;"/>
+    <hr style="width:250px;">
+    <p style="color:black; padding:15px;" align="center"> I am currently a full-time student at The University of Texas Rio Grande Valley, I major in Computer Engineering 
+    with a concentration in Software. In my free time I read and cut hair.
+    </p>
+    </div>
+</div>
+
+<div class="card card-outline ">
+    <div class="card-header"><h5 align="center" style="color:gray;">Gilberto Fonseca</h5> 
+    </div>
+    <div class="card-content card-content-padding">
+    <img src="https://iml3lw.by.files.1drv.com/y4m3Rci0Ip4puwKo_77_m4kPtVph_6xmVnGM76XNz7-FsntMGS3oX8Q7Kop2OT-gS1QCmL0fAjbpMXLNQVQ9DxIcPYBSp1eDm8Q8FixCAw_sh5YQFf7OKtfM1N9eKWM6srnOKaiMKjSblZiJmqXsN_yA5PzyZrNeLP6zBRQsGAo7FLhVLWEPOngaL4D9qRDwxQNhpg0_0oZUmOIb__qe06FTQ?width=241&height=256&cropmode=none" width="325" height="325" style="border-radius:50%;"/>
+    <hr style="width:250px;">
+    <p style="color:black; padding:15px;" align="center"> I am currently a full-time student at The University of Texas Rio Grande Valley, I major in Computer Engineering 
+    with a concentration in Software. In my free time I read and cut hair.
+    </p>
+    </div>
+</div>
+
+</main>
+</div>
+</body>
+
+<script>
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+<script>
+$(document).ready(function(){
+    $('input').click(function(){
+        $('.alert').show()
+    }) 
+});
+</script>
+
+</html>
