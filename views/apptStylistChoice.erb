@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Barber Select</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<title>Shop Contact Info</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js">
+  </script>
 <style type="text/css">
 .card-deck{
   margin-left: 40px;
@@ -14,62 +18,63 @@
   grid-gap: 20px;
   align-items: stretch;
 }
-.grid > article {
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
-}
-.grid > article img {
-  max-width: 100%;
-}
-.card2:hover{
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  border-color: green;
-}
-.card2{
-  border-radius: 0;
-}
 </style>
 </head>
 <body>
-
-
-
-<main class="grid2">
-  <div class="card-deck">
-    <div class="container">
-      <article class="card-body">
-        <h1 class="card-title text-center mb-4 mt-1"><%= @shopName %> Professionals</h1>
-        <hr>
-        <p class="text-success text-center">Call or text to check for availability and set up an appointment.</p>
-        <hr>
-	      <main class="grid">
-          <% @barbers.each do |b| %>
-            <!-- <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>/<%= b.name %>"> -->
-
-              <div class="card2 bg-light text-dark">
-                <div class="card-body">
-                  <h5 class="card-title" align="center"><%= b.name %></h5>
-                  <div><i class="fas fa-mobile-alt"></i>  <%= b.phone %></div>
-                  <div><i class="fab fa-twitter"></i>  <%= b.twitter %></div>
-                  <div><i class="fab fa-instagram"></i>  <%= b.insta %></div>
-                  <div><i class="fab fa-snapchat-ghost"></i>  <%= b.snap %></div>
-                </div>
-              </div>
-            <!-- </a> -->
-          <% end %>
-        </main>
-        <br>
-        <div style="overflow:auto;" align="center">
-          <button class="btn btn-dark" onclick="goBack()">Back</button>
-        </div>
-      </article>
-    </div>
+  <br>
+  <div class="container" style="width: 1020px;">
+    <h4 style="color: gray;">Professionals
+      <ol class="breadcrumb float-right" style="background-color: white; ">
+        <li class="breadcrumb-item" ><a href="/appointments/barbershop"><i class="fas fa-search" style="color: gray"></i></a></li>
+        <li class="breadcrumb-item active" style="color: gray"><a style="color: gray"><%= @shopName %></a></li>
+      </ol>
+      <div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+    </h4>
   </div>
-</main>
+  <br>
+  <div class="container" style="width: 1020px;">
+    <% if flash[:social] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    <strong><%= flash[:social] %></strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+    <br>
+    <div>
+      <main class="grid">
+        <% @barbers.each do |b| %>
+        <!-- <a href="/appointments/stylistAvailability/<%= @id %>/<%= b.id %>/<%= b.name %>"> -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" align="left" style="color: gray"><%= b.name %></h5>
+              <div align="left" style="color: gray"><i class="fas fa-mobile-alt"></i>  <%= b.phone %></div>
+              <div align="left" style="color: gray"><i class="fab fa-twitter"></i>  <%= b.twitter %></div>
+              <div align="left" style="color: gray"><i class="fab fa-instagram"></i>  <%= b.insta %></div>
+              <div align="left" style="color: gray"><i class="fab fa-snapchat-ghost"></i>  <%= b.snap %></div>
+            </div>
+          </div>
+        <!-- </a> -->
+        <% end %>
+      </main>
+    </div>
+    <br>
+  </div>
 </body>
 </html>
-
 <script>
+  $(document).ready(function() {
+  $("#success-alert").hide();
+  $("#myWish").click(function showAlert() {
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+      $("#success-alert").slideUp(500);
+    });
+  });
+});
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
 function goBack() {
   window.history.back();
 }

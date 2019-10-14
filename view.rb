@@ -9,6 +9,7 @@ get "/pop/:id" do
 		b.total +=1
 		shop.revenue += c.price
 		shop.customers += 1
+		shop.save
 		c.created = Time.now.strftime("%Y-%m-%d")
 		c.save
 	end
@@ -35,27 +36,29 @@ end
 
 
 get "/sign_in" do 
-	@barbers = Barber.all(available: false)
+	@barbers = Barber.all(available: false) & Barber.all(shop_id: current_user.id)
 	erb :in
 end
 
-get "/sign_in/:id" do
+post "/sign_in/:id" do
 	b = Barber.get(params[:id])
 	b.available = true
 	b.save
+	flash[:in] = b.name
 	redirect "/sign_in"
 	# redirect "/viewA"
 end
 
 get "/sign_out" do 
-	@barbers = Barber.all(available: true)
+	@barbers = Barber.all(available: true) & Barber.all(shop_id: current_user.id)
 	erb :out
 end
 
-get "/sign_out/:id" do
+post "/sign_out/:id" do
 	b = Barber.get(params[:id])
 	b.available = false
 	b.save
+	flash[:out] = b.name
 	redirect "/sign_out"
 	# redirect "/viewA"
 end

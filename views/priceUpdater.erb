@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -293,4 +294,368 @@
 	var dt = new Date();
 	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
 </script>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+.grid { 
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 12px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  color: gray;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+/*  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+  .card
+  {
+/*  	box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+  }
+  .card-content{
+  	padding: 5px;
+  }
+.input-group{
+	width: 100%;
+}
+ 
+</style>
+</head>
+<body>
+	<div  class="container" style="width: 1020px;">
+	<h4 style = "color: gray; ">Services 
+		<ol class="breadcrumb float-right" style="background-color: white">
+			<li class="breadcrumb-item"><a href="/admin"><i class="fa fa-home" style="color: gray"></i></a></li>
+			<li class="breadcrumb-item active"><a href="/admin/updateprice" style="color: gray">Services</a></li>
+		</ol>
+		<div class = "date_priceupdate">
+			<small><span id="datetime"></span></small>
+		</div>
+	</h4>
+	<br>
+	<% if flash[:addService] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully added <strong><%= flash[:addService] %></strong> to your list of <strong><%= flash[:addType]%></strong> services!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+  <% if flash[:updateName] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully updated <strong><%= flash[:updateName] %></strong> to the new price of: <strong>$<%= flash[:updatePrice]%> USD</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+  <% if flash[:deleted] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully deleted <strong><%= flash[:deleted] %></strong>, it will no longer appear in the customer Kiosk!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+	<div class="card card-outline ">
+
+	  <div class="card-header"><h3 align="center" style="color: gray"><%= current_user.email %></h3> </div>
+	  <div class="card-content card-content-padding" style="padding: 45px;">
+	  	<form action="/admin/updateprice/add" method="POST" class="needs-validation" novalidate>
+		  <div class="form-row">
+
+		    <div class="col-md-4 mb-3">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="basic-addon1"><i class="fas fa-bars"></i></span>
+		        </div>
+		        <select name="type" class="form-control" id="validationCustomUsername" placeholder="Category" aria-describedby="inputGroupPrepend" required>
+		        	<option value="" disabled selected>Category</option>
+					<option value="hair">Hairstyle</option>
+					<option value="beard">Beardstyle</option>
+					<option value="extra">Extras</option>
+				</select>
+		        <div class="invalid-feedback">
+		          Please enter a category.
+		        </div>
+		    </div>
+			</div>
+
+		    <div class="col-md-4 mb-3">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="basic-addon1"><i class="fas fa-cut"></i></span>
+		        </div>
+		        <input type="text" class="form-control" placeholder="Service Name" name="name" required="">
+                <div class="invalid-feedback" align="left">Please enter a name for your new service.</div>
+		    </div>
+		    </div>
+
+		    <div class="col-md-4 mb-3">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+		        </div>
+		        <input type="number" class="form-control" placeholder="Service Price" name="price" step="any" min="1" max="100" required="">
+                <div class="invalid-feedback" align="left">Price must be from $1 - $100 USD</div>
+		    </div>
+		    </div>
+	</div>
+	<div align="center"><button type="submit" class="btn btn-primary">Add</button></div>
+</form><br>
+		<div class="alert alert-info alert-dismissible fade show" role="alert" align="center">
+	    These services will appear in the Kiosk for customers to see.
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+  	</div>
+	  </div>
+	</div>
+
+	<hr>
+
+	<main class="grid">
+		<div class="card card-outline " >
+  <div class="card-header"><h3 align="center" style="color: gray"> Hair</h3> </div>
+  <div class="card-content card-content-padding">
+  	<ul class="list-group list-group-flush">
+						<% @haircuts.each do |c| %>
+				    		<li style="list-style: none; color: gray"><%= c.hair_type %>: $<%= c.price %>
+				    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit" style="color: gray"></i></a>
+				    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal2<%= c.id %>"><i class="fas fa-trash-alt"style="color: gray"></i></a></li>
+
+					     	<!-- Modal -->
+							<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<form action="/admin/updateprice/<%= c.id %>" method="GET" class="needs-validation" novalidate>
+									<div class="modal-dialog" role="document">
+							    		<div class="modal-content">
+							      			<div class="modal-header">
+							        			<h5 class="modal-title" id="exampleModalLabel" style="color: gray"><%= c.hair_type %></h5>
+							        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          				<span aria-hidden="true">&times;</span>
+							        			</button>
+							      			</div>
+							      			<div class="modal-body">
+				   								<div class="input-group mb-3">
+				   									<div class="input-group-prepend">
+									                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+									                </div>
+									                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+									                <div class="invalid-feedback" align="left">Please enter a new price for this service.</div>
+				   								</div>
+							      			</div>
+							      			<div class="modal-footer">
+							        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        			<button name="Submit" value="Update" type="submit" class="btn btn-primary" style="float: right;">Update</button>
+							      			</div>
+							    		</div>
+							  		</div>
+								</form>
+							</div>
+
+							<!-- Delete Modal -->
+							<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH" class="needs-validation" novalidate>
+							  		<div class="modal-dialog" role="document">
+							    		<div class="modal-content">
+							      			<div class="modal-header">
+							        			<h5 class="modal-title" id="exampleModalLabel"><%= c.hair_type %></h5>
+							        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          				<span aria-hidden="true">&times;</span>
+							        			</button>
+							      			</div>
+							      			<div class="modal-body">
+							      				<div class="alert alert-danger" role="alert">Are you sure you want to delete this service?
+  												</div>
+							      			</div>
+							      			<div class="modal-footer">
+							        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							        			<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
+							      			</div>
+							    		</div>
+							  		</div>
+								</form>
+							</div>
+						<% end %>
+						</ul>
+	</div>
+</div>
+
+
+	<div class="card card-outline ">
+	  <div class="card-header"><h3 align="center" style="color: gray"> Beard</h3> </div>
+	  <div class="card-content card-content-padding">
+	  	<ul class="list-group list-group-flush">
+					<% @beards.each do |c| %>
+				    	<li style="list-style: none; color: gray" ><%= c.hair_type %>: $<%= c.price %>
+				    	<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal<%= c.id %>"><i class="fas fa-edit"style="color: gray"></i></a>
+				    	<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal2<%= c.id %>"><i class="fas fa-trash-alt"style="color: gray"></i></a></li>
+					    
+				     	<!-- Modal -->
+						<div class="modal fade" id="exampleModal<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<form action="/admin/updateprice/<%= c.id %>" method="GET" class="needs-validation" novalidate>
+						  		<div class="modal-dialog" role="document">
+						    		<div class="modal-content">
+						      			<div class="modal-header">
+						        			<h5 class="modal-title" id="exampleModalLabel" style="color: gray"><%= c.hair_type %></h5>
+						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          				<span aria-hidden="true">&times;</span>
+						        			</button>
+						      			</div>
+						      			<div class="modal-body">
+			   								<div class="input-group mb-3">
+			   									<div class="input-group-prepend">
+								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+								                </div>
+								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+								                <div class="invalid-feedback" align="left">Please enter a new price for this service.</div>
+			   								</div>
+						      			</div>
+						      			<div class="modal-footer">
+						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button name="Submit" value="Update" type="submit" class="btn btn-primary" style="float: right;">Update</button>
+										</div>
+						   			</div>
+						  		</div>
+							</form>
+						</div>
+
+						<!-- Delete Modal -->
+						<div class="modal fade" id="exampleModal2<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<form action="/admin/updateprice/delete/<%= c.id %>" method="PATCH" class="needs-validation" novalidate>
+								<div class="modal-dialog" role="document">
+						    		<div class="modal-content">
+						      			<div class="modal-header">
+						        			<h5 class="modal-title" id="exampleModalLabel"style="color: gray"><%= c.hair_type %></h5>
+						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          				<span aria-hidden="true">&times;</span>
+						        			</button>
+						      			</div>
+						      			<div class="modal-body">
+						      				<div class="alert alert-danger" role="alert">Are you sure you want to delete this service?
+  												</div>
+								      	</div>
+						      			<div class="modal-footer">
+						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        			<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
+						      			</div>
+						    		</div>
+						  		</div>
+							</form>
+						</div>
+					<% end %>
+				</ul>
+	  </div>
+	</div>
+
+<div class="card card-outline ">
+	  <div class="card-header"><h3 align="center" style="color: gray"> Extras</h3> </div>
+	  <div class="card-content card-content-padding">
+	  <ul class="list-group list-group-flush">
+					<% @extras.each do |c| %>
+			    		<li style="list-style: none; color: gray"><%= c.name %>: $<%= c.price %>
+			    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal0<%= c.id %>"><i class="fas fa-edit"style="color: gray"></i></a>
+			    		<a style="float: right;"class="btn" data-toggle="modal" data-target="#exampleModal3<%= c.id %>"><i class="fas fa-trash-alt"style="color: gray"></i></a></li>
+				    
+				     	<!-- Modal -->
+						<div class="modal fade" id="exampleModal0<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<form action="/admin/updateprice/extra/<%= c.id %>" method="GET" class="needs-validation" novalidate>
+						  		<div class="modal-dialog" role="document">
+						    		<div class="modal-content">
+						      			<div class="modal-header">
+						        			<h5 class="modal-title" id="exampleModalLabel"style="color: gray"><%= c.name %></h5>
+						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          				<span aria-hidden="true">&times;</span>
+						        			</button>
+						      			</div>
+						      			<div class="modal-body">
+			   								<div class="input-group mb-3">
+			   									<div class="input-group-prepend">
+								                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+								                </div>
+								                <input type="number" class="form-control" placeholder="New Price" aria-describedby="basic-addon1" name="price" step="any" min="0" max="100" required="">
+								                <div class="invalid-feedback" align="left">Please enter a new price for this service.</div>
+			   								</div>
+						      			</div>
+						      			<div class="modal-footer">
+						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button name="Submit" value="Update" type="submit" class="btn btn-primary" style="float: right;">Update</button>
+										</div>
+						   			</div>
+						  		</div>
+							</form>
+						</div>
+
+						<!-- Delete Modal -->
+						<div class="modal fade" id="exampleModal3<%= c.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<form action="/admin/updateprice/deleteExtra/<%= c.id %>" method="PATCH" class="needs-validation" novalidate>
+								<div class="modal-dialog" role="document">
+						    		<div class="modal-content">
+						      			<div class="modal-header">
+						        			<h5 class="modal-title" id="exampleModalLabel"style="color: gray"><%= c.name %></h5>
+						        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          				<span aria-hidden="true">&times;</span>
+						        			</button>
+						      			</div>
+						      			<div class="modal-body">
+						      				<div class="alert alert-danger" role="alert">Are you sure you want to delete this service?
+  												</div>
+						      			</div>
+						      			<div class="modal-footer">
+						        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        			<button name="Submit" value="Delete" type="submit" class="btn btn-primary" style="float: right;">Delete</button>
+						      			</div>
+						    		</div>
+						  		</div>
+							</form>
+						</div>
+					<% end %>
+					</ul>
+				</div>
+	</div>	
+	</main>
+</div>
+</body>
+<script>
+	(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+>>>>>>> master
 </html>

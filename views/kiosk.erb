@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -347,4 +348,345 @@ function fixStepIndicator(n) {
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+
+body {
+  background-color: white;/*// can change this back to gray if you WANT*/
+}
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+/*  padding: 0px;*/
+  width: 40%;
+  min-width: 300px;
+  margin-top: 0px;
+}
+h1 {
+  text-align: center;  
+}
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+/* Mark input boxes that gets an error on validation: */
+select.invalid {
+  background-color: #ffdddd;
+}
+input.invalid {
+  background-color: #ffdddd;
+}
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+.step.active {
+  opacity: 1;
+}
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+nav{
+  display: none!important;
+}
+html 
+{ 
+  overflow-y: hidden; 
+}
+
+</style>
+<body >
+  <!-- <b><h1 align="center">Queue-up</h1></b> -->
+  <!-- <div class="container" align="center" style="box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3); text-align: top; width: 300px;"> -->
+    <div align="center" id="listofstuff">
+      <svg id ="anitem"version="1.0"  xmlns="http://www.w3.org/2000/svg"
+     width="150.000000pt" height="150.000000pt" viewBox="0 0 600.000000 600.000000"
+     preserveAspectRatio="xMidYMid meet">
+    <metadata>
+    Created by potrace 1.10, written by Peter Selinger 2001-2011
+    </metadata>
+    <g transform="translate(0.000000,600.000000) scale(0.100000,-0.100000)"
+    fill="#a9a9a9" stroke="none">
+    <path d="M805 3860 c-79 -4 -100 -10 -165 -43 -74 -37 -179 -121 -203 -163 -7
+    -12 -27 -46 -45 -75 -18 -30 -35 -65 -38 -79 -3 -14 -12 -41 -19 -60 -20 -49
+    -45 -203 -45 -275 0 -69 24 -152 70 -243 45 -88 131 -159 232 -190 87 -27 135
+    -63 164 -123 98 -203 109 -222 157 -264 39 -34 63 -46 122 -60 50 -12 79 -14
+    91 -7 11 5 38 13 61 17 23 3 47 13 54 21 6 8 16 14 21 14 6 0 32 23 59 51 52
+    55 83 119 77 165 -5 49 -33 42 -107 -29 -56 -54 -75 -66 -112 -72 -84 -12
+    -120 14 -180 134 -23 46 -57 101 -76 122 l-35 39 50 23 c146 68 267 220 320
+    402 24 85 24 371 -1 432 -29 73 -84 149 -134 186 -96 70 -162 86 -318 77z
+    m108 -161 c49 -13 110 -69 136 -122 11 -23 25 -79 32 -125 26 -171 -27 -371
+    -124 -472 -88 -93 -179 -123 -277 -94 -76 22 -112 54 -148 129 -31 62 -32 69
+    -32 191 0 140 12 199 62 299 30 60 90 135 118 149 8 4 35 18 60 31 50 26 112
+    31 173 14z"/>
+    <path d="M5023 3353 c-22 -3 -39 -14 -53 -33 -18 -25 -20 -44 -20 -178 0 -140
+    -1 -151 -22 -178 -43 -54 -93 -94 -118 -94 -53 0 -61 33 -35 148 70 308 69
+    332 -5 332 -32 0 -43 -6 -69 -37 -17 -21 -31 -44 -31 -53 0 -16 -22 -86 -48
+    -155 -31 -81 -53 -123 -86 -161 l-35 -39 -21 21 c-21 21 -21 21 -5 125 9 57
+    23 129 31 159 9 30 14 73 12 95 -3 40 -3 40 -48 43 -62 4 -93 -23 -115 -103
+    -9 -33 -23 -81 -31 -106 -22 -71 -19 -294 4 -339 34 -67 52 -80 108 -80 49 0
+    56 3 98 45 24 25 46 55 48 67 5 36 24 31 37 -11 6 -22 23 -54 37 -70 22 -26
+    33 -30 82 -33 54 -3 57 -4 54 -28 -1 -14 -8 -38 -16 -55 -38 -82 -81 -306 -71
+    -373 18 -123 85 -179 181 -152 69 20 125 98 158 220 10 36 23 85 31 110 7 25
+    16 85 19 134 8 113 20 139 68 147 20 3 44 11 52 18 21 18 70 17 97 -3 35 -24
+    143 -22 194 4 54 27 120 84 156 133 42 58 38 147 -6 147 -6 0 -38 -26 -70 -57
+    -80 -79 -103 -93 -152 -93 -46 0 -56 17 -30 49 39 47 67 183 55 268 -15 104
+    -75 163 -167 163 -52 0 -108 -26 -140 -64 -17 -20 -31 -12 -31 18 0 38 -36 56
+    -97 49z m237 -148 c33 -17 46 -62 37 -121 -10 -58 -68 -163 -111 -200 -64 -55
+    -66 -52 -66 105 l0 139 51 46 c28 25 53 46 56 46 2 0 17 -7 33 -15z m-320
+    -583 c-1 -53 -7 -133 -15 -177 -8 -44 -15 -90 -15 -102 0 -33 -33 -103 -47
+    -103 -7 0 -20 11 -29 25 -27 42 -11 147 53 352 20 62 39 110 44 107 5 -3 9
+    -49 9 -102z"/>
+    <path d="M1459 3323 c-48 -52 -89 -226 -89 -372 0 -120 9 -151 58 -203 21 -23
+    34 -28 74 -28 38 0 54 6 82 30 18 17 43 49 54 73 l20 42 25 -53 c39 -84 50
+    -92 125 -92 71 0 129 21 176 65 34 31 40 31 85 -3 75 -57 97 -64 206 -60 102
+    5 163 21 216 59 39 27 51 24 88 -21 30 -37 35 -40 83 -40 49 0 54 3 99 50 26
+    28 49 61 51 73 4 30 22 24 29 -10 16 -81 54 -112 134 -113 64 0 107 16 170 64
+    18 14 36 26 38 26 3 0 33 -19 68 -42 64 -43 64 -43 169 -46 83 -3 112 0 140
+    13 19 9 55 27 80 39 56 26 147 115 156 151 8 33 -5 74 -27 88 -13 8 -30 -1
+    -79 -42 -126 -105 -195 -132 -285 -112 -40 9 -56 18 -61 33 -7 22 9 38 38 38
+    34 0 140 65 173 105 18 22 40 64 49 93 14 50 14 57 -2 105 -26 74 -74 110
+    -155 115 -83 5 -144 -23 -217 -98 -66 -67 -81 -107 -87 -220 -4 -84 -5 -85
+    -45 -123 -32 -30 -47 -37 -72 -35 -30 3 -31 5 -34 53 -3 46 6 103 45 261 8 33
+    13 83 11 110 l-3 49 -41 3 c-51 4 -91 -26 -104 -78 -8 -34 -18 -63 -47 -145
+    -50 -135 -118 -230 -149 -204 -25 21 -17 111 28 289 19 76 21 110 8 125 -17
+    21 -90 19 -115 -3 -25 -21 -55 -85 -55 -117 0 -13 -5 -36 -12 -52 -6 -15 -14
+    -64 -18 -107 -6 -77 -8 -81 -46 -114 -84 -72 -195 -105 -269 -79 -32 11 -40
+    19 -40 38 0 18 6 25 25 27 14 2 54 17 88 34 48 24 74 45 105 86 36 48 42 62
+    45 118 4 52 0 69 -18 99 -53 86 -157 110 -263 61 -54 -25 -122 -85 -138 -121
+    -5 -11 -13 -27 -18 -35 -20 -33 -41 -125 -41 -180 0 -56 -2 -60 -39 -89 -43
+    -34 -72 -39 -95 -15 -24 23 -23 30 25 229 18 75 31 186 25 210 -5 21 -12 25
+    -47 25 -47 0 -94 -39 -104 -86 -4 -16 -13 -47 -21 -69 -8 -23 -14 -47 -14 -54
+    0 -28 -93 -201 -117 -217 -22 -14 -27 -14 -40 -1 -8 8 -15 25 -16 38 -1 34 22
+    177 35 219 19 58 26 124 17 148 -7 18 -16 22 -52 22 -34 0 -48 -6 -68 -27z
+    m841 -168 c0 -34 -6 -46 -32 -71 -37 -34 -97 -63 -115 -57 -18 6 -5 89 20 131
+    25 43 71 64 104 49 19 -8 23 -18 23 -52z m1154 39 c25 -25 19 -61 -18 -101
+    -37 -41 -121 -80 -132 -61 -12 20 18 116 47 147 31 35 77 41 103 15z"/>
+    <path d="M3959 3226 c-2 -3 -22 -7 -44 -9 -86 -11 -116 -21 -130 -41 -23 -32
+    -18 -74 11 -103 27 -27 23 -27 154 -8 14 2 61 7 105 11 69 6 84 11 107 35 33
+    33 35 57 7 93 -19 25 -25 26 -113 26 -51 0 -95 -2 -97 -4z"/>
+    </g>
+    </svg>
+    </div>
+
+  <form id="regForm" action="/infomessage" class="needs-validation" novalidate>
+    <!-- One "tab" for each step in the form: -->
+    <div class="tab">
+<!--       <center>Choose your style:<p></center> -->
+      <script>
+        $('.select2').select2();
+      </script>
+      <div align="center">
+        <h5 style="color: gray">Hair Service / Corte de Pelo</h5>
+      </div>
+      <select class="custom-select" name="hairtype" list="Hair">
+        <option value="" disabled selected>Choose a service / Elija un servicio:</option> 
+        <% @hairtypes.each do |h| %>
+          <option value= "<%= h.id %>"><%= h.hair_type %>: <font>$</font><%= h.price %></option>
+        <% end %> 
+        <option value="N/A">None</option>
+      </select>
+      <hr>
+
+      <div align="center">
+        <h5 style="color: gray">Beard Service / Corte de Barba</h5>
+      </div>
+      <select class="custom-select" name="beardtype" list="Hair"  >
+        <option value="" disabled selected >Choose a service / Elija un servicio:</option>
+        <% @beardtypes.each do |b| %>
+          <option value="<%= b.id %>"><%= b.hair_type %>: <font>$</font><%= b.price %></option>
+        <% end %>
+        <option value="N/A">None</option>
+      </select>
+      <hr>
+
+      <div align="center">
+        <h5 style="color: gray">Extras</h5>
+      </div>
+      <select class="custom-select" name="extratype" list="Extra"  >
+        <option value="" disabled selected>Choose a service / Elija un servicio:</option>
+        <% @extra.each do |b| %>
+          <option value="<%= b.id %>"><%= b.name %>: <font>$</font><%= b.price %></option>
+        <% end %>
+        <option value="N/A">None</option>
+      </select>
+    </p>
+    </div>
+
+    <% c = 20 
+    barber = 0;
+    @barbers.each do |b|
+    d = b.wait_list
+    e = d.length
+    if ( e < c)
+    c = e
+    barber = b.id
+    end
+    end
+    %>
+
+    <div class="tab">
+      <center>
+        Pick your Barber:<p>
+      </center>
+      <select class="custom-select" id='barber.id' name='id' type='text'>
+        <option value= "<%= barber %>" selected>Next Available / Siguiente disponible:</option>
+        <% @barbers.each do |b| %>
+          <% if b.wait_list.length == 0 %>
+            <option value="<%= b.id%>"> <%= b.name %> Available / Disponible</option>
+          <% elsif b.wait_list.length == 1 %>
+            <option value="<%= b.id%>"> <%= b.name %>: <%= b.wait_list.length %> person ahead / <%= b.wait_list.length %> persona adelante </option>
+          <% else %>
+            <option value="<%= b.id%>"> <%= b.name %>: <%= b.wait_list.length %> persons ahead / <%= b.wait_list.length %> personas adelante </option>
+          <% end %>
+          <br>
+          <br>
+        <% end %>
+      </select>
+      </p>
+      </div>
+
+    <div class="tab">
+      <center>
+        Enter your name:<p>
+      </center>
+      <input type="text" name="name">
+    </div>
+
+    <div style="overflow:auto;">
+      <div align="center">
+        <br>
+        <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextPrev(1)" >Next</button>
+        <!-- <label type="button" id="nextBtn" class="btn btn-primary" onclick="nextPrev(1)" >Next</label> -->
+      </div>
+    </div>
+
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+     <!--  step -->
+    </div>
+</form>
+
+<script>
+
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the crurrent tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, z, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("select");
+  z = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < z.length; i++) {
+    // If a field is empty...
+    if (z[i].value == "") {
+      // add an "invalid" class to the field:
+      z[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+
+</body>
+>>>>>>> master
 </html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,4 +111,141 @@ $(document).ready(function(){
 });
 </script>
 
+=======
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js">
+  </script>
+</head>
+<style type="text/css">
+	.card
+  {
+  	margin-bottom: 5%;
+  	/*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+  }
+  .card-content{
+  	background-color: white;
+  	padding: 30px;
+  	align-items: center;
+  }
+  .grid { 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 60px;
+  align-items: stretch;
+  margin-bottom: 5%;
+}
+.grid > article {
+  border: 1px solid #ccc;
+  /*box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);*/
+}
+.grid > article img {
+  max-width: 100%;
+}
+
+</style>
+<header >
+
+</header>
+<body>
+	<div  class="container" style="width: 1020px;">
+	<h4 style = "color: gray"> Add Barber 
+	<ol class="breadcrumb float-right" style="background-color: white">
+		<li class="breadcrumb-item">
+			<a href="/admin"><i class="fa fa-home" style="color: gray"></i></a>
+		</li>
+		<li class="breadcrumb-item active">
+			<a href="/admin/addbarber" style="color: gray">Add Barber</a>
+		</li>
+	</ol>
+	<div class = "date_addB"><small> <span id="datetime"></span></small></div>
+	</h4>
+	<br>
+
+  <% if flash[:name] %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" align="center">
+    Successfully added <strong><%= flash[:name] %></strong> to your shop!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% end %>
+
+	<div align = "center">
+		<div class="card card-outline">
+		  <div class="card-header"> <h3 align="center" style="color: gray"><%= current_user.email %></h3></div>
+		  <div class="card-content card-content-padding">
+		  	<h5 align="center" style="color: gray">Barber Contact Information</h5>
+		  	<form action="/admin/new" method="POST" class="needs-validation" novalidate>
+		  		<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Barber's Full Name" aria-label="Username" aria-describedby="basic-addon1" id="validationCustom01" name="name" required="">
+                    <div class="invalid-feedback" align="left">Please enter barber's name.</div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-mobile-alt"></i></span>
+                    </div>
+                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="123-456-7890" aria-label="Username" id="validationCustom01" aria-describedby="basic-addon1" name="phone" required="">
+                    <div class="invalid-feedback" align="left">Please enter barber's phone number.</div>
+				</div>
+				<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-instagram"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="instagram_username" aria-label="Username" aria-describedby="basic-addon1" name="insta">
+                    <div class="valid-feedback" align="left">Optional</div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="@twitter_username" aria-label="Username" aria-describedby="basic-addon1" id="validationCustom01" name="twitter">
+                    <div class="valid-feedback" align="left">Optional</div>
+                </div>
+				<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fab fa-snapchat-ghost"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="snapchat_username" aria-label="Username" aria-describedby="basic-addon1" id="validationCustom01" name="snap">
+                    <div class="valid-feedback" align="left">Optional</div>
+                </div>
+					<input type="submit" class = "btn btn-primary" value="Add" >
+			</form>
+		  </div>
+		</div>
+	</div>
+
+</div>
+</body>
+
+<script>
+  (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+
+
+>>>>>>> master
 </html>

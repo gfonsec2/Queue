@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<link rel="stylesheet" href="/stylesheet/dashboard.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+<style>
+.card-header{
+	color:gray;
+}
+.card-content
+{
+	color:gray;
+}
+.grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch;
+  margin-bottom: 5%;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+  .card
+  {
+
+  	/box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);/
+  }
+  .card-content{
+  	background-color: white;
+  	padding: 30px;
+  }
+
+
+</style>
+
+</head>
+<body >
+
+	<% moneyToday = 0%>
+	<% customersToday = 0%>
+	<% @barbers.each do |b| %>
+	<% moneyToday += b.money %>
+	<% customersToday += b.total %>
+	<%end%>
+
+
+	<div  class="container" style="width: 1020px;">
+	<h4 style="color: gray;"> Dashboard 
+		<ol class="breadcrumb float-right" style="background-color: white; ">
+			<li class="breadcrumb-item" ><a href="/admin"><i class="fa fa-home" style="color: gray;"></i></a></li>
+			<li class="breadcrumb-item active" style="color: gray"><a href="/admin" style="color: gray">Dashboard</a></li>
+		</ol>
+		<div class = "date_dashboard"><font color = "#a3a4a6"><small><span id="datetime"></span></small></font></div>
+	</h4>
+	<br>
+
+	<div class="card card-outline ">
+		<form action="/admin" method="GET">
+		<div class="card-header"><h3 align="center" class="split-para">Revenue Report - <%=@year%><span><a href="/admin/downloadYearpdf" style="font-size: 10px; margin-right: 20px; color: blue;">Download pdf.</a></span></h3></div>
+  <div class="card-content card-content-padding">
+  <div align="right"> <button type="submit" class="btn btn-primary" style="height: 45px;"><i class="material-icons" style="font-size:30px;">&#xe5d5;</i></button></div></form><br>
+
+	<main class="grid">
+
+		<div class="card card-outline " >
+		 	<div class="card-header"><h5 align="center" style="color: gray">Specify Dates</h5></div>
+		  	<div class="card-content card-content-padding">
+		  		<form action="/admin/report" method="POST" class="needs-validation" novalidate>
+		  			<h6>Start Date:</h6>
+		  			<div class="input-group mb-3" >
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						<input type="date" id="validationCustom01" class="form-control" aria-describedby="basic-addon1" name="startDate" required>
+					</div>
+					<h6>End Date:</h6>
+					<div class="input-group mb-3" >
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						<input type="date" id="validationCustom01" class="form-control" aria-describedby="basic-addon1" name="endDate" required>
+					</div>
+					<div align="center"><button type="submit" class="btn btn-primary btn-block">Generate</button></div>
+				</form>
+			</div>
+		</div>
+
+		<div class="card card-outline " >
+		  <div class="card-header"><h5 align="center" style="color: gray">Monthly</h5></div>
+		  <div class="card-content card-content-padding">
+		  	<form action="/admin/reportMonth" method="POST" class="needs-validation" novalidate>
+		  		<h6>Month:</h6>
+		  			<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						<select name="month" class="custom-select" id="validationCustom01" required="">
+							<option value="" disabled selected>Month</option>
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option>
+							<option value="06">June</option>
+							<option value="07">July</option>
+							<option value="08">August</option>
+							<option value="09">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</div>
+				<h6>Year:</h6>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+						</div>
+						<select name="year" class="custom-select" id="validationCustom01" required="">
+							<option value="" disabled selected>Year</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select>
+					</div>
+				<div align="center"><button type="submit" class="btn btn-primary btn-block">Generate</button></div>
+			</form>
+		  </div>
+		</div>
+
+		<div class="card card-outline" >
+		  <div class="card-header"><h5 align="center" style="color: gray">Yearly</h5></div>
+		  <div class="card-content card-content-padding">
+		  	<form action="/admin/reportYear" method="POST" class="needs-validation" novalidate>
+		  		<h6>Year:</h6>
+		  		<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+					</div>
+					<select name="year" class="custom-select" id="inputGroupSelect01" required="">
+						<option value="" disabled selected>Year</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+					</select>
+				</div>
+				<div align="center"><button type="submit" class="btn btn-primary btn-block" style="position: relative; bottom: 0px;">Generate</button></div>
+			</form>
+		  </div>
+		</div>
+	</main>
+		
+		<div class="container" style="width:560px;" align="center">
+				What is a Revenue Report?
+				<font class =" text-primary"> 
+					A revenue report helps you see how your shop is doing. You get an easy managable date picker just pick a start date and an end date.
+				</font>
+			</div>
+  </div>
+</div>
+<hr>
+
+	<div class="card card-outline ">
+  <div class="card-header"><h3 align="center"><%= current_user.email %></h3> </div>
+  <div class="card-content card-content-padding">
+  	<i class="fas fa-dollar-sign"></i>
+	<font color="green"> Revenue:<font color="gray"> $<%= @totalRevenue %>.00 </font></font>
+	<br>
+	<i class="fas fa-user-alt"></i>
+	<font color = " red"> Customers:<font color="gray"> <%= @customers %></font></font>
+  </div>
+</div>
+
+	<hr>
+	<main class="grid">
+		<% @barberNameArray.each_index do |i| %>
+		<div class="card card-outline ">
+		  <div class="card-header"><h5 align="center"><%= @barberNameArray[i] %> </h5> </div>
+		  <div class="card-content card-content-padding">
+		  	<i class="fas fa-dollar-sign"></i>
+			<font color="green">Revenue:<font color="gray"> $<%= @totalArray[i] %>.00 </font></font>
+			<br>
+			<i class="fas fa-user-alt"></i>
+			<font color = " red">Customers:<font color="gray"> <%= @numberCustomers[i] %></font></font>
+		  </div>
+		</div>
+		<% end %>
+	</main>
+	</div>
+</body>
+<script>
+	(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+	var dt = new Date();
+	document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+</script>
+</html>
